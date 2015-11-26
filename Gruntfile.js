@@ -1,4 +1,4 @@
-// Generated on 2015-10-21 using generator-angular 0.12.1
+// Generated on 2015-10-18 using generator-angular 0.12.1
 'use strict';
 
 // # Globbing
@@ -11,6 +11,8 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+
+  require("load-grunt-tasks")(grunt);
 
   // Automatically load required Grunt tasks
   require('jit-grunt')(grunt, {
@@ -30,7 +32,8 @@ module.exports = function (grunt) {
 
     // Project settings
     yeoman: appConfig,
-
+    
+    
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -38,7 +41,7 @@ module.exports = function (grunt) {
         tasks: ['wiredep']
       },
       js: {
-        files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
+        files: ['<%= yeoman.app %>/scripts/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: '<%= connect.options.livereload %>'
@@ -49,8 +52,8 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/**/*.css', '<%= yeoman.app %>/styles/less/**/*.less'],
+        tasks: ['newer:copy:styles', 'autoprefixer', 'less']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -60,13 +63,27 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
+          '<%= yeoman.app %>/**/*.html',
+          '.tmp/styles/**/*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
 
+    less: {
+        development: {
+            options: {
+                compress: true,
+                yuicompress: true,
+                optimization: 2
+            },
+            files: {
+                // target.css file: source.less file
+                //"app/styles/bootstrap.css": "app/styles/less/bootstrap.less"
+                'app/styles/main.css': 'app/styles/less/**/*.less'
+            }
+        }
+    },
     // The actual grunt server settings
     connect: {
       options: {
@@ -319,7 +336,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'jingyunetradebackApp',
+          module: 'jingyunshopApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -361,6 +378,8 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             '*.html',
+            'json/**/*.json',
+            'views/**/*.html',
             'images/{,*/}*.{webp}',
             'styles/fonts/{,*/}*.*'
           ]
@@ -408,7 +427,9 @@ module.exports = function (grunt) {
     }
   });
 
-
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -432,6 +453,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'wiredep',
+    'less',
     'concurrent:test',
     'autoprefixer',
     'connect:test',
@@ -441,6 +463,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'less',
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',

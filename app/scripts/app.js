@@ -30,6 +30,9 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      }).when('/release-commodity',{
+        templateUrl:'views/commodity-management/release-commodity.html'
+
       })
       .otherwise({
         redirectTo: '/'
