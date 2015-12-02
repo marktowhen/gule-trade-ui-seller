@@ -11,30 +11,50 @@
 angular
   .module('jingyunetradebackApp', [
     'ngAnimate',
-    'ngAria',
     'ngCookies',
-    'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.router'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
+  .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
+    $urlRouterProvider.otherwise("/");
+    $stateProvider
+      .state('index', {
+        templateUrl: '/views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        url:"/"
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
+      .state('about', {
+        templateUrl: '/views/about.html',
         controller: 'AboutCtrl',
-        controllerAs: 'about'
-      }).when('/release-commodity',{
-        templateUrl:'views/commodity-management/release-commodity.html'
-
+        controllerAs: 'about',
+        url:"/about"
       })
-      .otherwise({
-        redirectTo: '/'
-      });
+      .state('release-commodity',{
+        templateUrl:'/views/commodity-management/release-commodity.html',
+        url:"/release-commodity"
+      })
+       .state('seller-center',{
+        url:"/seller-center",
+        views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
+                  '': {
+                      templateUrl: '/views/seller-center/seller-center.html'
+                      },
+                  'seller-center-left@seller-center': {
+                      templateUrl: 'views/seller-center/seller-center-left.html'
+                    }
+                }
+         })
+       .state('seller-center.sold-goods',{
+        templateUrl:'/views/seller-center/transaction-management/sold-goods.html',
+        url:"/sold-goods"
+      })
+       .state('seller-center.release-commodity',{
+        templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
+        url:"/release-commodity"
+      })
   });
