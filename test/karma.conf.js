@@ -33,6 +33,9 @@ module.exports = function(config) {
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
+      'bower_components/angular-ueditor/dist/angular-ueditor.min.js',
+      'bower_components/jquery-ui/jquery-ui.js',
+      'bower_components/angular-ui-date/src/date.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       &#34;app/scripts/**/*.js&#34;,

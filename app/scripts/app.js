@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var shopbackApp= angular
   .module('jingyunetradebackApp', [
     'ngAnimate',
     'ngAria',
@@ -17,9 +17,10 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+    'ngTouch',
+    'ng.ueditor',
+    'ui.date'
+  ]).config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
