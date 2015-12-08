@@ -17,11 +17,7 @@ var shopbackApp= angular
     'ngSanitize',
     'ngTouch',
     'ng.ueditor',
-    'ui.date'
-  ]).config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
+    'ui.date',
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -41,7 +37,7 @@ var shopbackApp= angular
         url:"/about"
       })
       .state('release-commodity',{
-        templateUrl:'/views/commodity-management/release-commodity.html',
+        templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
         url:"/release-commodity"
       })
        .state('seller-center',{
@@ -58,9 +54,9 @@ var shopbackApp= angular
        .state('seller-center.sold-goods',{
         templateUrl:'/views/seller-center/transaction-management/sold-goods.html',
         url:"/sold-goods"
-      })
-       .state('seller-center.release-commodity',{
+      });
+     /* .state('seller-center.release-commodity',{
         templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
         url:"/release-commodity"
-      })
+      })*/ 
   });
