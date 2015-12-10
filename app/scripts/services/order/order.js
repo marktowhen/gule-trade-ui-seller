@@ -1,0 +1,24 @@
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name jingyunshopApp.controller:AboutCtrl
+ * @description
+ * # AboutCtrl
+ * Controller of the jingyunshopApp
+ */
+shopbackApp.service('OrderService', function ($http, $location, ApiService) {
+   this.listWithCondition  = function (mid, from, size, status){
+        return  $http.get(ApiService.api.order.listWithCondition.replace(':mid', mid).replace(':from', from).replace(':size', size),
+                    {'params': {'status':status}});
+    };
+
+    this.accept = function(order){
+        return $http.put(ApiService.api.order.accept, [order.id], {'Content-Type':'application/json;charset=UTF-8'});
+    };
+
+    this.delivered = function(logistic){
+        return $http.put(ApiService.api.order.delivered, logistic, {'Content-Type':'application/json;charset=UTF-8'});
+    };
+
+});

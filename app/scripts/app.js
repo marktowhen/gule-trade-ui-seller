@@ -54,6 +54,18 @@ var shopbackApp= angular
        .state('seller-center.sold-goods',{
         templateUrl:'/views/seller-center/transaction-management/sold-goods.html',
         url:"/sold-goods"
+      })
+      .state('seller-center.wait-to-accept', {
+        templateUrl: '/views/seller-center/transaction-management/wait-to-accept.html',
+        url:"/order/accept"
+      })
+      .state('seller-center.delivering', {
+        templateUrl: '/views/seller-center/transaction-management/delivering.html',
+        url:"/order/delivering"
+      })
+      .state('seller-center.delivered', {
+        templateUrl: '/views/seller-center/transaction-management/delivered.html',
+        url:"/order/delivered"
       });
      /* .state('seller-center.release-commodity',{
         templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
