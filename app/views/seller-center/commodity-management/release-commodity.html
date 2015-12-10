@@ -21,7 +21,7 @@
 							name="mer">
 							</select>
 						</div>
-						<p ng-show="saveForm.mer.$dirty && saveForm.mer.$error.required" style="color: red" >&nbsp;商家不能为空</p>
+						<p ng-show="saveForm.mer.$error.required" style="color: red" >&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -29,9 +29,11 @@
 						<div class="release-commodity-info-txt fl">
 							<select class="release-commodity-select-length" required
 							ng-model="goods.b" 
-							ng-options="b.brandName for b in brandlist">
+							ng-options="b.brandName for b in brandlist"
+							name="brand">
 							</select>
 						</div>
+						<p ng-show="saveForm.brand.$error.required" style="color: red" >&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -39,7 +41,7 @@
 						<div class="release-commodity-info-txt fl">
 							<input class="release-commodity-name"   type="text" ng-model="goods.name" name="name" required>
 						</div>
-						<p ng-show="saveForm.name.$dirty && saveForm.name.$error. required" style="color: red" >&nbsp;&nbsp;&nbsp;商品名不能为空</p>
+						<p ng-show="saveForm.name.$error. required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 
 						
 					</li>
@@ -47,8 +49,9 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品编码：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-code"  type="text" ng-model="goods.code">
+							<input class="release-commodity-code"  type="text" ng-model="goods.code" name="code" required>
 						</div>
+						<p ng-show="saveForm.code.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -56,27 +59,33 @@
 						<div class="release-commodity-info-txt fl">
 							<select class="release-commodity-select-length" required 
 							ng-model="goods.t" 
-							ng-options="t.typeName for t in typelist">
+							ng-options="t.typeName for t in typelist"
+							name="type">
 							</select>
 						</div>
+						<p ng-show="saveForm.type.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">商品价格：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-input-length" type="text" ng-model="goods.price"  pattern="^[+-]?\d+(\.\d+)?$" name="price">
+							<input class="release-commodity-input-length" type="text" ng-model="goods.price"  pattern="^[+-]?\d+(\.\d+)?$" name="price" required>
 						</div>
-						<p ng-show="saveForm.price.$dirty && saveForm.price.$error. pattern" style="color: red" >&nbsp;价格只能输入数字</p>
+						<p ng-show="saveForm.price.$error.pattern" style="color: red" >&nbsp;价格只能输入数字</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">商品是否促销：</div>
 						<div class="release-commodity-info-txt fl">
-							<select class="release-commodity-select-length" ng-model="goods.pro_flag">
+							<select class="release-commodity-select-length" ng-model="goods.pro_flag" 
+							name="pro_flag" required>
 								<option value="0">否</option>
 								<option value="1">是</option>
 							</select>
 						</div>
+						<p ng-show="saveForm.pro_flag.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -100,17 +109,18 @@
 					<li>
 						<div class="release-commodity-info-label fl">是否上架：</div>
 						<div class="release-commodity-info-txt fl" >
-							<select class="release-commodity-select-length" required  ng-model="goods.state">
+							<select class="release-commodity-select-length" required  ng-model="goods.state" required name="state">
 								<option value="0">否</option>
 								<option value="1">是</option>
 							</select>
 						</div>
+						<p ng-show="saveForm.state.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">邮费：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-input-length release-commodity-postage fl" required  ng-model="goods.postage" pattern="^[+-]?\d+(\.\d+)?$" name="postage">
+							<input class="release-commodity-input-length release-commodity-postage fl"   ng-model="goods.postage" pattern="^[+-]?\d+(\.\d+)?$" name="postage">
 						</div>
 						<p ng-show="saveForm.postage.$dirty && saveForm.postage.$error. pattern" style="color: red" >&nbsp;价格只能输入数字</p>
 							
@@ -119,11 +129,12 @@
 					<li>
 						<div class="release-commodity-info-label fl">减库存方式：</div>
 						<div class="release-commodity-info-txt fl">
-							<select class="release-commodity-select-length" required  ng-model="goods.subVolumeType">
+							<select class="release-commodity-select-length" required  ng-model="goods.subVolumeType" name="subVolumeType">
 								<option value="0">拍下减库存</option>
 								<option value="1">付款减库存</option>
 							</select>
 						</div>
+						<p ng-show="saveForm.subVolumeType.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -159,106 +170,121 @@
 					<li>
 						<div class="release-commodity-info-label fl">产品标准号：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.standardNo">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.standardNo" name="standardNo" required>
 						</div>
+						<p ng-show="saveForm.standardNo.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">产品生产许可证号：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.approveNo">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.approveNo" name="approveNo" required>
 						</div>
+						<p ng-show="saveForm.approveNo.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">保质期：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.shelfLife">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.shelfLife" name="shelfLife" required>
 						</div>
+						<p ng-show="saveForm.shelfLife.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">食用方法：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.usage">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.usage" name="usage" required>
 						</div>
+						<p ng-show="saveForm.usage.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">适宜人群：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.commendedUser">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.commendedUser" name="commendedUser" required>
 						</div>
+						<p ng-show="saveForm.commendedUser.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">不适宜人群：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.notCommendedUser">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.notCommendedUser" name="notCommendedUser" required>
 						</div>
+						<p ng-show="saveForm.notCommendedUser.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">配料表：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ingredients">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ingredients" name="ingredients" required>
 						</div>
+						<p ng-show="saveForm.ingredients.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">食品添加剂：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.foodAdditives">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.foodAdditives" name="foodAdditives" required>
 						</div>
+						<p ng-show="saveForm.foodAdditives.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">规格：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.specifications">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.specifications" name="specifications" required>
 						</div>
+						<p ng-show="saveForm.specifications.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">成分含量：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ingredient">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ingredient" name="ingredient" required>
 						</div>
+						<p ng-show="saveForm.ingredient.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">功能及功效：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.functions">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.functions" name="functions" required>
 						</div>
+						<p ng-show="saveForm.functions.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">注意事项：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.note">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.note" name="note" required>
 						</div>
+						<p ng-show="saveForm.note.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">存储方法：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.storageMethods">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.storageMethods" name="storageMethods" required>
 						</div>
+						<p ng-show="saveForm.storageMethods.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">包装方式：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.isGiftBox">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.isGiftBox" name="isGiftBox" required>
 						</div>
+						<p ng-show="saveForm.isGiftBox.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">生产日期：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ProductionDate" ui-date="dateOptions">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ProductionDate" ui-date="dateOptions" name="ProductionDate" required>
 						</div>
+						<p ng-show="saveForm.ProductionDate.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -272,30 +298,34 @@
 					<li>
 						<div class="release-commodity-info-label fl">重量单位：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text"  ng-model="goods.unit">
+							<input class="release-commodity-food-safety-txt"  type="text"  ng-model="goods.unit" name="unit" required>
 						</div>
+						<p ng-show="saveForm.unit.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填 g/ml</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 					<li>
 						<div class="release-commodity-info-label fl">生产厂家：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.factoryName">
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.factoryName"  name="factoryName" required>
 						</div>
+						<p ng-show="saveForm.factoryName.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">生产厂址：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt" type="text" ng-model="goods.factoryAddr">
+							<input class="release-commodity-food-safety-txt" type="text" ng-model="goods.factoryAddr" name="factoryAddr" required>
 						</div>
+						<p ng-show="saveForm.factoryAddr.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">厂家联系方式：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt" type="text" ng-model="goods.factoryTel">
+							<input class="release-commodity-food-safety-txt" type="text" ng-model="goods.factoryTel" name="factel" required>
 						</div>
+						<p ng-show="saveForm.factel.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 				</ul>
@@ -312,58 +342,77 @@
 					 <div class="release-commodity-info-label fl">商品图片：</div>
 						<div class="release-commodity-info-txt fl">
 							<form  id="fileinfo1">
-							<input class="release-commodity-upload-img" type="file" id="file1" name="file" />
+							<input class="release-commodity-upload-img" type="file" id="file1" name="file" onchange="$('#sub1').trigger('click')" />
+							<input id="sub1" type="hidden" ng-click="doUpload(1)"/>
 							</form>
 						</div>
-						<input type="button" value="上传1"  ng-click="doUpload(1)" />{{success1}}
+						<!-- <input type="button" value="上传1"  ng-click="doUpload(1)" /> -->{{success1}}
 					</li>
 					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl">商品图片：</div>
+					 <div class="release-commodity-info-label fl"></div>
 						<div class="release-commodity-info-txt fl">
 							<form  id="fileinfo2">
-							<input class="release-commodity-upload-img" type="file" id="file2" name="file" />
+							<input class="release-commodity-upload-img" type="file" id="file2" name="file"  onchange="$('#sub2').trigger('click')"/>
+							<input id="sub2" type="hidden" ng-click="doUpload(2)"/>
 							</form>
 						</div>
-						<input type="button" value="上传2"  ng-click="doUpload(2)" />
 						{{success2}}
 					</li>
 					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl">商品图片：</div>
+					 <div class="release-commodity-info-label fl"></div>
 						<div class="release-commodity-info-txt fl">
 							<form  id="fileinfo3">
-							<input class="release-commodity-upload-img" type="file" id="file3" name="file"/>
+							<input class="release-commodity-upload-img" type="file" id="file3" name="file"  onchange="$('#sub3').trigger('click')"/>
+							<input id="sub3" type="hidden" ng-click="doUpload(3)"/>
 							</form>
 						</div>
-						<input type="button" value="上传3"  ng-click="doUpload(3)" />
 						{{success3}}
 					</li>
 					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl">商品图片：</div>
+					 <div class="release-commodity-info-label fl"></div>
 						<div class="release-commodity-info-txt fl">
 							<form  id="fileinfo4">
-							<input class="release-commodity-upload-img" type="file" id="file4" name="file" />
+							<input class="release-commodity-upload-img" type="file" id="file4" name="file" onchange="$('#sub4').trigger('click')"/>
+							<input id="sub4" type="hidden" ng-click="doUpload(4)"/>
 							</form>
 						</div>
-						<input type="button" value="上传4"  ng-click="doUpload(4)" />
 						{{success4}}
 					</li>
 					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl">商品图片：</div>
+					 <div class="release-commodity-info-label fl"></div>
 						<div class="release-commodity-info-txt fl">
 							<form  id="fileinfo5">
-							<input class="release-commodity-upload-img" type="file" id="file5" name="file"/>
+							<input class="release-commodity-upload-img" type="file" id="file5" name="file" onchange="$('#sub5').trigger('click')"/>
+							<input id="sub5" type="hidden" ng-click="doUpload(5)"/>
 							</form>
 						</div>
-						<input type="button" value="上传5"  ng-click="doUpload(5)" />
 						{{success5}}
 					</li>
 					<div class="clear"></div>
 					<li>
-							  <div class="ueditor" ng-model="content"></div> 
+
+					 	<script type="text/plain" id="editor" ></script>
+						<script type="text/javascript">
+							var ue = UE.getEditor('editor');
+							UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+							UE.Editor.prototype.getActionUrl= function(action){
+								//alert("上传路径~"+action)
+								if (action == 'uploadimage' || action == 'uploadscrawl' ) {
+									return 'http://localhost:8080/api/resource/ueditor/upload';
+								}
+								else{
+									 return ue._bkGetActionUrl.call(this, action);
+								}
+
+							}
+							function getContents(){
+								$("#texts").val(ue.getContent());
+							}
+						</script>
 					</li>
 					<div class="clear"></div>
 				</ul>
@@ -382,7 +431,7 @@
 						<div class="release-commodity-info-txt fl">
 							<input class="release-commodity-stock" required type="text" ng-model="goods.count" pattern="^[+-]?\d+(\.\d+)?$" name="count">
 						</div>
-						<p ng-show="saveForm.count.$dirty && saveForm.count.$error.pattern" style="color: red">&nbsp;只能输入数字</p>
+						<p ng-show="saveForm.count.$error.pattern" style="color: red">&nbsp;只能输入数字</p>
 
 					</li>
 					<div class="clear"></div>
@@ -398,16 +447,16 @@
 				</ul>
 			</div>
 		</div>
- 	
+ 	<textarea  id="texts" style="display: none;"></textarea>
 	
 
-		<div class="release-commodity-footer">
-			<div class="release-commodity-btn" ng-click="submit(goods)">
+		<div class="release-commodity-footer" >
+			<button class="release-commodity-btn" onclick="getContents()" ng-click="submit(goods)"
+			ng-disabled="saveForm.$invalid ">
 				发布
-			</div>
+			</button>
 		</div>
 	</div>
-	
 
 </ng-form>
 </div>

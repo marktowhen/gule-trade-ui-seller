@@ -86,7 +86,11 @@ shopbackApp.controller('GoodsOperationController', function ($scope,GoodsOperati
 		};
 	/*保存*/
 	$scope.submit=function(goods){
+		
+		var content = $("#texts").val();
+		console.log(content);
+		console.log("submit~~~");
 		GoodsOperationService.saveGoods(goods,$scope.img1,
-			$scope.img2,$scope.img3,$scope.img4,$scope.img5,$scope.content);
+			$scope.img2,$scope.img3,$scope.img4,$scope.img5,content);
 	};
 });
