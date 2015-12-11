@@ -15,9 +15,9 @@
 						<div class="release-commodity-info-label fl">商品所属商家：</div>
 						<div class="release-commodity-info-txt fl">
 							<select class="release-commodity-select-length" required
-							ng-model="goods.m" 
-							ng-options="m.merchantName for m in merchantlist"
-							ng-change="getbrand(goods.m)"
+							ng-model="goods.mid" 
+							ng-options="m.mid as m.merchantName for m in merchantlist"
+							ng-change="getbrand(goods.mid)"
 							name="mer">
 							</select>
 						</div>
@@ -28,8 +28,8 @@
 						<div class="release-commodity-info-label fl">商品所属品牌：</div>
 						<div class="release-commodity-info-txt fl">
 							<select class="release-commodity-select-length" required
-							ng-model="goods.b" 
-							ng-options="b.brandName for b in brandlist"
+							ng-model="goods.bid" 
+							ng-options="b.bid as b.brandName for b in brandlist"
 							name="brand">
 							</select>
 						</div>
@@ -58,8 +58,8 @@
 						<div class="release-commodity-info-label fl">商品类型：</div>
 						<div class="release-commodity-info-txt fl">
 							<select class="release-commodity-select-length" required 
-							ng-model="goods.t" 
-							ng-options="t.typeName for t in typelist"
+							ng-model="goods.tid" 
+							ng-options="t.tid as t.typeName for t in typelist"
 							name="type">
 							</select>
 						</div>
@@ -448,11 +448,16 @@
 			</div>
 		</div>
  	<textarea  id="texts" style="display: none;"></textarea>
-	
+	<input type="hidden" ng-model="goods.thumbpath1"/>
+	<input type="hidden" ng-model="goods.thumbpath2"/>
+	<input type="hidden" ng-model="goods.thumbpath3"/>
+	<input type="hidden" ng-model="goods.thumbpath4"/>
+	<input type="hidden" ng-model="goods.thumbpath5"/>
 
 		<div class="release-commodity-footer" >
 			<button class="release-commodity-btn" onclick="getContents()" ng-click="submit(goods)"
-			ng-disabled="saveForm.$invalid ">
+			ng-disabled="saveForm.$invalid "
+			>
 				发布
 			</button>
 		</div>
@@ -460,3 +465,4 @@
 
 </ng-form>
 </div>
+

@@ -24,8 +24,8 @@ shopbackApp.service('GoodsOperationService', function ($http, $location) {
         };
 
 
-        this.saveGoods = function (goods,p1,p2,p3,p4,p5,content){
-        	var parmas ={'mid':goods.m.mid,'bid':goods.b.bid,'name':goods.name,'code':goods.code,
+        this.saveGoods = function (goods){
+        	/*var parmas ={'mid':goods.m.mid,'bid':goods.b.bid,'name':goods.name,'code':goods.code,
         				'tid':goods.t.tid,'price':goods.price,'promotionPrice':goods.promotionPrice,
         				'state':goods.state,'upTime':goods.upTime,'downTime':goods.downTime,
         				'count':goods.count,'pro_start':goods.pro_start,'pro_end':goods.pro_end,
@@ -42,10 +42,10 @@ shopbackApp.service('GoodsOperationService', function ($http, $location) {
         				'storageMethods':goods.storageMethods,'isGiftBox':goods.isGiftBox,
         				'ProductionDate':goods.ProductionDate,'weight':goods.weight,'unit':goods.unit,
         				'factoryName':goods.factoryName,'factoryAddr':goods.factoryAddr,
-        				'factoryTel':goods.factoryTel};
+        				'factoryTel':goods.factoryTel};*/
 
          			$http.post("http://localhost:8080/api/goodsOperation/save",
-        				parmas,
+        				goods,
             	 		{'Content-Type': 'application/json;charset=UTF-8'})
 	         			.success(function(response){
 	         				if(response.code==200){

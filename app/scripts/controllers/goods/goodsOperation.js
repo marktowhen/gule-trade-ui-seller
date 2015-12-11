@@ -37,8 +37,8 @@ shopbackApp.controller('GoodsOperationController', function ($scope,GoodsOperati
 		$scope.typelist =data.body;
 	});
 	/*获取当前的商家下的品牌*/
-	$scope.getbrand = function(goods){
-		GoodsOperationService.brandlist(goods.mid).success(function(data){
+	$scope.getbrand = function(mid){
+		GoodsOperationService.brandlist(mid).success(function(data){
 		$scope.brandlist =data.body;
 		}); 
 	};
@@ -62,19 +62,20 @@ shopbackApp.controller('GoodsOperationController', function ($scope,GoodsOperati
 						var data = JSON.stringify(data);
 						var body = JSON.parse(data).body;
 						if(id==1){
-							 $scope.img1 =body;
+							 //$scope.img1 =body;
+							 $scope.goods.thumbpath1 =  body;
 							 $scope.success1 ="上传成功";
 						}else if(id==2){
-							 $scope.img2 =body;
+							 $scope.goods.thumbpath2 =  body;
 							 $scope.success2 ="上传成功";
 						}else if(id==3){
-							 $scope.img3 =body;
+							 $scope.goods.thumbpath3 =  body;
 							  $scope.success3 ="上传成功";
 						}else if(id==4){
-							 $scope.img4 =body;
+							$scope.goods.thumbpath4 =  body;
 							  $scope.success4 ="上传成功";
 						}else if(id==5){
-							 $scope.img5 =body;
+							 $scope.goods.thumbpath5 =  body;
 							  $scope.success5 ="上传成功";
 						}
 					},
@@ -86,11 +87,8 @@ shopbackApp.controller('GoodsOperationController', function ($scope,GoodsOperati
 		};
 	/*保存*/
 	$scope.submit=function(goods){
-		
-		var content = $("#texts").val();
-		console.log(content);
-		console.log("submit~~~");
-		GoodsOperationService.saveGoods(goods,$scope.img1,
-			$scope.img2,$scope.img3,$scope.img4,$scope.img5,content);
+		var content_ = $("#texts").val();
+		goods.content = content_;
+		GoodsOperationService.saveGoods(goods);
 	};
 });
