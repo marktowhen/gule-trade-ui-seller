@@ -15,6 +15,9 @@ shopbackApp.service('ApiService', function () {
             'accept':'http://localhost:8080/api/orders/accept',
             'delivered':'http://localhost:8080/api/orders/logistic'
         },
+        'goods':{//根据条件查询商品
+            'queryGoodsList':'http://localhost:8080/api/back/goods/list'
+        },
                 
     }
 });

@@ -66,7 +66,13 @@ var shopbackApp= angular
       .state('seller-center.delivered', {
         templateUrl: '/views/seller-center/transaction-management/delivered.html',
         url:"/order/delivered"
-      });
+      })
+      //商品列表查询
+      .state('seller-center.goods-list', {
+        templateUrl: '/views/seller-center/goods-management/goodslist.html',
+        url:"/goods/list"
+      })
+      ;
      /* .state('seller-center.release-commodity',{
         templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
         url:"/release-commodity"
