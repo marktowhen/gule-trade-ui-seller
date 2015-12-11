@@ -8,8 +8,10 @@
  * Controller of the jingyunshopApp
  */
 shopbackApp.controller('GoodsEditController', function ($scope,GoodsEditService) {
+	$scope.name = '';
 	//默认查询商品
-	GoodsEditService.queryGoodsList($scope.name,$scope.state,0,100)
+	$scope.state = '1';
+	GoodsEditService.queryGoodsList('','1',0,100)
 				.success(function(data){
 					$scope.goodslist = data.body;
 				});
