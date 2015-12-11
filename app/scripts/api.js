@@ -15,6 +15,22 @@ shopbackApp.service('ApiService', function () {
             'accept':'http://localhost:8080/api/orders/accept',
             'delivered':'http://localhost:8080/api/orders/logistic'
         },
+        'helpCenter':{
+            'category' : {
+            	'list' : 'http://localhost:8080/api/help/center/list',
+            	'single' : 'http://localhost:8080/api/help/center/:id',
+            	'save' :'http://localhost:8080/api/help/center/',
+            	'refresh' :'http://localhost:8080/api/help/center/:id',
+            	'remove' :'http://localhost:8080/api/help/center/:id'
+            },
+            'detail' : {
+            	'list' : 'http://localhost:8080/api/help/center/detail/list/:categoryID',
+            	'single' : 'http://localhost:8080/api/help/center/detail/:id',
+            	'save' :'http://localhost:8080/api/help/center/detail/',
+            	'refresh' :'http://localhost:8080/api/help/center/detail/:id',
+            	'remove' :'http://localhost:8080/api/help/center/detail/:id'
+            }
+        }
                 
     }
 });
