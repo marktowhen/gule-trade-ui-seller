@@ -30,6 +30,9 @@ shopbackApp.service('ApiService', function () {
             	'refresh' :'http://localhost:8080/api/help/center/detail/:id',
             	'remove' :'http://localhost:8080/api/help/center/detail/:id'
             }
+        },
+        'goods':{//根据条件查询商品
+            'queryGoodsList':'http://localhost:8080/api/back/goods/list'
         }
                 
     }

@@ -1,0 +1,52 @@
+<div class="goods-list" ng-controller="GoodsEditController as goodsCtl">
+	<div class="gl-top-title">商品管理&gt商品维护</div>
+	<div class="gl-mid-detail">
+		<ul class="gl">
+			<li class="gl-detail">
+				<p>宝贝名称：</p>
+				<input type="text" class="gl-t" ng-model="name"></li>
+			<li class="gl-detail">
+				<p>上架状态：</p>
+				<select class="gl-ss" ng-model="state">
+					<option class="gl-o" value="0">未上架</option>
+					<option class="gl-o" value="1">已上架</option>
+				</select>
+			</li> 
+		</ul>
+		<div class="clear h10"></div>
+		<div class="gl-ser" ng-click="serch()">查询</div>
+	</div>
+	<div class="gl-content">
+		<div class="gl-hd">
+			<div class="glh-mid">
+				<ul class="glhm">
+					<li class="glh-m">商品名称</li>
+					<li class="glh-m">商家</li>
+					<li class="glh-m">品牌</li>
+					<li class="glh-m">商品编码</li>
+					<li class="glh-m">原价（元）</li>
+					<li class="glh-m">促销价</li>
+					<li class="glh-m">是否促销</li>
+					<li class="glh-m">操作</li>
+				</ul>
+			</div>
+		</div>
+		<div class="gl-bd">
+			<div class="glb-mid">
+				<div ng-repeat="goods in goodslist">
+					<ul class="glbm">
+						<li class="glb-m">{{goods.goodsName}}</li>
+						<li class="glb-m">{{goods.merchantName}}</li>
+						<li class="glb-m">{{goods.brandName}}</li>
+						<li class="glb-m">{{goods.goodsCode}}</li>
+						<li class="glb-m">{{goods.price}}</li>
+						<li class="glb-m">{{goods.promotionPrice}}</li>
+						<li class="glb-m">{{goods.pro_flag}}</li>
+						<li class="glb-m">编辑 上架 下架</li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
