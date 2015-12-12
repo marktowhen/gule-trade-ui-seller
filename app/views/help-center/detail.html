@@ -1,17 +1,17 @@
-<div class='help-center-category' ng-controller='HelpCenterDetailController'>
+<div class='help-center-detail' ng-controller='HelpCenterDetailController'>
 	<div class='clear'></div>
 	<div class='left'>
 		<ul ng-repeat="category in categoryList" >
 			<span ng-click='listDetail(category);showOrHideList(category);'>{{category.sort}}-->{{category.name}} </span> 
 			<div ng-repeat="detail in category.detailList" ng-if="category.showDetail">
-				<span ng-click="getSingle(detail.id)"> {{detail.name}}</span>
+				<span class='dtail-item' ng-click="getSingle(detail.id)">{{detail.sort}}--> {{detail.name}}</span>
 				<a class="remove" ng-click="remove(detail.id, category)">x</a>
 			</div>
 		</ul>
 	</div>
 	<div class='right'>
 		<form name='myForm'>
-			<input type='text' ng-model='detail.parentID' >
+			<input type='hidden' ng-model='detail.parentID' >
 			<div class='box'>
 				<span class='titlle'>{{title}}</span>
 				<span class='add' ng-click='newDetail()'>点击新增</span>
@@ -23,7 +23,7 @@
 							<p class='red'>请输入名称</p>
 						</td>
 						<td  ng-show="myForm.name.$darty && myForm.name.$invalid">
-							<p class='red'>请输入名称</p>
+							<p class='red'>名称在1-20字之间</p>
 						</td>
 					</tr>
 					<tr>
@@ -38,8 +38,27 @@
 					</tr>
 					<tr>
 						<td>内容:</td>
-						<td><input type="text" ng-model='detail.content' name='content'required /></td>
-						<td  ng-show="myForm.content.$error.required">
+						<td>
+							<script type="text/plain" id="editor" ></script>
+							<script type="text/javascript">
+								var ue = UE.getEditor('editor');
+								UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+								UE.Editor.prototype.getActionUrl= function(action){
+									//alert("上传路径~"+action)
+									if (action == 'uploadimage' || action == 'uploadscrawl' ) {
+										return 'http://localhost:8080/api/resource/ueditor/upload';
+									}
+									else{
+										 return ue._bkGetActionUrl.call(this, action);
+									}
+
+								}
+								function getContents(){
+									$("#texts").val(ue.getContent());
+								}
+							</script>
+						</td>
+						<td  ng-show="noContent">
 							<p class='red'>请输入内容</p>
 						</td>
 					</tr>

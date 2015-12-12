@@ -39,6 +39,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 
 		$scope.detail = {'parentID':category.id};
 		$scope.title = '新增';
+		ue.setContent('');
 	}
 
 	$scope.title = '新增';
@@ -48,6 +49,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 		HelpCenterDetailService.single(id).success(function(data){
 			$scope.detail = data.body;
 			$scope.title = '修改';
+			ue.setContent(data.body.content);
 		})
 		
 	}
@@ -59,35 +61,45 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 		}
 		$scope.detail = {'parentID':$scope.detail.parentID};
 		$scope.title = '新增';
+		ue.setContent('');
 	}
 
 	
 
 	$scope.submitItem = function(detail, ifValid){
+		//校验通过
 		if(ifValid){
+			//已选择分类
 			if(!isEmpty(detail.parentID)){
-				if(!isEmpty(detail.id)){
-					HelpCenterDetailService.refresh(detail).success(function(data){
-						if(data.code==200){
-							alert('修改成功');
-							$scope.newDetail();
-							refreshCategory(detail.parentID);
-						}else{
-							alert(data.message);
-						}
-					})
+				var content = ue.getContent();
+				if(!isEmpty(content)){
+					detail.content = content;
+					if(!isEmpty(detail.id)){
+						HelpCenterDetailService.refresh(detail).success(function(data){
+							if(data.code==200){
+								alert('修改成功');
+								$scope.newDetail();
+								refreshCategory(detail.parentID);
+							}else{
+								alert(data.message);
+							}
+						})
 
+					}else{
+						HelpCenterDetailService.save(detail).success(function(data){
+							if(data.code==200){
+								alert('保存成功');
+								$scope.newDetail();
+								refreshCategory(detail.parentID);
+							}else{
+								alert(data.message);
+							}
+						})
+					}
 				}else{
-					HelpCenterDetailService.save(detail).success(function(data){
-						if(data.code==200){
-							alert('保存成功');
-							$scope.newDetail();
-							refreshCategory(detail.parentID);
-						}else{
-							alert(data.message);
-						}
-					})
+					alert("请输入页面内容");
 				}
+					
 			}else{
 				alert('请选择分类');
 			}
