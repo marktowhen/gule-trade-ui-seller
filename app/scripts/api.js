@@ -35,6 +35,9 @@ shopbackApp.service('ApiService', function () {
             'queryGoodsList':'http://localhost:8080/api/back/goods/list',
             'up':'http://localhost:8080/api/goodsOperation/up/:gid',
             'down':'http://localhost:8080/api/goodsOperation/down/:gid'
+        },
+        'merchant':{//根据条件查询商品
+            'queryMerchantList':'http://localhost:8080/api/merchant/list'
         }
                 
     }
