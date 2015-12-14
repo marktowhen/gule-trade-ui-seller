@@ -16,8 +16,6 @@ var shopbackApp= angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ng.ueditor',
-    'ui.date',
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
