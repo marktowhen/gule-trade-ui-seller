@@ -8,15 +8,8 @@
  * Controller of the jingyunshopApp
  */
 shopbackApp.service('MerchantEditService', function($http,$location,$resource,ApiService){
-	   //根据条件查询商家列表
-       this.queryMerchantList = function(name,offset,size){
-            return $http.get(ApiService.api.merchant.queryMerchantList, 
-                {params:{'merchantName':name,'offset':offset,'size':size}})
+	   //根据ID查询商家信息
+       this.getMerchantInfo = function(mid){
+            return $http.get(ApiService.api.merchant.getMerchantInfo.replace(":mid", mid))
        }; 
-      /* this.up = function(){
-        return $resource(ApiService.api.goods.up, {});
-       };
-       this.down = function(){
-        return $resource(ApiService.api.goods.down, {});
-       };*/
 });
