@@ -43,7 +43,7 @@
 						<li class="glb-m">{{goods.promotionPrice}}</li>
 						<li class="glb-m">{{goods.pro_flag=='0'?'否':'是'}}</li>
 						<li class="glb-m">
-							<a href="#" class="aa">编辑</a>
+							<a href="#/update/goods/{{goods.gid}}" class="aa">编辑</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="#" class="aa" ng-show="{{goods.state == 0}}">上架</a>
 							<a href="#" class="aa" ng-show="{{goods.state == 1}}">下架</a>
