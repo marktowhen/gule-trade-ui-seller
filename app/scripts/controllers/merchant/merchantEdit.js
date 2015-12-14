@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,$location,MerchantEditService) {
+shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,$location,MerchantEditService, ApiService) {
 	var mid = $state.params.mid;//获取商家ID
 	$scope.m = { id: "",
 				 merchantName: "",
@@ -52,7 +52,7 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 		 var file=document.getElementById("file").files[0];
 			if(file!=null){
 				 $.ajax({  
-						url:'http://localhost:8080/api/resource/upload/single',
+						url:ApiService.api.resource.single,
 					    type: 'POST',  
 						data: formData,
 						dataType: 'JSON',
