@@ -9,7 +9,8 @@
  */
 shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,$location,MerchantEditService) {
 	var mid = $state.params.mid;//获取商家ID
-	$scope.m = { merchantName: "",
+	$scope.m = { id: "",
+				 merchantName: "",
 				 merchantEname:"",
 				 merchantCode:"",
 				 merchantAddress:"",
@@ -20,13 +21,15 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 				 qq:"",
 				 adminSortNum:"",
 				 invoiceFlag:"0",
-				 level:"",
+				 level:"1",
+				 imgPath:"",
 				 merchantDesc:""
 	};
 	if(mid){
 		MerchantEditService.getMerchantInfo(mid)
 				.success(function(data){
 					var r = data.body;
+					$scope.m.id = r.id;
 					$scope.m.merchantName = r.merchantName;
 					$scope.m.merchantEname = r.merchantEname;
 					$scope.m.merchantCode = r.merchantCode;
@@ -42,4 +45,40 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 					$scope.m.merchantDesc = r.merchantDesc;
 				});
 	}
+	/*上传图片*/
+	$scope.doUpload = function(){
+		var form = document.getElementById("fileinfo");  
+		var formData = new FormData(form); 
+		 var file=document.getElementById("file").files[0];
+			if(file!=null){
+				 $.ajax({  
+						url:'http://localhost:8080/api/resource/upload/single',
+					    type: 'POST',  
+						data: formData,
+						dataType: 'JSON',
+						async: false,  
+						cache: false,  
+						contentType: false,  
+						processData: false,  
+						success: function (data) {  
+						var data = JSON.stringify(data);
+						var body = JSON.parse(data).body;
+						$scope.m.imgPath =  body;
+						$scope.success ="上传成功";
+					},
+					error: function (data) {alert(JSON.stringify(data));}  
+					}); 
+			}else{
+				alert("上传对象为空!");
+			}
+		};
+
+	/*保存或者修改修改*/
+	$scope.saveorupdate =function(m){
+		if(m.id){
+			MerchantEditService.updateMerchant(m);
+		}else{
+			MerchantEditService.saveMerchant(m);
+		}
+	};
 });
