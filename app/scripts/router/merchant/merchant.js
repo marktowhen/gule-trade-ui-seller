@@ -18,5 +18,9 @@ shopbackApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) 
       .state('seller-center.merchant-edit',{
         templateUrl:'/views/merchant/merchantedit.html',
         url:"/merchant/edit?mid"
+      })//商家新建
+      .state('seller-center.merchant-add',{
+        templateUrl:'/views/merchant/merchantadd.html',
+        url:"/merchant/add"
       })
   });

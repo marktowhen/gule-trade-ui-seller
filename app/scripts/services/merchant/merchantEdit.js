@@ -26,4 +26,18 @@ shopbackApp.service('MerchantEditService', function($http,$location,$resource,Ap
                             alert("修改商家失败:"+response);
                         });
         };
+        this.saveMerchant = function (m){
+                    $http.post(ApiService.api.merchant.save,
+                        m,
+                        {'Content-Type': 'application/json;charset=UTF-8'})
+                        .success(function(response){
+                            if(response.code==200){
+                                alert("保存商家成功......");
+                            }else{
+                                alert("保存商家异常....."+response.message);
+                            }
+                        }).error(function(response){
+                            alert("保存商家失败:"+response);
+                        });
+        };
 });

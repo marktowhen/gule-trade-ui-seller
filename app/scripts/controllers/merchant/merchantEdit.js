@@ -21,7 +21,7 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 				 qq:"",
 				 adminSortNum:"",
 				 invoiceFlag:"0",
-				 level:"",
+				 level:"1",
 				 imgPath:"",
 				 merchantDesc:""
 	};
@@ -75,6 +75,11 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 
 	/*保存或者修改修改*/
 	$scope.saveorupdate =function(m){
-		MerchantEditService.updateMerchant(m);
+		if(m.id){
+			MerchantEditService.updateMerchant(m);
+		}else{
+			MerchantEditService.saveMerchant(m);
+		}
+		
 	};
 });
