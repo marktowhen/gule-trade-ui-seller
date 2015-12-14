@@ -124,7 +124,7 @@
 			</div>
 		</div>
 
-		<div class="commodity-food-safety-info">
+		<!-- <div class="commodity-food-safety-info">
 			<div class="release-commodity-hd">
 				2、商家品牌信息
 			</div>
@@ -140,107 +140,34 @@
 					<div class="clear"></div>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 
-		<!-- <div class="commodity-food-safety-info">
+		<div class="commodity-food-safety-info">
 			<div class="release-commodity-hd">
-				3、商家图片
+				2、商家图片
 			</div>
 			<div class="release-commodity-info">
 				<ul class="release-commodity-info-list">
 					<li>
 					 <div class="release-commodity-info-label fl">商品图片：</div>
 						<div class="release-commodity-info-txt fl">
-							<form  id="fileinfo1">
-							<input class="release-commodity-upload-img" type="file" id="file1" name="file" onchange="$('#sub1').trigger('click')" />
-							<input id="sub1" type="hidden" ng-click="doUpload(1)"/>
+							<form  id="fileinfo">
+							<input class="release-commodity-upload-img" type="file" id="file" name="file" onchange="$('#sub1').trigger('click')" />
+							<input id="sub1" type="hidden" ng-click="doUpload()"/>
 							</form>
 						</div>
-						<input type="button" value="上传1"  ng-click="doUpload(1)" />{{success1}}
-					</li>
-					<div class="clear"></div>
-					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
-							<form  id="fileinfo2">
-							<input class="release-commodity-upload-img" type="file" id="file2" name="file"  onchange="$('#sub2').trigger('click')"/>
-							<input id="sub2" type="hidden" ng-click="doUpload(2)"/>
-							</form>
-						</div>
-						{{success2}}
-					</li>
-					<div class="clear"></div>
-					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
-							<form  id="fileinfo3">
-							<input class="release-commodity-upload-img" type="file" id="file3" name="file"  onchange="$('#sub3').trigger('click')"/>
-							<input id="sub3" type="hidden" ng-click="doUpload(3)"/>
-							</form>
-						</div>
-						{{success3}}
-					</li>
-					<div class="clear"></div>
-					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
-							<form  id="fileinfo4">
-							<input class="release-commodity-upload-img" type="file" id="file4" name="file" onchange="$('#sub4').trigger('click')"/>
-							<input id="sub4" type="hidden" ng-click="doUpload(4)"/>
-							</form>
-						</div>
-						{{success4}}
-					</li>
-					<div class="clear"></div>
-					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
-							<form  id="fileinfo5">
-							<input class="release-commodity-upload-img" type="file" id="file5" name="file" onchange="$('#sub5').trigger('click')"/>
-							<input id="sub5" type="hidden" ng-click="doUpload(5)"/>
-							</form>
-						</div>
-						{{success5}}
-					</li>
-					<div class="clear"></div>
-					<li>
-		
-					 	<script type="text/plain" id="editor" ></script>
-						<script type="text/javascript">
-							var ue = UE.getEditor('editor');
-							UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-							UE.Editor.prototype.getActionUrl= function(action){
-								//alert("上传路径~"+action)
-								if (action == 'uploadimage' || action == 'uploadscrawl' ) {
-									return 'http://localhost:8080/api/resource/ueditor/upload';
-								}
-								else{
-									 return ue._bkGetActionUrl.call(this, action);
-								}
-		
-							}
-							function getContents(){
-								$("#texts").val(ue.getContent());
-							}
-						</script>
+						<input type="button" value="上传"  ng-click="doUpload()" />{{success}}
 					</li>
 					<div class="clear"></div>
 				</ul>
 			</div>
-		</div> -->
-		
- 	<textarea  id="texts" style="display: none;"></textarea>
-	<input type="hidden" ng-model="m.thumbpath1"/>
-	<input type="hidden" ng-model="m.thumbpath2"/>
-	<input type="hidden" ng-model="m.thumbpath3"/>
-	<input type="hidden" ng-model="m.thumbpath4"/>
-	<input type="hidden" ng-model="m.thumbpath5"/>
-
+		</div>
+		<input type="hidden" ng-model="m.id"/>
+		<input type="hidden" ng-model="m.imgPath"/>
 		<div class="release-commodity-footer" >
-			<button class="release-commodity-btn" onclick="getContents()" ng-click="submit(m)"
-			ng-disabled="saveForm.$invalid "
-			>
-				修改
+			<button class="release-commodity-btn" ng-click="saveorupdate(m)"
+			ng-disabled="saveForm.$invalid"
+			>修改
 			</button>
 		</div>
 	</div>
