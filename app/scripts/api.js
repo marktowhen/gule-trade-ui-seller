@@ -11,52 +11,52 @@ shopbackApp.service('ApiService', function () {
     this.api = {
         
         'order':{
-            'listWithCondition': 'http://localhost:8080/api/orders/seller/:mid/:from/:size',
-            'accept':'http://localhost:8080/api/orders/accept',
-            'delivered':'http://localhost:8080/api/orders/logistic'
+            'listWithCondition': 'http://139.129.87.118/api/orders/seller/:mid/:from/:size',
+            'accept':'http://139.129.87.118/api/orders/accept',
+            'delivered':'http://139.129.87.118/api/orders/logistic'
         },
         'helpCenter':{
             'category' : {
-            	'list' : 'http://localhost:8080/api/help/center/list',
-            	'single' : 'http://localhost:8080/api/help/center/:id',
-            	'save' :'http://localhost:8080/api/help/center/',
-            	'refresh' :'http://localhost:8080/api/help/center/:id',
-            	'remove' :'http://localhost:8080/api/help/center/:id'
+            	'list' : 'http://139.129.87.118/api/help/center/list',
+            	'single' : 'http://139.129.87.118/api/help/center/:id',
+            	'save' :'http://139.129.87.118/api/help/center/',
+            	'refresh' :'http://139.129.87.118/api/help/center/:id',
+            	'remove' :'http://139.129.87.118/api/help/center/:id'
             },
             'detail' : {
-            	'list' : 'http://localhost:8080/api/help/center/detail/list/:categoryID',
-            	'single' : 'http://localhost:8080/api/help/center/detail/:id',
-            	'save' :'http://localhost:8080/api/help/center/detail/',
-            	'refresh' :'http://localhost:8080/api/help/center/detail/:id',
-            	'remove' :'http://localhost:8080/api/help/center/detail/:id'
+            	'list' : 'http://139.129.87.118/api/help/center/detail/list/:categoryID',
+            	'single' : 'http://139.129.87.118/api/help/center/detail/:id',
+            	'save' :'http://139.129.87.118/api/help/center/detail/',
+            	'refresh' :'http://139.129.87.118/api/help/center/detail/:id',
+            	'remove' :'http://139.129.87.118/api/help/center/detail/:id'
             }
         },
         'goods':{//根据条件查询商品
-            'queryGoodsList':'http://localhost:8080/api/back/goods/list',
-			 'queryGoodsList':'http://localhost:8080/api/back/goods/list',
-            'up':'http://localhost:8080/api/goodsOperation/up/:gid',
-            'down':'http://localhost:8080/api/goodsOperation/down/:gid',
-            'brandlist':'http://localhost:8080/api/goods/brand/list'
+            'queryGoodsList':'http://139.129.87.118/api/back/goods/list',
+			 'queryGoodsList':'http://139.129.87.118/api/back/goods/list',
+            'up':'http://139.129.87.118/api/goodsOperation/up/:gid',
+            'down':'http://139.129.87.118/api/goodsOperation/down/:gid',
+            'brandlist':'http://139.129.87.118/api/goods/brand/list'
         },
         'goodsOperation':{//商品操作
-            'merchantlist':'http://localhost:8080/api/goodsOperation/merchant/list',
-            'brandlist':'http://localhost:8080/api/goodsOperation/brands/',
-            'typelist':'http://localhost:8080/api/goods/type/list',
-            'show':'http://localhost:8080/api/goodsOperation/updateveiw/',
-            'save':'http://localhost:8080/api/goodsOperation/save',
-            'update':'http://localhost:8080/api/goodsOperation/update/'
+            'merchantlist':'http://139.129.87.118/api/goodsOperation/merchant/list',
+            'brandlist':'http://139.129.87.118/api/goodsOperation/brands/',
+            'typelist':'http://139.129.87.118/api/goods/type/list',
+            'show':'http://139.129.87.118/api/goodsOperation/updateveiw/',
+            'save':'http://139.129.87.118/api/goodsOperation/save',
+            'update':'http://139.129.87.118/api/goodsOperation/update/'
         },       
   
         'merchant':{//根据条件查询商品
-            'queryMerchantList':'http://localhost:8080/api/merchant/list',
-            'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
-            'update':'http://localhost:8080/api/merchant/updatemerchant',
-            'save':'http://localhost:8080/api/merchant/savemerchant'
+            'queryMerchantList':'http://139.129.87.118/api/merchant/list',
+            'getMerchantInfo':'http://139.129.87.118/api/merchant/info/:mid',
+            'update':'http://139.129.87.118/api/merchant/updatemerchant',
+            'save':'http://139.129.87.118/api/merchant/savemerchant'
         },
         'resource':{
-            'ueditor':'http://localhost:8080/api/resource/ueditor/upload',
-            'single':'http://localhost:8080/api/resource/upload/single'
+            'ueditor':'http://139.129.87.118/api/resource/ueditor/upload',
+            'single':'http://139.129.87.118/api/resource/upload/single'
         }
                 
-    }
+    };
 });
