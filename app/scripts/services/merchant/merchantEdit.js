@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.service('MerchantEditService', function($http,$location,$resource,ApiService){
+shopbackApp.service('MerchantEditService', function($http,$location,$state,$resource,ApiService){
 	   //根据ID查询商家信息
        this.getMerchantInfo = function(mid){
             return $http.get(ApiService.api.merchant.getMerchantInfo.replace(":mid", mid))
@@ -19,6 +19,7 @@ shopbackApp.service('MerchantEditService', function($http,$location,$resource,Ap
                         .success(function(response){
                             if(response.code==200){
                                 alert("修改商家成功......");
+                                $state.go('seller-center.merchant-list');
                             }else{
                                 alert("修改商家异常....."+response.message);
                             }
@@ -33,6 +34,7 @@ shopbackApp.service('MerchantEditService', function($http,$location,$resource,Ap
                         .success(function(response){
                             if(response.code==200){
                                 alert("保存商家成功......");
+                                $state.go('seller-center.merchant-list');
                             }else{
                                 alert("保存商家异常....."+response.message);
                             }

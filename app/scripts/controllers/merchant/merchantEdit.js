@@ -80,6 +80,5 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 		}else{
 			MerchantEditService.saveMerchant(m);
 		}
-		
 	};
 });
