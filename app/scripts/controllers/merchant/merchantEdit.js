@@ -7,22 +7,21 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GoodsEditController', function ($scope,$location,GoodsEditService) {
+shopbackApp.controller('MerchantEditController', function ($scope,$location,MerchantEditService) {
 	$scope.name = '';
-	//默认查询商品
-	$scope.state = '1';
-	GoodsEditService.queryGoodsList('','1',0,100)
+	//默认查询商家
+	MerchantEditService.queryMerchantList('',0,100)
 				.success(function(data){
-					$scope.goodslist = data.body;
+					$scope.merchantlist = data.body;
 				});
-    //搜索查询商品
+    //搜索查询商家
     $scope.serch = function(){
-    	 GoodsEditService.queryGoodsList($scope.name,$scope.state,0,100)
+    	 MerchantEditService.queryMerchantList($scope.name,0,100)
 				.success(function(data){
-					$scope.goodslist = data.body;
+					$scope.merchantlist = data.body;
 				});
     };
-    //商品上架
+   /* //商品上架
   $scope.up =function(id){
      GoodsEditService.up().get({gid:id},  function(data){
      		$location.path("/seller-center/goods/list");
@@ -43,5 +42,5 @@ shopbackApp.controller('GoodsEditController', function ($scope,$location,GoodsEd
         	$location.path("/seller-center/goods/list");
             alert("下架失败！");
           });
-  };
+  };*/
 });
