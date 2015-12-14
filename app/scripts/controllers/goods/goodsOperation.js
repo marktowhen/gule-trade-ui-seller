@@ -7,21 +7,37 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GoodsOperationController', function ($scope,GoodsOperationService) {
+shopbackApp.controller('GoodsOperationController', function ($scope,$stateParams,GoodsOperationService) {
+	var gid = $stateParams.gid;
+	
+	if(gid!=null){
+			console.log("gid >>"+gid);
+			GoodsOperationService.goodsVO(gid).success(function(data){
+				$scope.goods= data.body;
+				//console.log($scope.goods);
+			});
+
+			GoodsOperationService.brandAlllist().success(function(data){
+				$scope.brandlist= data.body;
+				//console.log(data.body);
+			});
+
+	}
+
+
 	//图片路径定义
 	$scope.img1 ="";
 	$scope.img2 ="";
 	$scope.img3 ="";
 	$scope.img4 ="";
 	$scope.img5 ="";
-
 	/*初始化时间格式*/
 	$scope.dateOptions = {
 		showMonthAfterYear: true, // 月在年之后显示  
 	    changeYear: true,
 	    changeMonth: true,
 	    dateFormat:'yy-mm-dd',  
-	    timeFormat: 'HH:mm:ss',
+	    timeFormat: 'hh:mm:ss',
 	    yearRange: '1900:-0',
 	    showButtonPanel: true,
 		showHour: true,
@@ -29,6 +45,9 @@ shopbackApp.controller('GoodsOperationController', function ($scope,GoodsOperati
            $scope.model=dateText;
        }   
     };
+
+
+
     /*获取当前的商家*/
 	GoodsOperationService.merchantlist().success(function(data){
 		$scope.merchantlist =data.body;
@@ -87,8 +106,39 @@ shopbackApp.controller('GoodsOperationController', function ($scope,GoodsOperati
 		};
 	/*保存*/
 	$scope.submit=function(goods){
+		/*获取ueditor*/
 		var content_ = $("#texts").val();
+		/*获取时间控件的时间*/
+		var uptime = $("#uptime").val();
+		var downtime = $("#downtime").val();
+		var pro_start = $("#pro_start").val();
+		var pro_end = $("#pro_end").val();
+		var productionDate = $("#productionDate").val();
+		goods.upTime = uptime;
+		goods.downTime = downtime;
+		goods.pro_start = pro_start;
+		goods.pro_end = pro_end;
+		goods.productionDate = productionDate;
 		goods.content = content_;
 		GoodsOperationService.saveGoods(goods);
+	};
+
+	/*修改*/
+	$scope.update =function(goods){
+		/*获取ueditor*/
+		var content_ = $("#texts").val();
+		/*获取时间控件的时间*/
+		var uptime = $("#uptime").val();
+		var downtime = $("#downtime").val();
+		var pro_start = $("#pro_start").val();
+		var pro_end = $("#pro_end").val();
+		var productionDate = $("#productionDate").val();
+		goods.upTime = uptime;
+		goods.downTime = downtime;
+		goods.pro_start = pro_start;
+		goods.pro_end = pro_end;
+		goods.productionDate = productionDate;
+		goods.content = content_;
+		GoodsOperationService.updateGoods(goods);
 	};
 });

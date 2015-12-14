@@ -99,9 +99,11 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品促销时间：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-p-start-day" ng-model="goods.pro_start" ui-date="dateOptions">
+							<input class="release-commodity-p-start-day" 
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="pro_start">
 							&nbsp;&nbsp;&nbsp;&nbsp;到&nbsp;&nbsp;&nbsp;&nbsp;
-							<input class="release-commodity-p-end-day"  ng-model="goods.pro_end"  ui-date="dateOptions">
+							<input class="release-commodity-p-end-day" 
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="pro_end">
 							
 						</div>
 					</li>
@@ -130,8 +132,8 @@
 						<div class="release-commodity-info-label fl">减库存方式：</div>
 						<div class="release-commodity-info-txt fl">
 							<select class="release-commodity-select-length" required  ng-model="goods.subVolumeType" name="subVolumeType">
-								<option value="0">拍下减库存</option>
-								<option value="1">付款减库存</option>
+								<option value="0" >拍下减库存</option>
+								<option value="1" >付款减库存</option>
 							</select>
 						</div>
 						<p ng-show="saveForm.subVolumeType.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
@@ -282,7 +284,8 @@
 					<li>
 						<div class="release-commodity-info-label fl">生产日期：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ProductionDate" ui-date="dateOptions" name="ProductionDate" required>
+							<input class="release-commodity-food-safety-txt" id="productionDate"
+							name="ProductionDate" required onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
 						</div>
 						<p ng-show="saveForm.ProductionDate.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
@@ -438,9 +441,10 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品上架时间：</div>
 						<div class="release-commodity-info-txt fl">
-							<input ui-date="dateOptions" ng-model="goods.upTime" class="release-commodity-shelf-start-day">
+							<input  ng-model="goods.upTime" id="uptime"  class="release-commodity-shelf-start-day" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
 							&nbsp;&nbsp;&nbsp;&nbsp;到 &nbsp;&nbsp;&nbsp;&nbsp;
-							<input class="release-commodity-shelf-end-day"  ui-date="dateOptions" ng-model="goods.downTime">
+							<input class="release-commodity-shelf-end-day"  id="downtime"
+							ng-model="goods.downTime" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
 						</div>
 					</li>
 					<div class="clear"></div>
@@ -455,8 +459,9 @@
 	<input type="hidden" ng-model="goods.thumbpath5"/>
 
 		<div class="release-commodity-footer" >
+		<!-- ng-disabled="saveForm.$invalid " -->
 			<button class="release-commodity-btn" onclick="getContents()" ng-click="submit(goods)"
-			ng-disabled="saveForm.$invalid "
+			
 			>
 				发布
 			</button>

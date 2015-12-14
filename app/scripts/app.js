@@ -16,8 +16,6 @@ var shopbackApp= angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ng.ueditor',
-    'ui.date',
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -39,6 +37,13 @@ var shopbackApp= angular
       .state('release-commodity',{
         templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
         url:"/release-commodity"
+      })
+      .state('update-goods',{
+        templateUrl:'/views/seller-center/commodity-management/update-goods.html',
+        url:"/update/goods/:gid",
+        controller: function($stateParams){
+              $stateParams.gid  
+         },
       })
        .state('seller-center',{
         url:"/seller-center",
