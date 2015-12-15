@@ -35,8 +35,7 @@ shopbackApp.service('ApiService', function () {
             'queryGoodsList':'http://localhost:8080/api/back/goods/list',
 			 'queryGoodsList':'http://localhost:8080/api/back/goods/list',
             'up':'http://localhost:8080/api/goodsOperation/up/:gid',
-            'down':'http://localhost:8080/api/goodsOperation/down/:gid',
-            'brandlist':'http://localhost:8080/api/goods/brand/list'
+            'down':'http://localhost:8080/api/goodsOperation/down/:gid'
         },
         'goodsOperation':{//商品操作
             'merchantlist':'http://localhost:8080/api/goodsOperation/merchant/list',
@@ -51,12 +50,10 @@ shopbackApp.service('ApiService', function () {
             'queryMerchantList':'http://localhost:8080/api/merchant/list',
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
             'update':'http://localhost:8080/api/merchant/updatemerchant',
-            'save':'http://localhost:8080/api/merchant/savemerchant'
-        },
-        'resource':{
-            'ueditor':'http://localhost:8080/api/resource/ueditor/upload',
-            'single':'http://localhost:8080/api/resource/upload/single'
+            'save':'http://localhost:8080/api/merchant/savemerchant',
+            'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
+            'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list'
         }
                 
-    };
+    }
 });
