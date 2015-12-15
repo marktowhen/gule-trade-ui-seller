@@ -30,7 +30,7 @@
 		
 		
         // 服务器统一请求接口路径
-        , serverUrl: "http://101.200.215.25/api/resource/dispatch"
+        , serverUrl: "http://localhost:8080/api/resource/dispatch"
 		
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
         , toolbars: [[
