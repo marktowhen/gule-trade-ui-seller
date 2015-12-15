@@ -50,7 +50,9 @@ shopbackApp.service('ApiService', function () {
             'queryMerchantList':'http://localhost:8080/api/merchant/list',
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
             'update':'http://localhost:8080/api/merchant/updatemerchant',
-            'save':'http://localhost:8080/api/merchant/savemerchant'
+            'save':'http://localhost:8080/api/merchant/savemerchant',
+            'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
+            'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list'
         }
                 
     }
