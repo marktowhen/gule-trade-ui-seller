@@ -7,8 +7,8 @@
 
 
 	</div>
-	<div class="info-div">标题：<input type="text" class="info" ng-model=""/></div>
-	<div class="info-div">时间：<input type="text" class="info" /></div>
+	<div class="info-div">标题：<input type="text" class="info" ng-model="infoschool.title"/></div>
+	<div class="info-div">时间：<input type="text" class="info" ng-model="infoschool.addtime"/></div>
 	<div class="info-div">
 	<script type="text/plain" id="editor" ></script>
 							<script type="text/javascript">
@@ -31,6 +31,6 @@
 	</div>
 	<div class="savebtn">
 		<!-- <input class="btn" type="button" value="保存" ng-click="saveuserinfo(userinfo)"> -->
-		<div class="gl-ser" ng-click="">保存</div>
+		<div class="gl-ser" ng-click="saveuserinfo(infoschool)">保存</div>
 	</div>
 </div>
