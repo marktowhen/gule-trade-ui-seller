@@ -42,4 +42,10 @@ shopbackApp.service('MerchantEditService', function($http,$location,$state,$reso
                             alert("保存商家失败:"+response);
                         });
         };
+         this.invoicelist = function(){
+        return $resource(ApiService.api.merchant.invoicelist, {});
+        };
+         this.deliverylist = function(){
+            return $resource(ApiService.api.merchant.deliverylist, {});
+        };
 });
