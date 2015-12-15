@@ -56,6 +56,12 @@ shopbackApp.service('ApiService', function () {
         'resource':{
             'ueditor':'http://localhost:8080/api/resource/ueditor/upload',
             'single':'http://localhost:8080/api/resource/upload/single'
+        },
+        'brand':{
+            'brandlist':'http://localhost:8080//api/brand/brands/',
+            'save':'http://localhost:8080/api/brand/save',
+            'getbyid':'http://localhost:8080/api/brand/updateveiw/',
+            'update':'http://localhost:8080/api/brand//update/'
         }
                 
     };
