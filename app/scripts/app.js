@@ -16,6 +16,8 @@ var shopbackApp= angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ng.ueditor',
+    'ui.date',
     'ui.router'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -23,10 +25,18 @@ var shopbackApp= angular
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state('index', {
-        templateUrl: '/views/main.html',
+        /*templateUrl: '/views/main.html',*/
         controller: 'MainCtrl',
         controllerAs: 'main',
-        url:"/"
+        url:"/",
+        views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
+                  '': {
+                      templateUrl: '/views/seller-center/seller-center.html'
+                      },
+                  'seller-center-left@index': {
+                      templateUrl: 'views/seller-center/seller-center-left.html'
+                    }
+                }
       })
       .state('about', {
         templateUrl: '/views/about.html',
@@ -37,13 +47,6 @@ var shopbackApp= angular
       .state('release-commodity',{
         templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
         url:"/release-commodity"
-      })
-      .state('update-goods',{
-        templateUrl:'/views/seller-center/commodity-management/update-goods.html',
-        url:"/update/goods/:gid",
-        controller: function($stateParams){
-              $stateParams.gid  
-         },
       })
        .state('seller-center',{
         url:"/seller-center",

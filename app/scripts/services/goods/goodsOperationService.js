@@ -15,7 +15,7 @@ shopbackApp.service('GoodsOperationService', function ($http, $location,ApiServi
                         {'Content-Type': 'application/json;charset=UTF-8'}); 
     	  	};
         this.brandAlllist  = function (){
-            return  $http.get("http://localhost:8080/api/goods/brand/list",
+            return  $http.get(ApiService.api.goods.brandlist,
                         {'Content-Type': 'application/json;charset=UTF-8'}); 
             };
     	 this.brandlist  = function (mid){

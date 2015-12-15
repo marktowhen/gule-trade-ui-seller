@@ -1,4 +1,5 @@
 (function () {
+	
     var parent = window.parent;
     //dialog对象
     dialog = parent.$EDITORUI[window.frameElement.id.replace( /_iframe$/, '' )];
@@ -12,12 +13,12 @@
     utils = UE.utils;
 
     browser = UE.browser;
-
+	
     ajax = UE.ajax;
-
     $G = function ( id ) {
         return document.getElementById( id )
     };
+
     //focus元素
     $focus = function ( node ) {
         setTimeout( function () {

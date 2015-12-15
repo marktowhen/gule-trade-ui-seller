@@ -48,11 +48,19 @@ shopbackApp.service('ApiService', function () {
   
         'merchant':{//根据条件查询商品
             'queryMerchantList':'http://localhost:8080/api/merchant/list',
+
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid'
         },
         'getinformation':{
             'getSchoolSite':'http://localhost:8080/api/information/sites/:siteid',
             'getSchoolName':'http://localhost:8080/api/information/sites/:names'
+
+            'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
+            'update':'http://localhost:8080/api/merchant/updatemerchant',
+            'save':'http://localhost:8080/api/merchant/savemerchant',
+            'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
+            'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list'
+
         }
                 
     }
