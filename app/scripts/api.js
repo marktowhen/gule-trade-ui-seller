@@ -49,6 +49,10 @@ shopbackApp.service('ApiService', function () {
         'merchant':{//根据条件查询商品
             'queryMerchantList':'http://localhost:8080/api/merchant/list',
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid'
+        },
+        'getinformation':{
+            'getSchoolSite':'http://localhost:8080/api/information/sites/:siteid',
+            'getSchoolName':'http://localhost:8080/api/information/sites/:names'
         }
                 
     }

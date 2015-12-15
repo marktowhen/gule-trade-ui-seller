@@ -1,0 +1,36 @@
+<div class="info-view" ng-controller="SchoolSiteController">
+	<div class="sg-top-title">资讯管理&gt添加阿胶学堂</div>
+	<div class="info-div">名称：<!-- <input type="text" class="info" /> -->
+		<select class="info-option" name='names' ng-model="infoschool.name" ng-options="m.name for m in SchoolSite">
+
+		</select>
+
+
+	</div>
+	<div class="info-div">标题：<input type="text" class="info" ng-model=""/></div>
+	<div class="info-div">时间：<input type="text" class="info" /></div>
+	<div class="info-div">
+	<script type="text/plain" id="editor" ></script>
+							<script type="text/javascript">
+								var ue = UE.getEditor('editor');
+								UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+								UE.Editor.prototype.getActionUrl= function(action){
+									//alert("上传路径~"+action)
+									if (action == 'uploadimage' || action == 'uploadscrawl' ) {
+										return 'http://localhost:8080/api/resource/ueditor/upload';
+									}
+									else{
+										 return ue._bkGetActionUrl.call(this, action);
+									}
+
+								}
+								function getContents(){
+									$("#texts").val(ue.getContent());
+								}
+							</script>
+	</div>
+	<div class="savebtn">
+		<!-- <input class="btn" type="button" value="保存" ng-click="saveuserinfo(userinfo)"> -->
+		<div class="gl-ser" ng-click="">保存</div>
+	</div>
+</div>

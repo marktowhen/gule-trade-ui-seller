@@ -56,9 +56,14 @@ var shopbackApp= angular
                     }
                 }
          })
+
        .state('seller-center.sold-goods',{
         templateUrl:'/views/seller-center/transaction-management/sold-goods.html',
         url:"/sold-goods"
+      })
+      .state('add-information',{
+        templateUrl:'/views/information-management/add-information.html',
+        url:"/add-information"
       })
       .state('seller-center.wait-to-accept', {
         templateUrl: '/views/seller-center/transaction-management/wait-to-accept.html',
