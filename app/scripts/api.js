@@ -58,8 +58,21 @@ shopbackApp.service('ApiService', function () {
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
             'update':'http://localhost:8080/api/merchant/updatemerchant',
             'save':'http://localhost:8080/api/merchant/savemerchant',
-            'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
+			 'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
             'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list'
+
+
+
+        },
+        'resource':{
+            'ueditor':'http://localhost:8080/api/resource/ueditor/upload',
+            'single':'http://localhost:8080/api/resource/upload/single'
+        },
+        'brand':{
+            'brandlist':'http://localhost:8080//api/brand/brands/',
+            'save':'http://localhost:8080/api/brand/save',
+            'getbyid':'http://localhost:8080/api/brand/updateveiw/',
+            'update':'http://localhost:8080/api/brand//update/'
 
         }
                 
