@@ -124,27 +124,35 @@
 			</div>
 		</div>
 
-		<!-- <div class="commodity-food-safety-info">
+		<div class="commodity-food-safety-info">
 			<div class="release-commodity-hd">
-				2、商家品牌信息
+				2、商家其他信息
 			</div>
 			<div class="release-commodity-info">
 				<ul class="release-commodity-info-list">
 					<li>
-						<div class="release-commodity-info-label fl">产品标准号：</div>
-						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="m.standardNo" name="standardNo" required>
-						</div>
-						<p ng-show="saveForm.standardNo.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+						<div class="release-commodity-info-label fl">发票类型：</div>
+						<div class="release-commodity-info-txt fl" ng-repeat="io in invoicelist">
+							 <input type="checkbox" ng-change="selectInvoice(io)" ng-model="io.selected" value="{{io.code}}" ng-true-value="true" ng-false-value="false">
+							 {{io.name}} &nbsp;&nbsp;&nbsp;&nbsp;
+						</div> 
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">邮递类型：</div>
+						<div class="release-commodity-info-txt fl" ng-repeat="do in deliverylist">
+							<input type="checkbox" ng-change="selectDelivery(do)" ng-model="do.selected" value="{{do.code}}" ng-true-value="true" ng-false-value="false">
+							{{do.name}} &nbsp;&nbsp;&nbsp;&nbsp;
+						</div> 
 					</li>
 					<div class="clear"></div>
 				</ul>
 			</div>
-		</div> -->
+		</div>
 
 		<div class="commodity-food-safety-info">
 			<div class="release-commodity-hd">
-				2、商家图片
+				3、商家图片
 			</div>
 			<div class="release-commodity-info">
 				<ul class="release-commodity-info-list">
@@ -164,6 +172,8 @@
 		</div>
 		<input type="hidden" ng-model="m.id"/>
 		<input type="hidden" ng-model="m.imgPath"/>
+		<input type="hidden" ng-model="m.invoiceCodes"/>
+		<input type="hidden" ng-model="m.deliveryCodes"/>
 		<div class="release-commodity-footer" >
 			<button class="release-commodity-btn" ng-click="saveorupdate(m)"
 			ng-disabled="saveForm.$invalid"
