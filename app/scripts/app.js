@@ -48,6 +48,10 @@ var shopbackApp= angular
         templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
         url:"/release-commodity"
       })
+      .state('update-goods',{
+        templateUrl:'/views/seller-center/commodity-management/update-goods.html',
+        url:"/update/goods?gid"
+      })
        .state('seller-center',{
         url:"/seller-center",
         views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
