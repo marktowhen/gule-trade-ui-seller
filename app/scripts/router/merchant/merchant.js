@@ -22,5 +22,5 @@ shopbackApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) 
       .state('seller-center.merchant-add',{
         templateUrl:'/views/merchant/merchantadd.html',
         url:"/merchant/add"
-      })
+      });
   });

@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GoodsOperationController', function ($scope,$stateParams,GoodsOperationService) {
+shopbackApp.controller('GoodsOperationController', function ($scope,$stateParams,GoodsOperationService, ApiService) {
 	var gid = $stateParams.gid;
 	
 	if(gid!=null){
@@ -69,7 +69,7 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$stateParams
 		 var file=document.getElementById("file"+id).files[0];
 			if(file!=null){
 				 $.ajax({  
-						url:'http://localhost:8080/api/resource/upload/single',
+						url: ApiService.api.resource.single,
 					    type: 'POST',  
 						data: formData,
 						dataType: 'JSON',

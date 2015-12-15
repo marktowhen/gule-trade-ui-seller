@@ -18,8 +18,8 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 	var listCategory = function(){
 		HelpCenterCategoryService.list().success(function(data){
 			$scope.categoryList = data.body;
-		})
-	}
+		});
+	};
 	//刷新分类的子菜单
 	var refreshCategory = function(categoryID){
 		if(!isEmpty($scope.categoryList)){
@@ -28,19 +28,19 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 					$scope.listDetail($scope.categoryList[i]);
 					return;
 				}
-			};
+			}
 		}
-	}
+	};
 	//根据分类查询列表
 	$scope.listDetail = function(category){
 		HelpCenterDetailService.list(category.id).success(function(data){
 				category.detailList = data.body;
-			})
+			});
 
 		$scope.detail = {'parentID':category.id};
 		$scope.title = '新增';
 		ue.setContent('');
-	}
+	};
 
 	$scope.title = '新增';
 
@@ -50,9 +50,8 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 			$scope.detail = data.body;
 			$scope.title = '修改';
 			ue.setContent(data.body.content);
-		})
-		
-	}
+		});
+	};
 
 	$scope.newDetail = function(){
 		if(isEmpty($scope.detail) || isEmpty($scope.detail.parentID)){
@@ -62,7 +61,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 		$scope.detail = {'parentID':$scope.detail.parentID};
 		$scope.title = '新增';
 		ue.setContent('');
-	}
+	};
 
 	
 
@@ -83,7 +82,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 							}else{
 								alert(data.message);
 							}
-						})
+						});
 
 					}else{
 						HelpCenterDetailService.save(detail).success(function(data){
@@ -94,7 +93,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 							}else{
 								alert(data.message);
 							}
-						})
+						});
 					}
 				}else{
 					alert("请输入页面内容");
@@ -103,10 +102,8 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 			}else{
 				alert('请选择分类');
 			}
-			
 		}
-		
-	}
+	};
 
 	$scope.remove = function(id, category){
 		if(confirm("确定删除吗")){
@@ -115,20 +112,18 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 					alert("删除成功");
 					refreshCategory(category.id);
 				}
-			})
+			});
 		}
-	}
+	};
 
 	var isEmpty = function(str){
 		if(str==undefined || str==null || str==''){
 			return true;
 		}
 		return false;
-	}
+	};
 
 	$scope.showOrHideList = function(category){
 		category.showDetail = !category.showDetail;
-	}
-
-
-})	
+	};
+});
