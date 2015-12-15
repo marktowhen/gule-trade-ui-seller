@@ -142,8 +142,6 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 	$scope.saveorupdate =function(m){
 		var invoiceCodes = ios.join(',');
 		var deliveryCodes = dos.join(',');
-		alert(invoiceCodes);
-		alert(deliveryCodes);
 		m.invoiceCodes = invoiceCodes;
 		m.deliveryCodes = deliveryCodes;
 		if(m.id){
