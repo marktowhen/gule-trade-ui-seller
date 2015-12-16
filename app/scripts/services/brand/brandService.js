@@ -13,6 +13,10 @@ shopbackApp.service('BrandService', function($http,$location,$state,$resource,Ap
             return  $http.get(ApiService.api.brand.brandlist+mid,
                         {'Content-Type': 'application/json;charset=UTF-8'}); 
          };
+    this.listAllBrands = function(){
+       return  $http.get("http://localhost:8080/api/brand/brands",
+                        {'Content-Type': 'application/json;charset=UTF-8'}); 
+    };
       this.saveBrand  = function (brand){
             return  $http.post(ApiService.api.brand.save,
             			brand,
