@@ -58,6 +58,17 @@ shopbackApp.service('ApiService', function () {
             'ueditor':'http://localhost:8080/api/resource/ueditor/upload',
             'single':'http://localhost:8080/api/resource/upload/single'
         },
+        'track':{//推广系统模块
+            'getAddetailInfo':'http://localhost:8080/api/track/addetail/info/:id',
+            'updateAddetail':'http://localhost:8080/api/track/addetail/updateAddetail',
+            'saveAddetail':'http://localhost:8080/api/track/addetail/saveAddetail',
+            'getAdmoduleInfo':'http://localhost:8080/api/track/admodule/info/:id',
+            'updateAdmodule':'http://localhost:8080/api/track/admodule/updateAdmodule',
+            'saveAdmodule':'http://localhost:8080/api/track/admodule/saveAdmodule',
+            'queryAdmoduleList':'http://localhost:8080/api/track/admodule/list',
+            'queryAddetailList':'http://localhost:8080/api/track/addetail/list',
+            'admodulelist':'http://localhost:8080/api/track/admodule/list'
+        },
         'brand':{
             'brandlist':'http://localhost:8080//api/brand/brands/',
             'save':'http://localhost:8080/api/brand/save',
