@@ -17,18 +17,18 @@ shopbackApp.service('ApiService', function () {
         },
         'helpCenter':{
             'category' : {
-            	'list' : 'http://localhost:8080/api/help/center/list',
-            	'single' : 'http://localhost:8080/api/help/center/:id',
-            	'save' :'http://localhost:8080/api/help/center/',
-            	'refresh' :'http://localhost:8080/api/help/center/:id',
-            	'remove' :'http://localhost:8080/api/help/center/:id'
+            	'list' : 'http://localhost:8080/api/information/help/center/list',
+            	'single' : 'http://localhost:8080/api/information/help/center/:id',
+            	'save' :'http://localhost:8080/api/information/help/center/',
+            	'refresh' :'http://localhost:8080/api/information/help/center/:id',
+            	'remove' :'http://localhost:8080/api/information/help/center/:id'
             },
             'detail' : {
-            	'list' : 'http://localhost:8080/api/help/center/detail/list/:categoryID',
-            	'single' : 'http://localhost:8080/api/help/center/detail/:id',
-            	'save' :'http://localhost:8080/api/help/center/detail/',
-            	'refresh' :'http://localhost:8080/api/help/center/detail/:id',
-            	'remove' :'http://localhost:8080/api/help/center/detail/:id'
+            	'list' : 'http://localhost:8080/api/information/help/center/detail/list/:categoryID',
+            	'single' : 'http://localhost:8080/api/information/help/center/detail/:id',
+            	'save' :'http://localhost:8080/api/information/help/center/detail/',
+            	'refresh' :'http://localhost:8080/api/information/help/center/detail/:id',
+            	'remove' :'http://localhost:8080/api/information/help/center/detail/:id'
             }
         },
         'goods':{//根据条件查询商品
