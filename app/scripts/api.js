@@ -17,11 +17,11 @@ shopbackApp.service('ApiService', function () {
         },
         'helpCenter':{
             'category' : {
-            	'list' : 'http://localhost:8080/api/information/help/center/list',
-            	'single' : 'http://localhost:8080/api/information/help/center/:id',
-            	'save' :'http://localhost:8080/api/information/help/center/',
-            	'refresh' :'http://localhost:8080/api/information/help/center/:id',
-            	'remove' :'http://localhost:8080/api/information/help/center/:id'
+            	'list' : 'http://localhost:8080/api/information/help/center/category/list',
+            	'single' : 'http://localhost:8080/api/information/help/center/category/:id',
+            	'save' :'http://localhost:8080/api/information/help/center/category/',
+            	'refresh' :'http://localhost:8080/api/information/help/center/category/:id',
+            	'remove' :'http://localhost:8080/api/information/help/center/category/:id'
             },
             'detail' : {
             	'list' : 'http://localhost:8080/api/information/help/center/detail/list/:categoryID',
