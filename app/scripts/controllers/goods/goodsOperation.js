@@ -7,22 +7,22 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GoodsOperationController', function ($scope,$stateParams,GoodsOperationService, ApiService) {
-	var gid = $stateParams.gid;
-	
+shopbackApp.controller('GoodsOperationController', function ($scope,$state,GoodsOperationService, ApiService) {
+	var gid = $state.params.gid;
 	if(gid!=null){
-			console.log("gid >>"+gid);
+			//console.log("gid >>"+gid);
 			GoodsOperationService.goodsVO(gid).success(function(data){
 				$scope.goods= data.body;
-				//console.log($scope.goods);
+					/*根据当前mid查询出所属品牌*/
+					GoodsOperationService.brandlist($scope.goods.mid).success(function(data){
+						$scope.brandlist =data.body;
+					}); 	
 			});
 
-			GoodsOperationService.brandAlllist().success(function(data){
-				$scope.brandlist= data.body;
-				//console.log(data.body);
-			});
+
 
 	}
+	
 
 
 	//图片路径定义
@@ -31,20 +31,7 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$stateParams
 	$scope.img3 ="";
 	$scope.img4 ="";
 	$scope.img5 ="";
-	/*初始化时间格式*/
-	$scope.dateOptions = {
-		showMonthAfterYear: true, // 月在年之后显示  
-	    changeYear: true,
-	    changeMonth: true,
-	    dateFormat:'yy-mm-dd',  
-	    timeFormat: 'hh:mm:ss',
-	    yearRange: '1900:-0',
-	    showButtonPanel: true,
-		showHour: true,
-        onSelect: function (dateText, inst) {
-           $scope.model=dateText;
-       }   
-    };
+	
 
 
 
