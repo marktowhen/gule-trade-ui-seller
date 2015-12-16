@@ -53,7 +53,8 @@ shopbackApp.service('ApiService', function () {
         },
         'getinformation':{
             'getSchoolSite':'http://localhost:8080/api/information/sites/:siteid',
-            'getSchoolName':'http://localhost:8080/api/information/sites/:names'
+            'getSchoolName':'http://localhost:8080/api/information/sitesSchool/:names',
+            'saveSchool':'http://localhost:8080/api/information/savedetails',
 
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
             'update':'http://localhost:8080/api/merchant/updatemerchant',

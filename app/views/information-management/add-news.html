@@ -1,0 +1,49 @@
+<div class="info-view" ng-controller="SchoolSiteController">
+	<div class="sg-top-title">资讯管理&gt添加阿胶文化</div>
+	<div class="info-div">名称：<!-- <input type="text" class="info" /> -->
+		<select class="info-option" name='names' ng-model="infoschool.sid" ng-options="m.id as m.name for m in newsSite">
+
+		</select>
+
+
+	</div>
+	<div class="info-div">标题：<input type="text" class="info" ng-model="infoschool.title"/></div>
+	<!-- <div class="info-div">时间：<input type="text" class="info" ng-model="infoschool.addtime"/></div>-->
+	<div class="info-div"> 
+	<script type="text/plain" id="editor" ></script>
+							<script type="text/javascript">
+								var ue = UE.getEditor('editor');
+								UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
+								UE.Editor.prototype.getActionUrl= function(action){
+									//alert("上传路径~"+action)
+									if (action == 'uploadimage' || action == 'uploadscrawl' ) {
+										return 'http://localhost:8080/api/resource/ueditor/upload';
+									}
+									else{
+										 return ue._bkGetActionUrl.call(this, action);
+									}
+
+								}
+								function getContents(){
+									$("#texts").val(ue.getContent());
+								}
+							</script>
+	</div>
+	<input type="hidden" id="texts">
+	<div class="info-div" class="info" >
+		<div style="float:left;margin-top:18px;"><input type="text" onClick="$('#file').trigger('click')"  value="上传图片" style="cursor:pointer;width:90px"/></div>
+		
+		<form id='fileinfo'>
+			<input style='display:none' type='file' value='头像上传' id='file' name='file' ng-model='uploadBtn' onChange="$('#submitFile').trigger('click');" />
+
+			<input id='submitFile' type='hidden' ng-click='uploadFile()'></form>
+			<input type='hidden' ng-model='infoschool.picture'/>
+			<div class="frames">
+				<img  ng-src='{{infoschool.picture}}' ng-if="infoschool.picture" />
+			</div>
+	</div>
+	<div class="savebtn">
+		<!-- <input class="btn" type="button" value="保存" ng-click="saveuserinfo(userinfo)"> -->
+		<div class="gl-ser" onclick="getContents()" ng-click="saveuserinfo(infoschool)">保存</div>
+	</div>
+</div>
