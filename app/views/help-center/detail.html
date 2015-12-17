@@ -4,7 +4,7 @@
 		<ul ng-repeat="category in categoryList" >
 			<span class="on" ng-click='listDetail(category);showOrHideList(category);'>{{category.sort}}-->{{category.name}} </span> 
 			<div ng-repeat="detail in category.detailList" ng-if="category.showDetail">
-				<span class="on" class='dtail-item' ng-click="getSingle(detail.id)">{{detail.sort}}--> {{detail.name}}</span>
+				<span class="on dtail-item"  ng-click="getSingle(detail.id)">{{detail.sort}}--> {{detail.name}}</span>
 				<a class="remove" ng-click="remove(detail.id, category)">x</a>
 			</div>
 		</ul>

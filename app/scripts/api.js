@@ -17,18 +17,18 @@ shopbackApp.service('ApiService', function () {
         },
         'helpCenter':{
             'category' : {
-            	'list' : 'http://localhost:8080/api/help/center/list',
-            	'single' : 'http://localhost:8080/api/help/center/:id',
-            	'save' :'http://localhost:8080/api/help/center/',
-            	'refresh' :'http://localhost:8080/api/help/center/:id',
-            	'remove' :'http://localhost:8080/api/help/center/:id'
+            	'list' : 'http://localhost:8080/api/information/help/center/category/list',
+            	'single' : 'http://localhost:8080/api/information/help/center/category/:id',
+            	'save' :'http://localhost:8080/api/information/help/center/category/',
+            	'refresh' :'http://localhost:8080/api/information/help/center/category/:id',
+            	'remove' :'http://localhost:8080/api/information/help/center/category/:id'
             },
             'detail' : {
-            	'list' : 'http://localhost:8080/api/help/center/detail/list/:categoryID',
-            	'single' : 'http://localhost:8080/api/help/center/detail/:id',
-            	'save' :'http://localhost:8080/api/help/center/detail/',
-            	'refresh' :'http://localhost:8080/api/help/center/detail/:id',
-            	'remove' :'http://localhost:8080/api/help/center/detail/:id'
+            	'list' : 'http://localhost:8080/api/information/help/center/detail/list/:categoryID',
+            	'single' : 'http://localhost:8080/api/information/help/center/detail/:id',
+            	'save' :'http://localhost:8080/api/information/help/center/detail/',
+            	'refresh' :'http://localhost:8080/api/information/help/center/detail/:id',
+            	'remove' :'http://localhost:8080/api/information/help/center/detail/:id'
             }
         },
         'goods':{//根据条件查询商品
@@ -68,6 +68,17 @@ shopbackApp.service('ApiService', function () {
         'resource':{
             'ueditor':'http://localhost:8080/api/resource/ueditor/upload',
             'single':'http://localhost:8080/api/resource/upload/single'
+        },
+        'track':{//推广系统模块
+            'getAddetailInfo':'http://localhost:8080/api/track/addetail/info/:id',
+            'updateAddetail':'http://localhost:8080/api/track/addetail/updateAddetail',
+            'saveAddetail':'http://localhost:8080/api/track/addetail/saveAddetail',
+            'getAdmoduleInfo':'http://localhost:8080/api/track/admodule/info/:id',
+            'updateAdmodule':'http://localhost:8080/api/track/admodule/updateAdmodule',
+            'saveAdmodule':'http://localhost:8080/api/track/admodule/saveAdmodule',
+            'queryAdmoduleList':'http://localhost:8080/api/track/admodule/list',
+            'queryAddetailList':'http://localhost:8080/api/track/addetail/list',
+            'admodulelist':'http://localhost:8080/api/track/admodule/list'
         },
         'brand':{
             'brandlist':'http://localhost:8080//api/brand/brands/',
