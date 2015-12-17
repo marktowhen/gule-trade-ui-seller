@@ -13,4 +13,7 @@ shopbackApp.service('AdmoduleListService', function($http,$location,$resource,Ap
             return $http.get(ApiService.api.track.queryAdmoduleList, 
                 {params:{'name':name,'offset':offset,'size':size}});
        }; 
+       this.removeAdmodule = function(id){
+        return $http.delete(ApiService.api.track.removeAdmodule.replace(':id', id));
+       };
 });

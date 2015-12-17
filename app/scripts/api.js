@@ -78,6 +78,8 @@ shopbackApp.service('ApiService', function () {
             'saveAdmodule':'http://localhost:8080/api/track/admodule/saveAdmodule',
             'queryAdmoduleList':'http://localhost:8080/api/track/admodule/list',
             'queryAddetailList':'http://localhost:8080/api/track/addetail/list',
+            'removeAddetail':'http://localhost:8080/api/track/addetail/remove/:id',
+            'removeAdmodule':'http://localhost:8080/api/track/admodule/remove/:id',
             'admodulelist':'http://localhost:8080/api/track/admodule/list'
         },
         'brand':{

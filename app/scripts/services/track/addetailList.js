@@ -11,6 +11,9 @@ shopbackApp.service('AddetailListService', function($http,$location,$resource,Ap
 	   //根据条件查询
        this.queryAddetailList = function(name,offset,size){
             return $http.get(ApiService.api.track.queryAddetailList, 
-                {params:{'name':name,'offset':offset,'size':size}})
+                {params:{'name':name,'offset':offset,'size':size}});
        }; 
+       this.removeAddetail = function(id){
+        return $http.delete(ApiService.api.track.removeAddetail.replace(':id', id));
+       };
 });
