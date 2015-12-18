@@ -55,15 +55,19 @@ shopbackApp.service('ApiService', function () {
             'getSchoolSite':'http://localhost:8080/api/information/sites/:siteid',
             'getSchoolName':'http://localhost:8080/api/information/sitesSchool/:names',
             'saveSchool':'http://localhost:8080/api/information/savedetails',
-
+            'alldetail':'http://localhost:8080/api/information/alldetail',
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
             'update':'http://localhost:8080/api/merchant/updatemerchant',
             'save':'http://localhost:8080/api/merchant/savemerchant',
 			 'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
-            'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list'
+            'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list',
+            'deletedetail':'http://localhost:8080/api/information/delete/:id'
 
 
 
+        },
+        'comment':{
+            'querycomment':'http://localhost:8080/api/allcomments'
         },
         'resource':{
             'ueditor':'http://localhost:8080/api/resource/ueditor/upload',

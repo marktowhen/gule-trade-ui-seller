@@ -68,6 +68,10 @@ var shopbackApp= angular
         templateUrl:'/views/seller-center/transaction-management/sold-goods.html',
         url:"/sold-goods"
       })
+        .state('seller-center.comment',{
+        templateUrl:'/views/seller-center/transaction-management/comment.html',
+        url:"/comment"
+      })
       .state('add-school',{
         templateUrl:'/views/information-management/add-school.html',
         url:"/add-school"
