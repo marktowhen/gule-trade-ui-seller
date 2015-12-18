@@ -12,9 +12,9 @@ shopbackApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) 
     $stateProvider
       .state('help-center-category', {
         templateUrl: '/views/help-center/category.html',
-        url:"/help-center/category"
+        url:"/helpcenter/category"
       }).state('help-center-detail', {
         templateUrl: '/views/help-center/detail.html',
-        url:"/help-center/detail"
+        url:"/helpcenter/detail"
       });
   });
