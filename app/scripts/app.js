@@ -80,6 +80,10 @@ var shopbackApp= angular
         templateUrl:'/views/information-management/add-news.html',
         url:"/add-news"
       })
+         .state('getAll-information',{
+        templateUrl:'/views/information-management/getAll-information.html',
+        url:"/getAll-information"
+      })
 
       .state('seller-center.wait-to-accept', {
         templateUrl: '/views/seller-center/transaction-management/wait-to-accept.html',
