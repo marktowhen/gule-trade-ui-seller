@@ -93,7 +93,7 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 				});
 
 	}else{
-		/**查询发票类型列表**/
+						/**查询发票类型列表**/
 						MerchantEditService.invoicelist().get({},  
 							  function(data){
 					            $scope.invoicelist = data.body;
