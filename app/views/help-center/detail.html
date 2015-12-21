@@ -4,21 +4,33 @@
 		<ul ng-repeat="category in categoryList" >
 			<span class="on" ng-click='listDetail(category);showOrHideList(category);'>{{category.sort}}-->{{category.name}} </span> 
 			<div ng-repeat="detail in category.detailList" ng-if="category.showDetail">
-				<span class="on" class='dtail-item' ng-click="getSingle(detail.id)">{{detail.sort}}--> {{detail.name}}</span>
+				<span class="on dtail-item"  ng-click="getSingle(detail.id)">{{detail.sort}}--> {{detail.name}}</span>
 				<a class="remove" ng-click="remove(detail.id, category)">x</a>
 			</div>
 		</ul>
 	</div>
 	<div class='right'>
 		<form name='myForm'>
-			<input type='hidden' ng-model='detail.parentID' >
+			
 			<div class='box'>
 				<span class='titlle'>{{title}}</span>
 				<span class='add' ng-click='newDetail()'>点击新增</span>
 				<table>
 					<tr>
+						<td>类别:</td>
+						<td>
+							<input type='hidden' ng-model='detail.parentID' >
+							<input type='text' name="parentName" ng-model='detail.parentName' readonly="true" required>
+						</td>
+						<td  ng-show="myForm.parentName.$error.required">
+							<p class='red'>请选择左侧类别</p>
+						</td>
+						
+					</tr>
+					<tr>
 						<td>名称:</td>
 						<td><input type="text" ng-model='detail.name' name='name'required ng-minleng= "1" ng-maxlength="20"/></td>
+						
 						<td  ng-show="myForm.name.$error.required">
 							<p class='red'>请输入名称</p>
 						</td>

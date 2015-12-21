@@ -14,6 +14,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
         
     });  
 
+	$scope.detail = {};
 	 //展示分类
 	var listCategory = function(){
 		HelpCenterCategoryService.list().success(function(data){
@@ -37,7 +38,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 				category.detailList = data.body;
 			});
 
-		$scope.detail = {'parentID':category.id};
+		$scope.detail = {'parentID':category.id, 'parentName':category.name};
 		$scope.title = '新增';
 		ue.setContent('');
 	};
@@ -48,17 +49,27 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 
 		HelpCenterDetailService.single(id).success(function(data){
 			$scope.detail = data.body;
+			$scope.detail.parentName = getCategoryByID($scope.detail.parentID).name;
 			$scope.title = '修改';
 			ue.setContent(data.body.content);
 		});
 	};
 
+	var getCategoryByID = function(id){
+		for (var i = 0; i < $scope.categoryList.length; i++) {
+			if($scope.categoryList[i].id == id){
+				return $scope.categoryList[i];
+			};
+		};
+		return null;
+	}
+
 	$scope.newDetail = function(){
 		if(isEmpty($scope.detail) || isEmpty($scope.detail.parentID)){
-			alert("请选择分类");
+			alert("请选择左侧类别");
 			return;
 		}
-		$scope.detail = {'parentID':$scope.detail.parentID};
+		$scope.detail = {'parentID':$scope.detail.parentID, 'parentName':$scope.detail.parentName};
 		$scope.title = '新增';
 		ue.setContent('');
 	};

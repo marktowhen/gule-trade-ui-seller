@@ -63,10 +63,32 @@ var shopbackApp= angular
                     }
                 }
          })
+
        .state('seller-center.sold-goods',{
         templateUrl:'/views/seller-center/transaction-management/sold-goods.html',
         url:"/sold-goods"
       })
+        .state('seller-center.comment',{
+        templateUrl:'/views/seller-center/transaction-management/comment.html',
+        url:"/comment"
+      })
+      .state('add-school',{
+        templateUrl:'/views/information-management/add-school.html',
+        url:"/add-school"
+      })
+       .state('add-culture',{
+        templateUrl:'/views/information-management/add-culture.html',
+        url:"/add-culture"
+      })
+        .state('add-news',{
+        templateUrl:'/views/information-management/add-news.html',
+        url:"/add-news"
+      })
+         .state('getAll-information',{
+        templateUrl:'/views/information-management/getAll-information.html',
+        url:"/getAll-information"
+      })
+
       .state('seller-center.wait-to-accept', {
         templateUrl: '/views/seller-center/transaction-management/wait-to-accept.html',
         url:"/order/accept"

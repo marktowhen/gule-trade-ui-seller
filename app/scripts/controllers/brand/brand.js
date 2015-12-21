@@ -16,6 +16,10 @@ shopbackApp.controller('BrandController', function ($scope,$location,$state,Bran
           $scope.brand =data.body;
         }); 
     }
+    
+    BrandService.listAllBrands().success(function(data){
+                $scope.brandlist =data.body;
+    }); 
 
     /*获取当前的商家*/
     GoodsOperationService.merchantlist().success(function(data){

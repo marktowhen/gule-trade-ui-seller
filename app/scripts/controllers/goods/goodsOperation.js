@@ -13,15 +13,16 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$state,Goods
 			//console.log("gid >>"+gid);
 			GoodsOperationService.goodsVO(gid).success(function(data){
 				$scope.goods= data.body;
-				//console.log($scope.goods);
+					/*根据当前mid查询出所属品牌*/
+					GoodsOperationService.brandlist($scope.goods.mid).success(function(data){
+						$scope.brandlist =data.body;
+					});
 			});
 
-			GoodsOperationService.brandAlllist().success(function(data){
-				$scope.brandlist= data.body;
-				//console.log(data.body);
-			});
+
 
 	}
+	
 
 
 	//图片路径定义
