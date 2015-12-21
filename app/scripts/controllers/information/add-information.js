@@ -23,10 +23,17 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 		/*getSchool($scope.names);*/
 
 	});
-
+	SchoolSiteService.alldetail().success(function(data){
+		$scope.alldetail = data.body;
+	});
+	$scope.deletedetails = function(detail){
+		SchoolSiteService.deletedetail(detail.id).success(function(data){
+			alert("删除成功");
+		});
+	};
 	$scope.saveuserinfo = function(infoschool){
 		infoschool.content=$('#texts').val();
-		alert(infoschool.content)
+		/*alert(infoschool.content)*/
 		SchoolSiteService.saveuserinfo(infoschool).success(function(data){
 			if(data.code==200){
 				alert("保存成功");
@@ -35,6 +42,7 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 			}
 		})
 	};
+
 	//上传文件
 	$scope.uploadFile = function(){
 		var form = document.getElementById("fileinfo");  

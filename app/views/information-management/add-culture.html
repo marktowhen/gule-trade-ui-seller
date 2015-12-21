@@ -1,13 +1,15 @@
 <div class="info-view" ng-controller="SchoolSiteController">
 	<div class="sg-top-title">资讯管理&gt添加阿胶文化</div>
-	<div class="info-div">名称：<!-- <input type="text" class="info" /> -->
+	<div class="info-div">&nbsp;&nbsp;SID：<!-- <input type="text" class="info" /> -->
 		<select class="info-option" name='names' ng-model="infoschool.sid" ng-options="m.id as m.name for m in cultureSite">
 
 		</select>
 
 
 	</div>
+	<div class="info-div">名称：<input type="text" class="info" ng-model="infoschool.name"/></div>
 	<div class="info-div">标题：<input type="text" class="info" ng-model="infoschool.title"/></div>
+	<div class="info-div"><span>摘要：</span><textarea cols="50" rows="5" ng-model="infoschool.abstracts"></textarea>请输入小于300字的摘要</div>
 	<!-- <div class="info-div">时间：<input type="text" class="info" ng-model="infoschool.addtime"/></div>-->
 	<div class="info-div"> 
 	<script type="text/plain" id="editor" ></script>
