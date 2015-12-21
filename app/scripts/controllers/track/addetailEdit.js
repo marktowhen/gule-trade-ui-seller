@@ -54,4 +54,31 @@ shopbackApp.controller('AddetailEditController', function ($scope,$state,$route,
 	AddetailEditService.admodulelist().success(function(data){
 		$scope.admodulelist =data.body;
 	}); 
+	/*上传图片*/
+	$scope.doUpload = function(){
+		var form = document.getElementById("fileinfo");  
+		var formData = new FormData(form); 
+		 var file=document.getElementById("file").files[0];
+			if(file!=null){
+				 $.ajax({  
+						url:ApiService.api.resource.single,
+					    type: 'POST',  
+						data: formData,
+						dataType: 'JSON',
+						async: false,  
+						cache: false,  
+						contentType: false,  
+						processData: false,  
+						success: function (data) {  
+						var data = JSON.stringify(data);
+						var body = JSON.parse(data).body;
+						$scope.obj.imgpath =  body;
+						$scope.success ="上传成功";
+					},
+					error: function (data) {alert(JSON.stringify(data));}  
+					}); 
+			}else{
+				alert("上传对象为空!");
+			}
+		};
 });
