@@ -17,6 +17,13 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$state,Goods
 					GoodsOperationService.brandlist($scope.goods.mid).success(function(data){
 						$scope.brandlist =data.body;
 					});
+					
+					ue.addListener("ready", function () {
+						if($scope.goods.content!=null){
+							ue.setContent($scope.goods.content);
+						}
+
+					});
 			});
 
 
