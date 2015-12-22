@@ -3,7 +3,7 @@
 
 	<div class="commodity-main">
 		<div class="commodity-main-hd">
-			商品管理&gt;发布商品
+			<a href="#/seller-center/goods/list">商品管理</a>&gt;发布商品
 		</div>
 		<div class="commodity-base-info">
 			<div class="release-commodity-hd">
@@ -400,8 +400,8 @@
 
 					 	<script type="text/plain" id="editor" ></script>
 						<script type="text/javascript">
-
 							var ue = UE.getEditor('editor');
+							
 							UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
 							UE.Editor.prototype.getActionUrl= function(action){
 								//alert("上传路径~"+action)
