@@ -284,10 +284,10 @@
 					<li>
 						<div class="release-commodity-info-label fl">生产日期：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt" id="productionDate"
-							name="ProductionDate" required onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
+							<input class="release-commodity-food-safety-txt" id="productionDate" 
+							name="ProductionDate"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})">
 						</div>
-						<p ng-show="saveForm.ProductionDate.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+					<!-- 	<p ng-show="saveForm.ProductionDate.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p> -->
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -467,9 +467,9 @@
 	<input type="hidden" ng-model="goods.thumbpath5"/>
 
 		<div class="release-commodity-footer" >
-		<!-- ng-disabled="saveForm.$invalid " -->
+		<!--  -->
 			<button class="release-commodity-btn" onclick="getContents()" ng-click="submit(goods)"
-			
+			ng-disabled="saveForm.$invalid "
 			>
 				发布
 			</button>
