@@ -404,8 +404,7 @@
 					<div class="clear"></div>
 					<li>
 						
-					<!--回显ueditor的数据-->
-					 <textarea  id="ue_content" style="display: none">{{goods.content}}</textarea>
+		
 					 
 
 					<script type="text/plain" id="editor" ></script>
@@ -422,17 +421,8 @@
 								}
 
 							}
-							//判断ueditor的加载
-							/*ue.ready(function(){
-								window.setTimeout("setContents()",3000); 
-							});*/
 							function getContents(){
 								$("#texts").val(ue.getContent());
-							}
-
-							function setContents(){
-								var _content = $("#ue_content").val();
-								ue.setContent(_content);
 							}
 						</script>
 					</li>
