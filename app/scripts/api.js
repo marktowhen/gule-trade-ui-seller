@@ -12,8 +12,14 @@ shopbackApp.service('ApiService', function () {
         
         'order':{
             'listWithCondition': 'http://localhost:8080/api/orders/seller/:mid/:from/:size',
-            'accept':'http://localhost:8080/api/orders/accept',
+            'accept':'http://localhost:8080/api/orders/acception',
             'delivered':'http://localhost:8080/api/orders/logistic'
+        },
+        'refund':{
+            'listWithCondition': 'http://localhost:8080/api/refund/seller/:mid/:from/:size',
+            'accept':'http://localhost:8080/api/refund/acception',
+            'deny':'http://localhost:8080/api/refund/denial',
+            'done':'http://localhost:8080/api/refund/completion'
         },
         'helpCenter':{
             'category' : {
@@ -48,8 +54,11 @@ shopbackApp.service('ApiService', function () {
   
         'merchant':{//根据条件查询商品
             'queryMerchantList':'http://localhost:8080/api/merchant/list',
-
-            'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid'
+            'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
+            'update':'http://localhost:8080/api/merchant/updatemerchant',
+            'save':'http://localhost:8080/api/merchant/savemerchant',
+             'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
+            'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list'
         },
         'getinformation':{
             'getSchoolSite':'http://localhost:8080/api/information/sites/:siteid',
