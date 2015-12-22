@@ -34,9 +34,12 @@
 					<li>
 						<div class="release-commodity-info-label fl">图片路径：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-code"  type="text" ng-model="obj.imgpath" name="imgpath" required>
+							<!-- <input class="release-commodity-code"  type="text" ng-model="obj.imgpath" name="imgpath" required> -->
+							<form  id="fileinfo">
+							<input class="release-commodity-upload-img" type="file" id="file" name="file" onchange="$('#sub1').trigger('click')" />
+							<input id="sub1" type="hidden" ng-click="doUpload()"/>
+							</form>
 						</div>
-						<p ng-show="saveForm.imgpath.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -94,6 +97,7 @@
 			</div>
 		</div>
 		<input type="hidden" ng-model="obj.id"/>
+		<input type="hidden" ng-model="obj.imgpath"/>
 		<div class="release-commodity-footer" >
 			<button class="release-commodity-btn" ng-click="saveorupdate(obj)"
 			ng-disabled="saveForm.$invalid"

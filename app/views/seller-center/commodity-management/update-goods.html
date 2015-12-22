@@ -3,7 +3,7 @@
 
 	<div class="commodity-main">
 		<div class="commodity-main-hd">
-			商品管理&gt;修改商品
+			<a href="#/seller-center/goods/list">商品管理</a>&gt;修改商品
 		</div>
 		<div class="commodity-base-info">
 			<div class="release-commodity-hd">
@@ -282,26 +282,26 @@
 					<li>
 						<div class="release-commodity-info-label fl">生产日期：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt" id="productionDate"  name="ProductionDate" required  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+							<input class="release-commodity-food-safety-txt" id="productionDate"  name="ProductionDate"   onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 							ng-model="goods.productionDate">
 						</div>
-						<p ng-show="saveForm.ProductionDate.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+					<!-- 	<p ng-show="saveForm.ProductionDate.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p> -->
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">重量：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.weight" pattern="^[+-]?\d+(\.\d+)?$" name="weight">
+							<input class="release-commodity-shelf-start-day"  type="text" ng-model="goods.weight" pattern="^[+-]?\d+(\.\d+)?$" name="weight">
 							<p ng-show="saveForm.weight.$dirty && saveForm.weight.$error. pattern" style="color: red" >只能输入数字</p>
 						</div>
-					</li>
-					<div class="clear"></div>
-					<li>
-						<div class="release-commodity-info-label fl">重量单位：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text"  ng-model="goods.unit" name="unit" required>
+						<select class="release-commodity-select-length" ng-model="goods.unit" name="unit" required>
+								<option value="g"  ng-selected="goods.unit=='g'">g</option>
+								<option value="ml" ng-selected="goods.unit=='ml'">ml</option>
+						</select>
 						</div>
-						<p ng-show="saveForm.unit.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填 g/ml</p>
+						<p ng-show="saveForm.unit.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -338,10 +338,13 @@
 				3、商品描述
 			</div>
 			<div class="release-commodity-info">
-				<ul class="release-commodity-info-list">
+				<div class="">商品图片：</div>
+				<ul class="release-commodity-desc-info-list">
 					<li>
-					 <div class="release-commodity-info-label fl">商品图片：</div>
-						<div class="release-commodity-info-txt fl">
+						<div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath1}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo1">
 							<input class="release-commodity-upload-img" type="file" id="file1" name="file" onchange="$('#sub1').trigger('click')" />
 							<input id="sub1" type="hidden" ng-click="doUpload(1)"/>
@@ -349,10 +352,12 @@
 						</div>
 						<!-- <input type="button" value="上传1"  ng-click="doUpload(1)" /> -->{{success1}}
 					</li>
-					<div class="clear"></div>
+
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+						<div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath2}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo2">
 							<input class="release-commodity-upload-img" type="file" id="file2" name="file"  onchange="$('#sub2').trigger('click')"/>
 							<input id="sub2" type="hidden" ng-click="doUpload(2)"/>
@@ -360,10 +365,11 @@
 						</div>
 						{{success2}}
 					</li>
-					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+						<div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath3}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo3">
 							<input class="release-commodity-upload-img" type="file" id="file3" name="file"  onchange="$('#sub3').trigger('click')"/>
 							<input id="sub3" type="hidden" ng-click="doUpload(3)"/>
@@ -371,10 +377,11 @@
 						</div>
 						{{success3}}
 					</li>
-					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+						<div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath4}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo4">
 							<input class="release-commodity-upload-img" type="file" id="file4" name="file" onchange="$('#sub4').trigger('click')"/>
 							<input id="sub4" type="hidden" ng-click="doUpload(4)"/>
@@ -382,10 +389,11 @@
 						</div>
 						{{success4}}
 					</li>
-					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+						<div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath5}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo5">
 							<input class="release-commodity-upload-img" type="file" id="file5" name="file" onchange="$('#sub5').trigger('click')"/>
 							<input id="sub5" type="hidden" ng-click="doUpload(5)"/>
@@ -395,8 +403,11 @@
 					</li>
 					<div class="clear"></div>
 					<li>
+						
+		
+					 
 
-					 	<script type="text/plain" id="editor" ></script>
+					<script type="text/plain" id="editor" ></script>
 						<script type="text/javascript">
 							var ue = UE.getEditor('editor');
 							UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
@@ -415,11 +426,10 @@
 							}
 						</script>
 					</li>
-					<div class="clear"></div>
 				</ul>
 			</div>
 		</div>
-		
+		<div class="clear"></div>
 		<div class="commodity-food-safety-info" style="margin-top: 200px">
 			<div class="release-commodity-hd">
 				4、	其他信息

@@ -43,7 +43,7 @@ shopbackApp.service('MerchantEditService', function($http,$location,$state,$reso
                         });
         };
          this.invoicelist = function(){
-        return $resource(ApiService.api.merchant.invoicelist, {});
+            return $resource(ApiService.api.merchant.invoicelist, {});
         };
          this.deliverylist = function(){
             return $resource(ApiService.api.merchant.deliverylist, {});

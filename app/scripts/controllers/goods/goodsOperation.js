@@ -16,7 +16,14 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$state,Goods
 					/*根据当前mid查询出所属品牌*/
 					GoodsOperationService.brandlist($scope.goods.mid).success(function(data){
 						$scope.brandlist =data.body;
-					}); 	
+					});
+					
+					ue.addListener("ready", function () {
+						if($scope.goods.content!=null){
+							ue.setContent($scope.goods.content);
+						}
+
+					});
 			});
 
 
