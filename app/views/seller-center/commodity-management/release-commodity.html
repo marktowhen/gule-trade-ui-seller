@@ -339,22 +339,26 @@
 			<div class="release-commodity-hd">
 				3、商品描述
 			</div>
+			<div class="">商品图片：</div>
 			<div class="release-commodity-info">
-				<ul class="release-commodity-info-list">
+				<ul class="release-commodity-desc-info-list">
 					<li>
-					 <div class="release-commodity-info-label fl">商品图片：</div>
-						<div class="release-commodity-info-txt fl">
+					 	<div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath1}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo1">
 							<input class="release-commodity-upload-img" type="file" id="file1" name="file" onchange="$('#sub1').trigger('click')" />
 							<input id="sub1" type="hidden" ng-click="doUpload(1)"/>
 							</form>
 						</div>
-						<!-- <input type="button" value="上传1"  ng-click="doUpload(1)" /> -->{{success1}}
+						{{success1}}
 					</li>
-					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+						<div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath2}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo2">
 							<input class="release-commodity-upload-img" type="file" id="file2" name="file"  onchange="$('#sub2').trigger('click')"/>
 							<input id="sub2" type="hidden" ng-click="doUpload(2)"/>
@@ -362,10 +366,11 @@
 						</div>
 						{{success2}}
 					</li>
-					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+					 <div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath3}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo3">
 							<input class="release-commodity-upload-img" type="file" id="file3" name="file"  onchange="$('#sub3').trigger('click')"/>
 							<input id="sub3" type="hidden" ng-click="doUpload(3)"/>
@@ -373,10 +378,11 @@
 						</div>
 						{{success3}}
 					</li>
-					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+					 <div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath4}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo4">
 							<input class="release-commodity-upload-img" type="file" id="file4" name="file" onchange="$('#sub4').trigger('click')"/>
 							<input id="sub4" type="hidden" ng-click="doUpload(4)"/>
@@ -384,10 +390,11 @@
 						</div>
 						{{success4}}
 					</li>
-					<div class="clear"></div>
 					<li>
-					 <div class="release-commodity-info-label fl"></div>
-						<div class="release-commodity-info-txt fl">
+					 <div class="release-commodity-desc-img">
+							<img src="{{goods.thumbpath5}}">
+						</div>
+						<div class="release-commodity-desc-btn">
 							<form  id="fileinfo5">
 							<input class="release-commodity-upload-img" type="file" id="file5" name="file" onchange="$('#sub5').trigger('click')"/>
 							<input id="sub5" type="hidden" ng-click="doUpload(5)"/>
