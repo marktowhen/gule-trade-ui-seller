@@ -16,7 +16,7 @@
 				<div class="divcontent" style="width:100px;float:left;">{{detail.name}}</div>
 				<div class="divcontent" style="width:150px;float:left;margin-left:90px;">{{detail.title}}</div>
 				<div class="" style="width:150px;float:left;margin-left:60px;">{{detail.addtime}}</div>
-				<div class="" style="width:200px;float:left;margin-left:25px;" ng-bind-html="detail.content"></div>
+				<div class="" style="width:200px;float:left;margin-left:25px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;">{{detail.abstracts}}</div>
 				<div style="width:100px;float:left;margin-left:80px;height:30px;line-height:30px;"><input type="button" value="删除" ng-click="deletedetails(detail)"></div>
 			</li>
 			<!-- <li>
