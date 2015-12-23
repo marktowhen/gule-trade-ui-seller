@@ -31,17 +31,17 @@
 						<p ng-show="saveForm.name.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
-					<li>
+					<!-- <li>
 						<div class="release-commodity-info-label fl">图片路径：</div>
 						<div class="release-commodity-info-txt fl">
-							<!-- <input class="release-commodity-code"  type="text" ng-model="obj.imgpath" name="imgpath" required> -->
+							<input class="release-commodity-code"  type="text" ng-model="obj.imgpath" name="imgpath" required>
 							<form  id="fileinfo">
 							<input class="release-commodity-upload-img" type="file" id="file" name="file" onchange="$('#sub1').trigger('click')" />
 							<input id="sub1" type="hidden" ng-click="doUpload()"/>
 							</form>
 						</div>
 					</li>
-					<div class="clear"></div>
+					<div class="clear"></div> -->
 					<li>
 						<div class="release-commodity-info-label fl">链接地址：</div>
 						<div class="release-commodity-info-txt fl">
@@ -94,6 +94,27 @@
 					</li>
 					<div class="clear"></div>
 				</ul>
+			</div>
+			<div class="release-commodity-hd">
+				图片信息
+			</div>
+			<div class="release-commodity-info">
+				<ul class="release-commodity-info-list">
+				<li>
+						<div class="release-commodity-info-label fl">图片路径：</div>
+						<div class="release-commodity-info-txt fl">
+							<form  id="fileinfo">
+							<input class="release-commodity-upload-img" type="file" id="file" name="file" onchange="$('#sub1').trigger('click')" />
+							<input id="sub1" type="hidden" ng-click="doUpload()"/>
+							</form>
+						</div>
+						<br><br><br>
+						<div class="release-commodity-desc-img">
+							 <img src="{{obj.imgpath}}">
+						</div>
+					</li>
+				</ul>
+					<div class="clear"></div>
 			</div>
 		</div>
 		<input type="hidden" ng-model="obj.id"/>

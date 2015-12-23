@@ -19,7 +19,7 @@ shopbackApp.service('AdmoduleEditService', function($http,$location,$state,$reso
                         .success(function(response){
                             if(response.code==200){
                                 alert("修改广告模块成功......");
-                                $state.go('seller-center.admodule-list');
+                                $state.go('station-goods.admodule-list');
                             }else{
                                 alert("修改广告模块异常....."+response.message);
                             }
@@ -34,7 +34,7 @@ shopbackApp.service('AdmoduleEditService', function($http,$location,$state,$reso
                         .success(function(response){
                             if(response.code==200){
                                 alert("保存广告模块成功......");
-                                $state.go('seller-center.admodule-list');
+                                $state.go('station-goods.admodule-list');
                             }else{
                                 alert("保存广告模块异常....."+response.message);
                             }
