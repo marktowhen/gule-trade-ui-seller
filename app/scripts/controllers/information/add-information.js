@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, SchoolSiteService){
+shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, SchoolSiteService,$state){
 	SchoolSiteService.getSchoolSite('101').success(function(data){
 		$scope.SchoolSite=data.body;
 		/*getSchool($scope.names);*/
@@ -41,6 +41,12 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 				alert(data.message);
 			}
 		})
+	};
+		/*$scope.historyDetail = function(datails){
+ 		$state.go('story-detail',{id:datails.id});
+ 	};*/
+	$scope.updatedetails = function(detail){
+		$state.go('update-information',{id:detail.id})
 	};
 
 	//上传文件

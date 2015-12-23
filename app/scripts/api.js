@@ -70,7 +70,10 @@ shopbackApp.service('ApiService', function () {
             'save':'http://localhost:8080/api/merchant/savemerchant',
 			 'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
             'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list',
-            'deletedetail':'http://localhost:8080/api/information/delete/:id'
+            'deletedetail':'http://localhost:8080/api/information/delete/:id',
+            'updateInfo':'http://localhost:8080/api/information/update',
+            'getInfoById':'http://localhost:8080/api/information/detail/:id'
+
 
 
 

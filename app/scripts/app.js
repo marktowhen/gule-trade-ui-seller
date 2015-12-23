@@ -84,9 +84,13 @@ var shopbackApp= angular
         templateUrl:'/views/information-management/add-news.html',
         url:"/add-news"
       })
-         .state('getAll-information',{
+        .state('getAll-information',{
         templateUrl:'/views/information-management/getAll-information.html',
         url:"/getAll-information"
+      })
+        .state('update-information',{
+        templateUrl:'/views/information-management/update-information.html',
+        url:"/update-information/:id"
       })
 
       .state('seller-center.wait-to-accept', {
