@@ -64,14 +64,57 @@ var shopbackApp= angular
                 }
          })
 
-       .state('seller-center.sold-goods',{
-        templateUrl:'/views/seller-center/transaction-management/sold-goods.html',
+       .state('trading-center',{
+        url:"/trading-center",
+        views: {
+                  '': {
+                      templateUrl: '/views/trading-center/trading-center.html'
+                      },
+                  'trading-center-left@trading-center': {
+                      templateUrl: 'views/trading-center/trading-center-left.html'
+                    }
+                }
+      }).state('trading-center.sold-goods',{
+        templateUrl:'/views/trading-center/transaction-management/sold-goods.html',
         url:"/sold-goods"
-      })
-        .state('seller-center.comment',{
-        templateUrl:'/views/seller-center/transaction-management/comment.html',
+      }).state('trading-center.comment',{
+        templateUrl:'/views/trading-center/transaction-management/comment.html',
         url:"/comment"
       })
+      .state('trading-center.wait-to-accept', {
+        templateUrl: '/views/trading-center/transaction-management/wait-to-accept.html',
+        url:"/order/accept"
+      })
+      .state('trading-center.delivering', {
+        templateUrl: '/views/trading-center/transaction-management/delivering.html',
+        url:"/order/delivering"
+      })
+      .state('trading-center.delivered', {
+        templateUrl: '/views/trading-center/transaction-management/delivered.html',
+        url:"/order/delivered"
+      }).state('station-goods',{
+        url:"/station-goods",
+        views: { 
+                  '': {
+                      templateUrl: '/views/station-goods/station-goods.html'
+                      },
+                  'station-goods-left@station-goods': {
+                      templateUrl: 'views/station-goods/station-goods-left.html'
+                    }
+                }
+      }).state('station-info',{
+        url:"/station-info",
+        views: { 
+                  '': {
+                      templateUrl: '/views/station-info/station-info.html'
+                      },
+                  'station-info-left@station-info': {
+                      templateUrl: 'views/station-info/station-info-left.html'
+                    }
+                }
+      })
+
+
       .state('add-school',{
         templateUrl:'/views/information-management/add-school.html',
         url:"/add-school"
