@@ -7,11 +7,16 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('OrderController', function ($scope, ConstantService, OrderService) {
+shopbackApp.controller('OrderController', function ($scope, ConstantService, OrderService, GoodsOperationService) {
+	
+	GoodsOperationService.merchantlist().success(function(data){
+        $scope.merchantlist =data.body;
+    });
+
 	$scope.condition = {};
 	$scope.logistic = {'expressno':'', 'expressName':'', 'oid':'', 'typeCode':'', 'typeName':''};
 	$scope.search2Accept = function(){
-		OrderService.listWithCondition($scope.condition.mid, 0, 10, 'PAID')
+		OrderService.listWithCondition($scope.mid, 0, 10, 'PAID')
 		.success(function(data){
 			$scope.orders = data.body;
 		});
@@ -28,7 +33,7 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 	};
 
 	$scope.searchDelivering = function(){
-		OrderService.listWithCondition($scope.condition.mid, 0, 10, 'ACCEPT')
+		OrderService.listWithCondition($scope.mid, 0, 10, 'ACCEPT')
 		.success(function(data){
 			$scope.orders = data.body;
 		});
@@ -48,7 +53,7 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 	};
 
 	$scope.searchDelivered = function(){
-		OrderService.listWithCondition($scope.condition.mid, 0, 10, 'DELIVERED')
+		OrderService.listWithCondition($scope.mid, 0, 10, 'DELIVERED')
 		.success(function(data){
 			$scope.orders = data.body;
 		});
