@@ -42,6 +42,7 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 					$scope.m.tel = r.tel;
 					$scope.m.zipcode = r.zipcode;
 					$scope.m.qq = r.qq;
+					$scope.m.imgPath = r.imgPath;
 					$scope.m.adminSortNum = r.adminSortNum;
 					$scope.m.invoiceFlag = r.invoiceFlag;
 					$scope.m.level = r.level;
