@@ -11,15 +11,15 @@
 shopbackApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $stateProvider
       //商家列表查询
-      .state('seller-center.merchant-list',{
+      .state('station-goods.merchant-list',{
         templateUrl: '/views/merchant/merchantlist.html',
         url:"/merchant/list"
       })//商家维护
-      .state('seller-center.merchant-edit',{
+      .state('station-goods.merchant-edit',{
         templateUrl:'/views/merchant/merchantedit.html',
         url:"/merchant/edit?mid"
       })//商家新建
-      .state('seller-center.merchant-add',{
+      .state('station-goods.merchant-add',{
         templateUrl:'/views/merchant/merchantadd.html',
         url:"/merchant/add"
       });

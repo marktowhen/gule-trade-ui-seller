@@ -9,8 +9,8 @@
  */
 shopbackApp.service('OrderService', function ($http, $location, ApiService) {
    this.listWithCondition  = function (mid, from, size, status){
-        return  $http.get(ApiService.api.order.listWithCondition.replace(':mid', mid).replace(':from', from).replace(':size', size),
-                    {'params': {'status':status}});
+        return  $http.get(ApiService.api.order.listWithCondition.replace(':from', from).replace(':size', size),
+                    {'params': {'status':status, 'mid': mid}});
     };
 
     this.accept = function(order){
