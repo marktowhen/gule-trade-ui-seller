@@ -1,5 +1,6 @@
 <div class="info-view" ng-controller="SchoolSiteController">
 	<div class="sg-top-title">资讯管理&gt添加阿胶文化</div>
+	<ng-form name='myForm'>
 	<div class="info-div">&nbsp;&nbsp;SID：<!-- <input type="text" class="info" /> -->
 		<select class="info-option" name='names' ng-model="infoschool.sid" ng-options="m.id as m.name for m in cultureSite">
 
@@ -7,11 +8,24 @@
 
 
 	</div>
-	<div class="info-div">标题：<input type="text" class="info" ng-model="infoschool.title"/></div>
-	<div class="info-div">类别：<input type="text" class="info" ng-model="infoschool.name"/></div>
-	<div class="info-div"><span>摘要：</span><textarea cols="50" rows="5" ng-model="infoschool.abstracts"></textarea>请输入小于200字的摘要</div>
-	<div class="info-div"><span>处方：</span><textarea cols="50" rows="3" ng-model="infoschool.recipe"></textarea>请输入小于200字的摘要</div>
-	<div class="info-div"><span>主治：</span><textarea cols="50" rows="3" ng-model="infoschool.function"></textarea>请输入小于200字的摘要</div>
+	<div class="info-div">标题：
+		<input type="text" name="code" class="info" ng-model="infoschool.title"/>
+		<span ng-hide="myForm.code.$dirty" style="color:red;margin-left:10px;">标题必填</span>
+	</div>
+	<div class="info-div">类别：
+		<input type="text" class="info" ng-model="infoschool.name"/></div>
+	<div class="info-div">
+		摘要:<textarea cols="50" rows="5" name="zhai" ng-model="infoschool.abstracts" ng-maxlength='200'></textarea>
+		<span style="color:red" ng-show="myForm.zhai.$invalid">请输入小于200字的摘要!<span>
+	</div>
+	<div class="info-div">
+		处方:<textarea cols="50" rows="3" name="recipe" ng-model="infoschool.recipe" ng-maxlength='100'></textarea>
+		<span ng-show="myForm.recipe.$invalid" style="color:red">请输入小于100字的摘要</span>
+	</div>
+	<div class="info-div">
+		主治:<textarea cols="50" rows="3" name="function" ng-maxlength='100' ng-model="infoschool.function"></textarea>
+		<span ng-show="myForm.function.$invalid" style="color:red">请输入小于100字的摘要</span>
+	</div>
 	<!-- <div class="info-div">时间：<input type="text" class="info" ng-model="infoschool.addtime"/></div>-->
 	<div class="info-div"> 
 	<script type="text/plain" id="editor" ></script>
@@ -50,4 +64,5 @@
 		<!-- <input class="btn" type="button" value="保存" ng-click="saveuserinfo(userinfo)"> -->
 		<div class="gl-ser" onclick="getContents()" ng-click="saveuserinfo(infoschool)">保存</div>
 	</div>
+ </ng-form>
 </div>
