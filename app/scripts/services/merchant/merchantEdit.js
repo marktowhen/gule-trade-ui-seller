@@ -19,7 +19,7 @@ shopbackApp.service('MerchantEditService', function($http,$location,$state,$reso
                         .success(function(response){
                             if(response.code==200){
                                 alert("修改商家成功......");
-                                $state.go('seller-center.merchant-list');
+                                $state.go('station-goods.merchant-list');
                             }else{
                                 alert("修改商家异常....."+response.message);
                             }
@@ -34,7 +34,7 @@ shopbackApp.service('MerchantEditService', function($http,$location,$state,$reso
                         .success(function(response){
                             if(response.code==200){
                                 alert("保存商家成功......");
-                                $state.go('seller-center.merchant-list');
+                                $state.go('station-goods.merchant-list');
                             }else{
                                 alert("保存商家异常....."+response.message);
                             }

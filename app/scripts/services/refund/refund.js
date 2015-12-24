@@ -9,8 +9,8 @@
  */
 shopbackApp.service('RefundService', function ($http, $location, ApiService) {
    this.listWithCondition  = function (mid, from, size, status){
-        return  $http.get(ApiService.api.refund.listWithCondition.replace(':mid', mid).replace(':from', from).replace(':size', size),
-                    {'params': {'status':status}});
+        return  $http.get(ApiService.api.refund.listWithCondition.replace(':from', from).replace(':size', size),
+                    {'params': {'status':status, 'mid': mid}});
     };
 
     this.accept = function(rid, note){

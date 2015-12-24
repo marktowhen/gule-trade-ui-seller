@@ -13,11 +13,11 @@
 			</li>
 		
 			<li ng-repeat="detail in alldetail">
-				<div class="divcontent" style="width:100px;float:left;">{{detail.title}}</div>
+				<div class="divcontent" style="width:100px;float:left;white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;">{{detail.title}}</div>
 				<div class="divcontent" style="width:150px;float:left;margin-left:90px;white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;">{{detail.name}}</div>
 				<div class="" style="width:150px;float:left;margin-left:60px;">{{detail.addtime}}</div>
 				<div class="" style="width:200px;float:left;margin-left:25px; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;">{{detail.abstracts}}</div>
-				<div style="width:100px;float:left;margin-left:80px;height:30px;line-height:30px;"><input type="button" value="删除" ng-click="deletedetails(detail)"><input type="button" value="修改" ng-click="deletedetails(detail)"></div>
+				<div style="width:100px;float:left;margin-left:80px;height:30px;line-height:30px;"><input type="button" value="删除" ng-click="deletedetails(detail)"><input type="button" value="修改" ng-click="updatedetails(detail)"></div>
 			</li>
 			<!-- <li>
 				<span style="margin-left:30px;">名称</span>

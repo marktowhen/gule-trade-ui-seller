@@ -30,7 +30,7 @@ shopbackApp.controller('AddetailListController', function ($scope,$state,$routeP
     	 alert('删除成功！');
          AddetailListService.queryAddetailList('',0,100)
 				.success(function(data){
-					$state.go('seller-center.addetail-list');
+					$state.go('station-goods.addetail-list');
 					$scope.addetaillist = data.body;
 				});
          });

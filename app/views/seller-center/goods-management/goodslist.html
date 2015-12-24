@@ -14,7 +14,7 @@
 			</li> 
 		</ul>
 		<div class="clear h10"></div>
-		<div class="gl-ser" ng-click="serch()">查询</div>
+		<div  class="gl-ser" ng-click="serch()" >查询</div>
 	</div>
 	<div class="gl-content">
 		<div class="gl-hd">
@@ -43,7 +43,7 @@
 						<li class="glb-m">{{goods.promotionPrice}}</li>
 						<li class="glb-m">{{goods.pro_flag=='0'?'否':'是'}}</li>
 						<li class="glb-m">
-							<a href="#" class="aa" ui-sref="update-goods({gid:'{{goods.gid}}'})">编辑</a>
+							<a href="#" class="aa" ui-sref="station-goods.update-goods({gid:'{{goods.gid}}'})">编辑</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="#" class="aa" ng-click="up('{{goods.gid}}')" ng-show="{{goods.state == 0}}">上架</a>
 							<a href="#" class="aa" ng-click="down('{{goods.gid}}')" ng-show="{{goods.state == 1}}">下架</a>

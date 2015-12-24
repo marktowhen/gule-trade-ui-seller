@@ -44,11 +44,11 @@ var shopbackApp= angular
         controllerAs: 'about',
         url:"/about"
       })
-      .state('release-commodity',{
+      .state('station-goods.release-commodity',{
         templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
         url:"/release-commodity"
       })
-      .state('update-goods',{
+      .state('station-goods.update-goods',{
         templateUrl:'/views/seller-center/commodity-management/update-goods.html',
         url:"/update/goods?gid"
       })
@@ -127,9 +127,13 @@ var shopbackApp= angular
         templateUrl:'/views/information-management/add-news.html',
         url:"/add-news"
       })
-         .state('getAll-information',{
+        .state('getAll-information',{
         templateUrl:'/views/information-management/getAll-information.html',
         url:"/getAll-information"
+      })
+        .state('update-information',{
+        templateUrl:'/views/information-management/update-information.html',
+        url:"/update-information/:id"
       })
 
       .state('seller-center.wait-to-accept', {
@@ -145,7 +149,7 @@ var shopbackApp= angular
         url:"/order/delivered"
       })
       //商品列表查询
-      .state('seller-center.goods-list', {
+      .state('station-goods.goods-list', {
         templateUrl: '/views/seller-center/goods-management/goodslist.html',
         url:"/goods/list"
       })

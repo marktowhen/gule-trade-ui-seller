@@ -31,7 +31,7 @@ shopbackApp.controller('AdmoduleListController', function ($scope,$state,$routeP
         };
     	  AdmoduleListService.queryAdmoduleList($scope.name,0,100)
 				.success(function(data){
-          $state.go('seller-center.admodule-list');
+          $state.go('station-goods.admodule-list');
 					$scope.admodulelist = data.body;
 				});
          });
