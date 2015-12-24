@@ -48,7 +48,7 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 	$scope.updatedetails = function(detail){
 		$state.go('update-information',{id:detail.id})
 	};
-
+	
 	//上传文件
 	$scope.uploadFile = function(){
 		var form = document.getElementById("fileinfo");  
