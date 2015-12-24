@@ -18,6 +18,7 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$state,Goods
 						$scope.brandlist =data.body;
 					});
 					
+					//alert($scope.goods.content)
 					ue.addListener("ready", function () {
 						if($scope.goods.content!=null){
 							ue.setContent($scope.goods.content);
@@ -105,13 +106,13 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$state,Goods
 		/*获取时间控件的时间*/
 		var uptime = $("#uptime").val();
 		var downtime = $("#downtime").val();
-		var pro_start = $("#pro_start").val();
-		var pro_end = $("#pro_end").val();
+		var onSaleBeginTime = $("#pro_start").val();
+		var onSaleEndTime = $("#pro_end").val();
 		var productionDate = $("#productionDate").val();
 		goods.upTime = uptime;
 		goods.downTime = downtime;
-		goods.pro_start = pro_start;
-		goods.pro_end = pro_end;
+		goods.onSaleBeginTime = onSaleBeginTime;
+		goods.onSaleEndTime = onSaleEndTime;
 		goods.productionDate = productionDate;
 		goods.content = content_;
 		GoodsOperationService.saveGoods(goods);
@@ -119,20 +120,25 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$state,Goods
 
 	/*修改*/
 	$scope.update =function(goods){
+		
 		/*获取ueditor*/
 		var content_ = $("#texts").val();
-		/*获取时间控件的时间*/
+
 		var uptime = $("#uptime").val();
 		var downtime = $("#downtime").val();
-		var pro_start = $("#pro_start").val();
-		var pro_end = $("#pro_end").val();
+		var onSaleBeginTime = $("#pro_start").val();
+		var onSaleEndTime = $("#pro_end").val();
 		var productionDate = $("#productionDate").val();
+		
 		goods.upTime = uptime;
 		goods.downTime = downtime;
-		goods.pro_start = pro_start;
-		goods.pro_end = pro_end;
+		goods.onSaleBeginTime = onSaleBeginTime;
+		goods.onSaleEndTime = onSaleEndTime;
 		goods.productionDate = productionDate;
 		goods.content = content_;
+		goods.addTime ="";
+
+		//alert(goods.upTime+"--"+goods.downTime)
 		GoodsOperationService.updateGoods(goods);
 	};
 });

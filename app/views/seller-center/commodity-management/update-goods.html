@@ -78,10 +78,10 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品是否促销：</div>
 						<div class="release-commodity-info-txt fl">
-							<select class="release-commodity-select-length" ng-model="goods.pro_flag" 
+							<select class="release-commodity-select-length" ng-model="goods.onSale" 
 							name="pro_flag" required>
-								<option value="0" ng-selected="goods.pro_flag==0">否</option>
-								<option value="1" ng-selected="goods.pro_flag==1">是</option>
+								<option value="false" ng-selected="goods.onSale==0">否</option>
+								<option value="true"  ng-selected="goods.onSale==1">是</option>
 							</select>
 						</div>
 						<p ng-show="saveForm.pro_flag.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
@@ -99,9 +99,9 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品促销时间：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-p-start-day" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="pro_start" ng-model="goods.pro_start">
+							<input class="release-commodity-p-start-day" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="pro_start" ng-model="goods.onSaleBeginTime">
 							&nbsp;&nbsp;&nbsp;&nbsp;到&nbsp;&nbsp;&nbsp;&nbsp;
-							<input class="release-commodity-p-end-day" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="pro_end"  ng-model="goods.pro_end">
+							<input class="release-commodity-p-end-day" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="pro_end"  ng-model="goods.onSaleEndTime">
 							
 						</div>
 					</li>
@@ -110,8 +110,8 @@
 						<div class="release-commodity-info-label fl">是否上架：</div>
 						<div class="release-commodity-info-txt fl" >
 							<select class="release-commodity-select-length" required  ng-model="goods.state" required name="state">
-								<option value="0" ng-selected="goods.state==0">否</option>
-								<option value="1" ng-selected="goods.state==1">是</option>
+								<option value="false" ng-selected="goods.state==0">否</option>
+								<option value="true" ng-selected="goods.state==1">是</option>
 							</select>
 						</div>
 						<p ng-show="saveForm.state.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
