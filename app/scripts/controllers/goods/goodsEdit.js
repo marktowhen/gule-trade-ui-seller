@@ -11,37 +11,25 @@ shopbackApp.controller('GoodsEditController', function ($scope,$location,GoodsEd
 	$scope.name = '';
 	//默认查询商品
 	$scope.state = '1';
-	GoodsEditService.queryGoodsList('','1',0,100)
+	GoodsEditService.queryGoodsList('',$scope.state,0,100)
 				.success(function(data){
 					$scope.goodslist = data.body;
+          $scope.total = $scope.goodslist.length;
 				});
     //搜索查询商品
     $scope.serch = function(){
     	 GoodsEditService.queryGoodsList($scope.name,$scope.state,0,100)
 				.success(function(data){
 					$scope.goodslist = data.body;
+           $scope.total = $scope.goodslist.length;
 				});
     };
     //商品上架
   $scope.up =function(id){
-     GoodsEditService.up().get({gid:id},  function(data){
-     		$location.path("/seller-center/goods/list");
-            alert("上架成功！");
-           }, 
-        function(data){
-        	$location.path("/seller-center/goods/list");
-            alert("上架失败！");
-          });
+     GoodsEditService.up(id);
   };
    //商品下架
   $scope.down =function(id){ 
-     GoodsEditService.down().get({gid:id},  function(data){
-            $location.path("/seller-center/goods/list");
-            alert("下架成功！");
-           }, 
-        function(data){
-        	$location.path("/seller-center/goods/list");
-            alert("下架失败！");
-          });
+     GoodsEditService.down(id);
   };
 });

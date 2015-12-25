@@ -7,16 +7,37 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.service('GoodsEditService', function($http,$location,$resource,ApiService){
+shopbackApp.service('GoodsEditService', function($http,$location,$resource,$state,ApiService){
 	   //根据条件查询商品列表
        this.queryGoodsList = function(name,state,offset,size){
             return $http.get(ApiService.api.goods.queryGoodsList, 
-                {params:{'name':name, 'state':state,'offset':offset,'size':size}})
+                {params:{'name':name,'state':state,'offset':offset,'size':size}})
        }; 
-       this.up = function(){
-        return $resource(ApiService.api.goods.up, {});
-       };
-       this.down = function(){
-        return $resource(ApiService.api.goods.down, {});
-       };
+       this.up = function(id){
+         return $http.put(ApiService.api.goods.up+id,{'Content-Type': 'application/json;charset=UTF-8'})
+               .success(function(response){
+                        if(response.code==200){
+                          alert("上架成功......");
+                            $state.go('station-goods.goods-list');
+                        }else{
+                          alert("上架失败....."+response.message);
+                        }
+                      }).error(function(response){
+                    alert("上架失败:"+response.message);
+                  });
+             };
+       this.down = function(id){
+         return $http.put(ApiService.api.goods.down+id,{'Content-Type': 'application/json;charset=UTF-8'})
+               .success(function(response){
+                        if(response.code==200){
+                          alert("下架成功......");  
+                           $state.go('station-goods.goods-list');
+                        }else{
+                          alert("下架失败....."+response.message);
+                        }
+                      }).error(function(response){
+                    alert("下架失败:"+response.message);
+                  });
+             };
+       
 });

@@ -78,10 +78,10 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品是否促销：</div>
 						<div class="release-commodity-info-txt fl">
-							<select class="release-commodity-select-length" ng-model="goods.pro_flag" 
+							<select class="release-commodity-select-length" ng-model="goods.onSale" 
 							name="pro_flag" required>
-								<option value="0">否</option>
-								<option value="1">是</option>
+								<option value="false">否</option>
+								<option value="true">是</option>
 							</select>
 						</div>
 						<p ng-show="saveForm.pro_flag.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
@@ -112,8 +112,8 @@
 						<div class="release-commodity-info-label fl">是否上架：</div>
 						<div class="release-commodity-info-txt fl" >
 							<select class="release-commodity-select-length" required  ng-model="goods.state" required name="state">
-								<option value="0">否</option>
-								<option value="1">是</option>
+								<option value="false">否</option>
+								<option value="true">是</option>
 							</select>
 						</div>
 						<p ng-show="saveForm.state.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
