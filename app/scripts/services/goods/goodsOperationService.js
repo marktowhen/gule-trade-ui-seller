@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.service('GoodsOperationService', function ($http, $location,ApiService) {
+shopbackApp.service('GoodsOperationService', function ($http, $state,$location,ApiService) {
 	//根据商品名模糊查询商品
 	  	this.merchantlist  = function (){
 
@@ -59,7 +59,8 @@ shopbackApp.service('GoodsOperationService', function ($http, $location,ApiServi
             	 		{'Content-Type': 'application/json;charset=UTF-8'})
 	         			.success(function(response){
 	         				if(response.code==200){
-	         					alert("添加商品成功......");  
+	         					alert("添加商品成功......");
+                                $state.go('station-goods.goods-list');
 	         				}else{
 	         					alert("添加商品异常....."+response.message);
 	         				}
@@ -75,6 +76,7 @@ shopbackApp.service('GoodsOperationService', function ($http, $location,ApiServi
                         .success(function(response){
                             if(response.code==200){
                                 alert("修改商品成功......");
+                                 $state.go('station-goods.goods-list');
                             }else{
                                 alert("修改商品异常....."+response.message);
                             }
