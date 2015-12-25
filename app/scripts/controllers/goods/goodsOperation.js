@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GoodsOperationController', function ($scope,$state,GoodsOperationService, ApiService) {
+shopbackApp.controller('GoodsOperationController', function ($scope,$timeout,$state,GoodsOperationService, ApiService) {
 	var gid = $state.params.gid;
 	if(gid!=null){
 			//console.log("gid >>"+gid);
@@ -17,14 +17,15 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$state,Goods
 					GoodsOperationService.brandlist($scope.goods.mid).success(function(data){
 						$scope.brandlist =data.body;
 					});
-					
-					//alert($scope.goods.content)
-					ue.addListener("ready", function () {
-						if($scope.goods.content!=null){
-							ue.setContent($scope.goods.content);
-						}
 
-					});
+					$timeout(function(){
+						ue.ready( function () { 
+						   if($scope.goods.content!=null){
+							 ue.setContent($scope.goods.content);
+							}
+						});   
+							      
+					}, 3000);
 			});
 
 

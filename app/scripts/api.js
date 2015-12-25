@@ -40,8 +40,8 @@ shopbackApp.service('ApiService', function () {
         'goods':{//根据条件查询商品
             'queryGoodsList':'http://localhost:8080/api/back/goods/list',
 			 'queryGoodsList':'http://localhost:8080/api/back/goods/list',
-            'up':'http://localhost:8080/api/goodsOperation/up/:gid',
-            'down':'http://localhost:8080/api/goodsOperation/down/:gid'
+            'up':'http://localhost:8080/api/goodsOperation/up/',
+            'down':'http://localhost:8080/api/goodsOperation/down/'
         },
         'goodsOperation':{//商品操作
             'merchantlist':'http://localhost:8080/api/goodsOperation/merchant/list',
