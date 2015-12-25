@@ -12,8 +12,9 @@
 		<input type="text" class="info" name="title" ng-model="infoschool.title"/>
 		<span style="color:red" ng-hide="myForm.title.$dirty">标题必填</span>
 	</div>
-	<div class="info-div">类别：
-		<input type="text" class="info" ng-model="infoschool.name"/>
+	<div class="info-div">简介：
+		<input type="text" class="info" name="leibie" ng-maxlength='50' ng ng-model="infoschool.name"/>
+		<span style="color:red" ng-show="myForm.leibie.$invalid">请输入不超过50个字的简介</span>
 	</div>
 	<div class="info-div">摘要：
 		<textarea cols="50" rows="5" name="zhai" ng-model="infoschool.abstracts" ng-maxlength="10"></textarea>
