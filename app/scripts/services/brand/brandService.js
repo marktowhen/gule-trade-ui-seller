@@ -39,7 +39,8 @@ shopbackApp.service('BrandService', function($http,$location,$state,$resource,Ap
                         {'Content-Type': 'application/json;charset=UTF-8'})
             			.success(function(response){
 	         				if(response.code==200){
-	         					alert("修改品牌成功......");  
+	         					alert("修改品牌成功......");
+                    $state.go("station-goods.brand-list");
 	         				}else{
 	         					alert("修改品牌异常....."+response.message);
 	         				}
@@ -49,6 +50,20 @@ shopbackApp.service('BrandService', function($http,$location,$state,$resource,Ap
         };
 
 
+        this.delBrand =function(bid){
+             return  $http.put(ApiService.api.brand.del+bid,
+                     {'Content-Type': 'application/json;charset=UTF-8'})
+                  .success(function(response){
+                  if(response.code==200){
+                    alert("删除品牌成功......");  
+                     $state.go("station-goods.brand-list");
+                  }else{
+                    alert("删除品牌异常....."+response.message);
+                  }
+                }).error(function(response){
+              alert("删除品牌失败:"+response);
+            });
+        };
 
       this.getById = function (bid){
       	return  $http.get(ApiService.api.brand.getbyid+bid,
