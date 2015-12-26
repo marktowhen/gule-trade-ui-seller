@@ -29,12 +29,12 @@ var shopbackApp= angular
         controller: 'MainCtrl',
         controllerAs: 'main',
         url:"/",
-        views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
+        views: {
                   '': {
-                      templateUrl: '/views/seller-center/seller-center.html'
+                      templateUrl: '/views/trading-center/trading-center.html'
                       },
-                  'seller-center-left@index': {
-                      templateUrl: 'views/seller-center/seller-center-left.html'
+                  'trading-center-left@index': {
+                      templateUrl: 'views/trading-center/trading-center-left.html'
                     }
                 }
       })
@@ -45,26 +45,13 @@ var shopbackApp= angular
         url:"/about"
       })
       .state('station-goods.release-commodity',{
-        templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
+        templateUrl:'/views/station-goods/commodity-management/release-commodity.html',
         url:"/release-commodity"
       })
       .state('station-goods.update-goods',{
-        templateUrl:'/views/seller-center/commodity-management/update-goods.html',
+        templateUrl:'/views/station-goods/commodity-management/update-goods.html',
         url:"/update/goods?gid"
-      })
-       .state('seller-center',{
-        url:"/seller-center",
-        views: { //注意这里的写法，当一个页面上带有多个ui-view的时候如何进行命名和视图模板的加载动作
-                  '': {
-                      templateUrl: '/views/seller-center/seller-center.html'
-                      },
-                  'seller-center-left@seller-center': {
-                      templateUrl: 'views/seller-center/seller-center-left.html'
-                    }
-                }
-         })
-
-       .state('trading-center',{
+      }).state('trading-center',{
         url:"/trading-center",
         views: {
                   '': {
@@ -115,47 +102,29 @@ var shopbackApp= angular
       })
 
 
-      .state('add-school',{
+      .state('station-info.add-school',{
         templateUrl:'/views/information-management/add-school.html',
         url:"/add-school"
       })
-       .state('add-culture',{
+       .state('station-info.add-culture',{
         templateUrl:'/views/information-management/add-culture.html',
         url:"/add-culture"
       })
-        .state('add-news',{
+        .state('station-info.add-news',{
         templateUrl:'/views/information-management/add-news.html',
         url:"/add-news"
       })
-        .state('getAll-information',{
+        .state('station-info.getAll-information',{
         templateUrl:'/views/information-management/getAll-information.html',
         url:"/getAll-information"
       })
-        .state('update-information',{
+        .state('station-info.update-information',{
         templateUrl:'/views/information-management/update-information.html',
         url:"/update-information/:id"
       })
-
-      .state('seller-center.wait-to-accept', {
-        templateUrl: '/views/seller-center/transaction-management/wait-to-accept.html',
-        url:"/order/accept"
-      })
-      .state('seller-center.delivering', {
-        templateUrl: '/views/seller-center/transaction-management/delivering.html',
-        url:"/order/delivering"
-      })
-      .state('seller-center.delivered', {
-        templateUrl: '/views/seller-center/transaction-management/delivered.html',
-        url:"/order/delivered"
-      })
-      //商品列表查询
       .state('station-goods.goods-list', {
-        templateUrl: '/views/seller-center/goods-management/goodslist.html',
+        templateUrl: '/views/station-goods/goods-management/goodslist.html',
         url:"/goods/list"
       })
       ;
-     /* .state('seller-center.release-commodity',{
-        templateUrl:'/views/seller-center/commodity-management/release-commodity.html',
-        url:"/release-commodity"
-      })*/ 
   });

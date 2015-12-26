@@ -1,5 +1,6 @@
+@import "../common";
+
 .information{
-	margin-left:300px;
 	height: 51px;
 	background-color:#E9E9E9;
 	line-height: 51px;
@@ -10,33 +11,45 @@
 	
 }
 
-.content{
-	margin-left:300px;
-}
 .tr1{
 	height:30px;
 	line-height:30px;
 }
-table{
+
+.all-info-tb{
 	font-size:14px;
 }
-.th1{
+.all-info-tb th{
+	text-align:center;
+}
+
+.all-info-tb th,.all-info-tb td{
+	border:1px solid @gray-border;
+}
+
+.title-hd{
 	width:300px;
 }
-.th3{
-	width:350px;
+
+.date-hd{
+	width:180px;
 }
+
+.summary-hd{
+	width:320px;
+}
+
+.action-hd{
+	width:100px;
+}
+
 .td1{
-	width:185px;
-	float:left;
 	white-space:nowrap; 
 	text-overflow:ellipsis;
 	-o-text-overflow:ellipsis; 
 	overflow:hidden;
 }
 .td3{
-	width:280px;
-	float:left;
 	white-space:nowrap;
 	text-overflow:ellipsis; 
 	-o-text-overflow:ellipsis;
