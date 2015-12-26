@@ -47,7 +47,7 @@ shopbackApp.controller('BrandController', function ($scope,$location,$state,Bran
 
 
   $scope.del = function(bid){
-    alert("删除"+bid);
+    //alert("删除"+bid);
     BrandService.delBrand(bid);
   };
 });
