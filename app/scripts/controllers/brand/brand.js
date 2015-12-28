@@ -44,4 +44,10 @@ shopbackApp.controller('BrandController', function ($scope,$location,$state,Bran
   $scope.update = function(brand){
      BrandService.updateBrand(brand);
   };
+
+
+  $scope.del = function(bid){
+    //alert("删除"+bid);
+    BrandService.delBrand(bid);
+  };
 });

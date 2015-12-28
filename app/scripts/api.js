@@ -102,7 +102,9 @@ shopbackApp.service('ApiService', function () {
             'brandlist':'http://localhost:8080//api/brand/brands/',
             'save':'http://localhost:8080/api/brand/save',
             'getbyid':'http://localhost:8080/api/brand/updateveiw/',
-            'update':'http://localhost:8080/api/brand//update/'
+            'update':'http://localhost:8080/api/brand//update/',
+             'del':'http://localhost:8080/api/brand/'
+
 
         }
                 

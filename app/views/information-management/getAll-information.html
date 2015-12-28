@@ -4,17 +4,16 @@
 	</div>
 	<div class="content">
 		
-		<table >
+		<table class="all-info-tb">
 			<tr class="tr1">
-				<th class="th1">标题</th>
-				
-				<th style="width:250px;">时间</th>
-				<th class="th3">摘要</th>
-				<th>操作</th>
+				<th class="title-hd">标题</th>			
+				<th class="date-hd">时间</th>
+				<th class="summary-hd">摘要</th>
+				<th class="action-hd">操作</th>
 			</tr>
 			<tr class="tr1" ng-repeat="detail in alldetail">
 				<td class="td1">{{detail.title}}</td>
-				<td style="width:250px;">{{detail.addtime}}</td>
+				<td >{{detail.addtime}}</td>
 				<td class="td3">{{detail.abstracts}}</td>
 				<td>
 					<input type="button" value="删除" ng-click="deletedetails(detail)" />
