@@ -37,6 +37,19 @@ shopbackApp.service('ApiService', function () {
             	'remove' :'http://localhost:8080/api/information/help/center/detail/:id'
             }
         },
+
+        'counpon':{
+            'cashcounpon' : {
+                'list' : 'http://localhost:8080/api/vip/coupon/cashcoupon/list/:from/:size',
+                'add' : 'http://localhost:8080/api/vip/coupon/cashcoupon',
+                'unlock' : 'http://localhost:8080/api/vip/coupon/cashcoupon/unlock/:ids'
+            },
+            'discountcounpon' : {
+                'list' : 'http://localhost:8080/api/vip/coupon/discountcoupon/list/:from/:size',
+                'add' : 'http://localhost:8080/api/vip/coupon/discountcoupon',
+                'unlock' : 'http://localhost:8080/api/vip/coupon/discountcoupon/unlock/:ids'
+            }
+        },
         'goods':{//根据条件查询商品
             'queryGoodsList':'http://localhost:8080/api/back/goods/list',
 			 'queryGoodsList':'http://localhost:8080/api/back/goods/list',
