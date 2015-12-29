@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('RefundingReceiverController', function ($scope, $stateParams, ConstantService, RefundService) {
+shopbackApp.controller('RefundingReceiverController', function ($scope, $state, $stateParams, ConstantService, RefundService) {
 	
     $scope.receiver = '';
     $scope.address = '';
@@ -19,6 +19,7 @@ shopbackApp.controller('RefundingReceiverController', function ($scope, $statePa
             RefundService.accept($scope.rid, $scope.receiver+","+$scope.mobile+","+$scope.address)
                 .success(function(data){
                     alert("您已同意买家的退款申请，等待买家退货。");
+                    $state.go("trading-center.refunding-accept");
                     return;
                 });
         }else{

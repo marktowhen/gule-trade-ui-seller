@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('RefundingDenyController', function ($scope, $stateParams, ConstantService, RefundService) {
+shopbackApp.controller('RefundingDenyController', function ($scope, $state, $stateParams, ConstantService, RefundService) {
 	
     $scope.note = '';
     $scope.rid = $stateParams.rid;
@@ -17,6 +17,7 @@ shopbackApp.controller('RefundingDenyController', function ($scope, $stateParams
             RefundService.deny($scope.rid, $scope.note)
                 .success(function(data){
                     alert("您已经拒绝买家退款申请。");
+                    $state.go("trading-center.refunding-list");
                     return;
                 });
         }else{
