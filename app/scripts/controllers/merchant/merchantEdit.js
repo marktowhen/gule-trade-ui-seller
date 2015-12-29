@@ -11,11 +11,11 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 	var mid = $state.params.mid;//获取商家ID
 	
 	$scope.m = { id: "",
-				 merchantName: "",
-				 merchantEname:"",
-				 merchantCode:"",
-				 merchantAddress:"",
-				 merchantScale:"",
+				 name: "",
+				 ename:"",
+				 code:"",
+				 address:"",
+				 scale:"",
 				 employeeNum:"",
 				 tel:"",
 				 zipcode:"",
@@ -33,11 +33,11 @@ shopbackApp.controller('MerchantEditController', function ($scope,$state,$route,
 				.success(function(data){
 					var r = data.body;
 					$scope.m.id = r.id;
-					$scope.m.merchantName = r.merchantName;
-					$scope.m.merchantEname = r.merchantEname;
-					$scope.m.merchantCode = r.merchantCode;
-					$scope.m.merchantAddress = r.merchantAddress;
-					$scope.m.merchantScale = r.merchantScale;
+					$scope.m.name = r.name;
+					$scope.m.ename = r.ename;
+					$scope.m.code = r.code;
+					$scope.m.address = r.address;
+					$scope.m.scale = r.scale;
 					$scope.m.employeeNum = r.employeeNum;
 					$scope.m.tel = r.tel;
 					$scope.m.zipcode = r.zipcode;
