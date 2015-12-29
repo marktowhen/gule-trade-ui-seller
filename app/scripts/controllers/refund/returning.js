@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('ReturningController', function ($scope, ConstantService, RefundService, GoodsOperationService) {
+shopbackApp.controller('ReturningController', function ($scope, $state, ConstantService, RefundService, GoodsOperationService) {
 	/*获取当前的商家*/
     GoodsOperationService.merchantlist().success(function(data){
         $scope.merchantlist =data.body;
@@ -24,6 +24,7 @@ shopbackApp.controller('ReturningController', function ($scope, ConstantService,
 				.success(function(data){
 					if(data.ok){
 						alert("您已同意买家的退货申请，请尽快完成款项的退换。");
+						$state.go("trading-center.refunded-list");
 						return;
 					}else{
 						alert(data.message);
