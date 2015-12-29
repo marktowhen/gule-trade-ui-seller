@@ -21,47 +21,52 @@
 	
 	</div>
 	<div class="gl-content" >
-		<div class="gl-hd">
-			<div class="glh-mid">
-				<ul class="glhm">
-					<li class="glh-m">商品名称</li>
-					<li class="glh-m glh-m2">商家</li>
-					<li class="glh-m">品牌</li>
-					<li class="glh-m">商品编码</li>
-					<li class="glh-m">原价（元）</li>
-					<li class="glh-m">促销价</li>
-					<li class="glh-m">是否促销</li>
-					<li class="glh-m">操作</li>
-				</ul>
-			</div>
-		</div>
-		<div class="gl-bd">
-			<div class="glb-mid">
-				<div ng-repeat="goods in goodslist" class = "glb-line">
-					<ul class="glbm">
-						<li class="glb-m along">
-						<a ui-sref="station-goods.update-goods({gid:'{{goods.gid}}'})">
-						{{goods.goodsName}}
-						</a>
-						</li>
-						<li class="glb-m glb-m2">{{goods.merchantName}}</li> 
-						<li class="glb-m">{{goods.brandName}}</li>
-						<li class="glb-m">{{goods.goodsCode}}</li>
-						<li class="glb-m">{{goods.price}}</li>
-						<li class="glb-m">{{goods.promotionPrice}}</li>
-						<li class="glb-m">{{goods.onSale=='0'?'否':'是'}}</li>
-						<li class="glb-m">
-							<a href="#" class="aa" ui-sref="station-goods.update-goods({gid:'{{goods.gid}}'})">编辑</a>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="#" class="aa" ng-click="up('{{goods.gid}}')" ng-show="{{goods.state == 0}}">上架</a>
-							<a href="#" class="aa" ng-click="down('{{goods.gid}}')" ng-show="{{goods.state == 1}}">下架</a>
-						</li>
-					</ul>
-					<div class="clear"></div>
+	<div class="gl-hd">
+		<div class="glh-mid">
+			<ul class="glhm">
+				<li class="glh-m">商品名称</li>
+				<li class="glh-m glh-m2">商家</li>
+				<li class="glh-m">品牌</li>
+				<li class="glh-m">商品编码</li>
+				<li class="glh-m">库存</li>
+				<li class="glh-m">原价（元）</li>
+				<li class="glh-m">促销价</li>
 
-				</div>
-			</div>
+				<li class="glh-m">操作</li>
+			</ul>
 		</div>
 	</div>
+	
+<div class="gl-bd">
+<div class="glb-mid">
+	<div ng-repeat="goods in goodslist" class = "glb-line">
+		<ul class="glbm">
+			<li class="glb-m along">
+			<a ui-sref="station-goods.update-goods({gid:'{{goods.gid}}'})">
+			{{goods.goodsName}}
+			</a>
+			</li>
+			<li class="glb-m along">{{goods.merchantName}}</li> 
+			<li class="glb-m along">{{goods.brandName}}</li>
+			<li class="glb-m along">{{goods.goodsCode}}</li>
+			<li class="glb-m " id="{{goods.gid}}" >{{goods.count}}</li>
+			<li class="glb-m ">{{goods.price}}</li>
+			<li class="glb-m ">{{goods.promotionPrice}}</li>
+			<li class="glb-m ">
+				<a href="#" class="aa" ui-sref="station-goods.update-goods({gid:'{{goods.gid}}'})">编辑</a>
+
+				<a href="#" class="aa" ng-click="up('{{goods.gid}}')" ng-show="{{goods.state == 0}}">上架</a>
+				<a href="#" class="aa" ng-click="down('{{goods.gid}}')" ng-show="{{goods.state == 1}}">下架</a>
+
+				<a  class="aa" ng-click="changeCount('{{goods.gid}}',{{goods.count}})" id="_{{goods.gid}}">改库存</a>
+			</li>
+		</ul>
+		<div class="clear"></div>
+
+	</div>
+</div>
+</div> 
+</div> 
+
 	总数量 : {{total}}
 </div>
