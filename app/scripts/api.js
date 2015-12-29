@@ -49,7 +49,8 @@ shopbackApp.service('ApiService', function () {
             'typelist':'http://localhost:8080/api/goods/type/list',
             'show':'http://localhost:8080/api/goodsOperation/updateveiw/',
             'save':'http://localhost:8080/api/goodsOperation/save',
-            'update':'http://localhost:8080/api/goodsOperation/update/'
+            'update':'http://localhost:8080/api/goodsOperation/update/',
+            'updatecount':'http://localhost:8080/api/goodsOperation/modfiycount/:gid/:count'
         },       
   
         'merchant':{//根据条件查询商品

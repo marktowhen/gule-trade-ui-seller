@@ -39,5 +39,19 @@ shopbackApp.service('GoodsEditService', function($http,$location,$resource,$stat
                     alert("下架失败:"+response.message);
                   });
              };
+
+      this.updateCount = function(gid,count){
+         return $http.put(ApiService.api.goodsOperation.updatecount.replace(":gid",gid)
+            .replace(":count",count),{'Content-Type': 'application/json;charset=UTF-8'})
+               .success(function(response){
+                        if(response.code==200){
+                           alert("修改库存成功.....");
+                        }else{
+                          alert("修改库存失败....."+response.message);
+                        }
+                      }).error(function(response){
+                    alert("修改库存失败:"+response.message);
+                  });
+             };
        
 });
