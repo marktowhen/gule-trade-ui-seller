@@ -25,10 +25,13 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 	$scope.accept = function(order){
 		OrderService.accept(order)
 		.success(function(data){
-			if(data.code == 200)
+			if(data.ok){
 				$scope.orders.splice($scope.orders.indexOf(order), 1);
-			else
-				alert("操作异常，请刷新重试。");
+			}else{
+				alert(data.message);
+			}
+		}).error(function(){
+			alert("网络异常，稍后重试。");
 		});
 	};
 
@@ -40,6 +43,10 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 	};
 
 	$scope.delivered = function(order){
+		if(!$scope.logistic || !$scope.logistic.expressno || !$scope.logistic.expressName){
+			alert("请完善物流信息！");
+			return;
+		}
 		$scope.logistic.typeCode = order.deliveryTypeCode;
 		$scope.logistic.typeName = order.deliveryTypeName;
 		$scope.logistic.oid = order.id;
@@ -48,7 +55,9 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 			if(data.code == 200)
 				$scope.orders.splice($scope.orders.indexOf(order), 1);
 			else
-				alert("操作异常，请刷新重试。");
+				alert(data.message);
+		}).error(function(data){
+			alert("网络异常，稍后重试。")
 		});
 	};
 
