@@ -15,8 +15,8 @@ shopbackApp.service('SchoolSiteService', function ($http, $location, ApiService)
 		
 		return $http.put(ApiService.api.getinformation.saveSchool,infoschool);
 	};
-	this.alldetail = function(){
-		return $http.get(ApiService.api.getinformation.alldetail);
+	this.alldetail = function(from,size){
+		return $http.get(ApiService.api.getinformation.alldetail+'?from='+from+'&size='+size);
 	};
 	this.deletedetail = function(id){
 		return $http.delete(ApiService.api.getinformation.deletedetail.replace(':id',id));

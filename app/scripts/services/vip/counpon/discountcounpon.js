@@ -24,4 +24,10 @@ shopbackApp.service('DiscountcounponService', function ($http, $location, ApiSer
 		return $http.put(ApiService.api.counpon.discountcounpon.unlock.replace(":ids",ids));
 	}
 
+	//查询
+	this.count = function(cashcounpon){
+		return $http.get(ApiService.api.counpon.discountcounpon.count
+			,{params:{"cardNum": cashcounpon.cardNum , "value":cashcounpon.value ,"locked": cashcounpon.locked }});
+	}
+
 });
