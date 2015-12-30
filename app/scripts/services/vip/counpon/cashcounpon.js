@@ -10,7 +10,8 @@
 shopbackApp.service('CashcounponService', function ($http, $location, ApiService) {
 
 	//新增
-	this.add = function(cashcounpon, amount){
+	this.save = function(cashcounpon, amount){
+		return $http.post(ApiService.api.counpon.cashcounpon.save.replace(':amount', amount),cashcounpon);
 
 	}
 

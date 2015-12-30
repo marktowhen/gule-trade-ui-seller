@@ -42,13 +42,13 @@ shopbackApp.service('ApiService', function () {
             'cashcounpon' : {
                 'list' : 'http://localhost:8080/api/vip/coupon/cashcoupon/list/:from/:size',
                 'count' : 'http://localhost:8080/api/vip/coupon/cashcoupon/amount',
-                'add' : 'http://localhost:8080/api/vip/coupon/cashcoupon',
+                'save' : 'http://localhost:8080/api/vip/coupon/cashcoupon/:amount',
                 'unlock' : 'http://localhost:8080/api/vip/coupon/cashcoupon/unlock/:ids'
             },
             'discountcounpon' : {
                 'list' : 'http://localhost:8080/api/vip/coupon/discountcoupon/list/:from/:size',
                 'count' : 'http://localhost:8080/api/vip/coupon/discountcoupon/amount',
-                'add' : 'http://localhost:8080/api/vip/coupon/discountcoupon',
+                'save' : 'http://localhost:8080/api/vip/coupon/discountcoupon/:amount',
                 'unlock' : 'http://localhost:8080/api/vip/coupon/discountcoupon/unlock/:ids'
             }
         },

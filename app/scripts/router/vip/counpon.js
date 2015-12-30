@@ -34,7 +34,7 @@ shopbackApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) 
         url:"/counpon/discount"
       })
       .state('vip.add-discountcounpon', {
-        templateUrl: '/views/vip/counpon/cashcounponAdd.html',
+        templateUrl: '/views/vip/counpon/discountcounponAdd.html',
         url:"/counpon/discountcounpon/add"
       });
   });

@@ -9,5 +9,25 @@
  */
 shopbackApp.controller('DiscountcounponAddController', function ($scope,$cookies, ConstantService, DiscountcounponService) {
 
+	 $scope.submit = function(counpon){
+	 	$scope.submiting = true;
+
+	 	counpon.start =  $("#pro_start").val();
+		counpon.end =  $("#pro_end").val();
+
+	 	DiscountcounponService.save(counpon, counpon.amount)
+	 		.success(function(data){
+		 		$scope.submiting = false;
+		 		if(data.code==200){
+		 			alert("成功");
+		 		}else{
+		 			alert(data.message);
+		 		}
+		 	})
+		 	.error(function(data){
+		 		$scope.submiting = false;
+	 			alert("生成失败 请稍后再试");
+		 	});
+	 };
 	
 });
