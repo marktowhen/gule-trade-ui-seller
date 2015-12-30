@@ -20,7 +20,7 @@ shopbackApp.controller('UpdateInfoController', function ($scope,ApiService, Upda
 			UpdateInfoService.updateInfo(infoschool).success(function(data){
 				if(data.code==200){
 					alert("修改成功");
-				}
+				};
 			});
 		};
 		
