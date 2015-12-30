@@ -37,6 +37,21 @@ shopbackApp.service('ApiService', function () {
             	'remove' :'http://localhost:8080/api/information/help/center/detail/:id'
             }
         },
+
+        'counpon':{
+            'cashcounpon' : {
+                'list' : 'http://localhost:8080/api/vip/coupon/cashcoupon/list/:from/:size',
+                'count' : 'http://localhost:8080/api/vip/coupon/cashcoupon/amount',
+                'save' : 'http://localhost:8080/api/vip/coupon/cashcoupon/:amount',
+                'unlock' : 'http://localhost:8080/api/vip/coupon/cashcoupon/unlock/:ids'
+            },
+            'discountcounpon' : {
+                'list' : 'http://localhost:8080/api/vip/coupon/discountcoupon/list/:from/:size',
+                'count' : 'http://localhost:8080/api/vip/coupon/discountcoupon/amount',
+                'save' : 'http://localhost:8080/api/vip/coupon/discountcoupon/:amount',
+                'unlock' : 'http://localhost:8080/api/vip/coupon/discountcoupon/unlock/:ids'
+            }
+        },
         'goods':{//根据条件查询商品
             'queryGoodsList':'http://localhost:8080/api/back/goods/list',
 			 'queryGoodsList':'http://localhost:8080/api/back/goods/list',
@@ -107,7 +122,13 @@ shopbackApp.service('ApiService', function () {
              'del':'http://localhost:8080/api/brand/'
 
 
+        },
+        'goodstype':{
+            'typelist':'http://localhost:8080//api/goodstype/list/',
+            'save':'http://localhost:8080/api/goodstype/save',
+            'getbyid':'http://localhost:8080/api/goodstype/single/',
+            'update':'http://localhost:8080/api/goodstype/update/',
+            'del':'http://localhost:8080/api/goodstype/del/'
         }
-                
     }
 });

@@ -41,6 +41,14 @@
 						 <p ng-show="saveForm.desc.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p> 
 					</li>
 					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">管理员排序：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-code"  type="text" ng-model="brand.adminsort" name="adminsort" required  pattern="^[+-]?\d+(\.\d+)?$">
+						</div>
+						 <p ng-show="saveForm.adminsort.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p> 
+						 		<p ng-show="saveForm.adminsort.$dirty && saveForm.adminsort.$error.pattern" style="color: red" >&nbsp;管理员排序只能输入数字</p>
+					</li>
 					
 		<div class="release-commodity-footer" >
 			<button class="release-commodity-btn" ng-click="update(brand)"
