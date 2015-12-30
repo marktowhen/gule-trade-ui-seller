@@ -23,9 +23,32 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 		/*getSchool($scope.names);*/
 
 	});
-	SchoolSiteService.alldetail().success(function(data){
-		$scope.alldetail = data.body;
+	$scope.size=10;
+	$scope.alldetail=[];
+	$scope.more = false;
+	$scope.$watch('$viewContentLoaded', function() { 
+		 		
+
+		$scope.getList($scope.size);
+		 		
 	});
+	$scope.getList = function(size){
+		SchoolSiteService.alldetail($scope.alldetail.length,size).success(function(data){
+		 		if(data.code=200){
+	 				//是否显示'查看更多'
+		 			if(data.body.length==size){
+		 				$scope.more = true;
+		 			}else{
+		 				$scope.more = false;
+		 			}
+		 			for (var i = 0; i < data.body.length; i++) {
+		 				$scope.alldetail.push(data.body[i]);
+		 			};
+	 			};
+
+		});
+	};
+	
 	$scope.deletedetails = function(detail){
 		SchoolSiteService.deletedetail(detail.id).success(function(data){
 			alert("删除成功");
