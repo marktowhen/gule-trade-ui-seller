@@ -21,23 +21,23 @@
 	
 	</div>
 	<div class="gl-content" >
-	<div class="gl-hd">
-		<div class="glh-mid">
-			<ul class="glhm">
-				<li class="glh-m">商品名称</li>
-				<li class="glh-m glh-m2">商家</li>
-				<li class="glh-m">品牌</li>
-				<li class="glh-m">商品编码</li>
-				<li class="glh-m">库存</li>
-				<li class="glh-m">原价（元）</li>
-				<li class="glh-m">促销价</li>
+<!-- 	<div class="gl-hd">
+	<div class="glh-mid">
+		<ul class="glhm">
+			<li class="glh-m">商品名称</li>
+			<li class="glh-m glh-m2">商家</li>
+			<li class="glh-m">品牌</li>
+			<li class="glh-m">商品编码</li>
+			<li class="glh-m">库存</li>
+			<li class="glh-m">原价（元）</li>
+			<li class="glh-m">促销价</li>
 
-				<li class="glh-m">操作</li>
-			</ul>
-		</div>
+			<li class="glh-m">操作</li>
+		</ul>
 	</div>
+</div> -->
 	
-<div class="gl-bd">
+<!-- <div class="gl-bd">
 <div class="glb-mid">
 	<div ng-repeat="goods in goodslist" class = "glb-line">
 		<ul class="glbm">
@@ -65,8 +65,52 @@
 
 	</div>
 </div>
-</div> 
+</div>  -->
+总数量 : {{total}}
+<table border="1" width="100%" class="table1" >
+	<tr style="height: 40px; ">
+		<th style="width: 110px;" class="center">商品名称</th>
+		<th style="width: 130px;" class="center">商家名称</th>
+		<th style="width: 100px;" class="center">品牌名称</th>
+		<th style="width: 100px;"  class="center">编码</th>
+		<th style="width: 60px;"  class="center">库存</th>
+		<th style="width: 60px;"  class="center">原价</th>
+		<th style="width: 60px;" class="center">促销价</th>
+		<th style="width: 60px;" class="center">是否促销</th>
+		<th style="width: 120px;" class="center">操作</th>
+	</tr>
+</table>
+	<div class="goodsdiv">
+	<table  width="100%" border="1"  >
+		<tr  ng-repeat="goods in goodslist">
+			<th class="width1 cleanTH">
+			<a ui-sref="station-goods.update-goods({gid:'{{goods.gid}}'})">	
+			{{goods.goodsName}}
+			</a>
+			</th>
+
+			<th class="width1 cleanTH">{{goods.merchantName}}</th>
+			<th class="width1 cleanTH">{{goods.brandName}}</th>
+			<th class="width2 cleanTH">{{goods.goodsCode}}</th>
+			<th class="width3 cleanTH" id="{{goods.gid}}">{{goods.count}}</th>
+			<th class="width3 cleanTH">{{goods.price}}</th>
+			<th class="width3 cleanTH">{{goods.promotionPrice}}</th>
+			<th class="width3 cleanTH">{{goods.onSale==1?'是':'否'}}</th>
+			<th class="width1 cleanTH">
+				<a href="#" class="aa" ui-sref="station-goods.update-goods({gid:'{{goods.gid}}'})">编辑</a>
+
+				<a href="#" class="aa" ng-click="up('{{goods.gid}}')" ng-show="{{goods.state == 0}}">上架</a>
+				<a href="#" class="aa" ng-click="down('{{goods.gid}}')" ng-show="{{goods.state == 1}}">下架</a>
+
+				<a  class="aa" ng-click="changeCount('{{goods.gid}}',{{goods.count}})" id="_{{goods.gid}}">改库存</a>
+
+			</th>
+		</tr>
+	</table>
+
+	</div>
+
 </div> 
 
-	总数量 : {{total}}
+
 </div>
