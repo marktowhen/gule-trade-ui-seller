@@ -122,7 +122,13 @@ shopbackApp.service('ApiService', function () {
              'del':'http://localhost:8080/api/brand/'
 
 
+        },
+        'goodstype':{
+            'typelist':'http://localhost:8080//api/goodstype/list/',
+            'save':'http://localhost:8080/api/goodstype/save',
+            'getbyid':'http://localhost:8080/api/goodstype/single/',
+            'update':'http://localhost:8080/api/goodstype/update/',
+            'del':'http://localhost:8080/api/goodstype/del/'
         }
-                
     }
 });
