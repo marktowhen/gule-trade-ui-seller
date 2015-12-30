@@ -34,6 +34,7 @@ shopbackApp.controller('DiscountcounponController', function ($scope,$cookies, C
 	 			$scope.counpons = data.body;
 	 		}
 	 	});
+	 	count();
 	 }
 
 	 $scope.reSearch = function(){
@@ -49,8 +50,17 @@ shopbackApp.controller('DiscountcounponController', function ($scope,$cookies, C
 	 			$scope.counpons = data.body;
 	 		}
 	 	});
+	 	count();
 	 }
 
+	 var count = function(){
+	 	DiscountcounponService.count($scope.cash).success(function(data){
+	 		if(data.code==200){
+	 			
+	 			$scope.amount = data.body;
+	 		}
+	 	});
+	 }
 
 
 	 //全选/反选

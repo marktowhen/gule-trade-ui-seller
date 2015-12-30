@@ -41,12 +41,14 @@ shopbackApp.service('ApiService', function () {
         'counpon':{
             'cashcounpon' : {
                 'list' : 'http://localhost:8080/api/vip/coupon/cashcoupon/list/:from/:size',
-                'add' : 'http://localhost:8080/api/vip/coupon/cashcoupon',
+                'count' : 'http://localhost:8080/api/vip/coupon/cashcoupon/amount',
+                'save' : 'http://localhost:8080/api/vip/coupon/cashcoupon/:amount',
                 'unlock' : 'http://localhost:8080/api/vip/coupon/cashcoupon/unlock/:ids'
             },
             'discountcounpon' : {
                 'list' : 'http://localhost:8080/api/vip/coupon/discountcoupon/list/:from/:size',
-                'add' : 'http://localhost:8080/api/vip/coupon/discountcoupon',
+                'count' : 'http://localhost:8080/api/vip/coupon/discountcoupon/amount',
+                'save' : 'http://localhost:8080/api/vip/coupon/discountcoupon/:amount',
                 'unlock' : 'http://localhost:8080/api/vip/coupon/discountcoupon/unlock/:ids'
             }
         },
@@ -120,7 +122,13 @@ shopbackApp.service('ApiService', function () {
              'del':'http://localhost:8080/api/brand/'
 
 
+        },
+        'goodstype':{
+            'typelist':'http://localhost:8080//api/goodstype/list/',
+            'save':'http://localhost:8080/api/goodstype/save',
+            'getbyid':'http://localhost:8080/api/goodstype/single/',
+            'update':'http://localhost:8080/api/goodstype/update/',
+            'del':'http://localhost:8080/api/goodstype/del/'
         }
-                
     }
 });

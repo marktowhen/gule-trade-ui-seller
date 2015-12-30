@@ -10,7 +10,8 @@
 shopbackApp.service('CashcounponService', function ($http, $location, ApiService) {
 
 	//新增
-	this.add = function(cashcounpon, amount){
+	this.save = function(cashcounpon, amount){
+		return $http.post(ApiService.api.counpon.cashcounpon.save.replace(':amount', amount),cashcounpon);
 
 	}
 
@@ -22,5 +23,11 @@ shopbackApp.service('CashcounponService', function ($http, $location, ApiService
 	//解锁
 	this.unlock = function(ids){
 		return $http.put(ApiService.api.counpon.cashcounpon.unlock.replace(":ids",ids));
+	}
+
+	//查询
+	this.count = function(cashcounpon){
+		return $http.get(ApiService.api.counpon.cashcounpon.count
+			,{params:{"cardNum": cashcounpon.cardNum , "value":cashcounpon.value ,"locked": cashcounpon.locked }});
 	}
 });

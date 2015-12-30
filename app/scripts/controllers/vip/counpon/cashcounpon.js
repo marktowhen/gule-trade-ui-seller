@@ -34,6 +34,8 @@ shopbackApp.controller('CashcounponController', function ($scope,$cookies, Const
 	 			$scope.counpons = data.body;
 	 		}
 	 	});
+
+	 	count();
 	 }
 
 	 $scope.reSearch = function(){
@@ -47,6 +49,16 @@ shopbackApp.controller('CashcounponController', function ($scope,$cookies, Const
 	 			}
 
 	 			$scope.counpons = data.body;
+	 		}
+	 	});
+
+	 	count();
+	 }
+
+	 var count = function(){
+	 	CashcounponService.count($scope.cash).success(function(data){
+	 		if(data.code==200){
+	 			$scope.amount = data.body;
 	 		}
 	 	});
 	 }
@@ -89,6 +101,14 @@ shopbackApp.controller('CashcounponController', function ($scope,$cookies, Const
  			}
  		}
  	}
+
+ $scope.myFilter = function (item) {
+ 	if (item) {
+ 		return '是';
+ 	}else{
+ 		return '否';
+ 	}
+  };
 
 	
 });

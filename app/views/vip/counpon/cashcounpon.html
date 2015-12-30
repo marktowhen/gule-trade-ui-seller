@@ -1,4 +1,4 @@
-<div class="merchant-list" ng-controller="CashcounponController">
+<div class="merchant-list" ng-controller="CashcounponController" style="width: 1200px;">
 	<div class="ml-top-title">购物金管理</div>
 	<div class="ml-mid-detail">
 		<ul class="ml">
@@ -35,10 +35,10 @@
 					<li class="mlh-m mlh-m2">面额</li>
 					<li class="mlh-m mlh-m2" >生成时间</li>
 					<li class="mlh-m">使用门槛</li>
-					<li class="mlh-m">使用状态</li>
+					<li class="mlh-m">是否使用</li>
 					<li class="mlh-m">使用时间</li>
 					<li class="mlh-m">是否删除</li>
-					<li class="mlh-m">锁定状态</li>
+					<li class="mlh-m">是否锁定</li>
 					<li class="mlh-m">备注</li>
 					
 				</ul>
@@ -52,13 +52,13 @@
 							<input type="checkbox" ng-change="selectItem(counpon)" ng-model="counpon.selected" value="{{counpon.id}}" ng-true-value="true" ng-false-value="false">
 						</li>
 						<li class="mlb-m mlb-m2">{{counpon.cardNum}}</li>
-						<li class="mlb-m mlb-m2">{{counpon.value}}</li>
+						<li class="mlb-m mlb-m2">{{counpon.value | currency:'￥'}}</li>
 						<li class="mlb-m mlb-m2" >{{counpon.addtime}}</li>
-						<li class="mlb-m">{{counpon.threshhold}}</li>
-						<li class="mlb-m " >{{counpon.used}}</li>
+						<li class="mlb-m">{{counpon.threshhold | currency:'￥'}}</li>
+						<li class="mlb-m " >{{counpon.used  | booleanFilter}}</li>
 						<li class="mlb-m">{{counpon.usedtime}}</li>
-						<li class="mlb-m">{{counpon.del}}</li>
-						<li class="mlb-m">{{counpon.locked}}</li>
+						<li class="mlb-m">{{counpon.del | booleanFilter}}</li>
+						<li class="mlb-m">{{counpon.locked | booleanFilter}}</li>
 						<li class="mlb-m">{{counpon.remark}}</li>
 						
 					</ul>
@@ -66,5 +66,6 @@
 				</div>
 			</div>
 		</div>
+		<div class="ml-bd">数量 {{counpons.length}}/{{amount}}<span ng-click="list()" ng-if="more">展示更多</span> </div>
 	</div>
 </div>
