@@ -69,7 +69,7 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
  		$state.go('story-detail',{id:datails.id});
  	};*/
 	$scope.updatedetails = function(detail){
-		$state.go('update-information',{id:detail.id})
+		$state.go('station-info.update-information',{id:detail.id})
 	};
 	
 	//上传文件
