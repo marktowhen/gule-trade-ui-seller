@@ -54,7 +54,7 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$timeout,$st
 	/*获取当前的商家下的品牌*/
 	$scope.getbrand = function(mid){
 		GoodsOperationService.brandlist(mid).success(function(data){
-		$scope.brandlist =data.body;
+			$scope.brandlist =data.body;
 		}); 
 	};
 		
