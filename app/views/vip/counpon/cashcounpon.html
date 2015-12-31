@@ -53,10 +53,10 @@
 						</li>
 						<li class="mlb-m mlb-m2">{{counpon.cardNum}}</li>
 						<li class="mlb-m mlb-m2">{{counpon.value | currency:'￥'}}</li>
-						<li class="mlb-m mlb-m2" >{{counpon.addtime}}</li>
+						<li class="mlb-m mlb-m2" >{{counpon.addtime | date:'yyyy-MM-dd'}}</li>
 						<li class="mlb-m">{{counpon.threshhold | currency:'￥'}}</li>
 						<li class="mlb-m " >{{counpon.used  | booleanFilter}}</li>
-						<li class="mlb-m">{{counpon.usedtime}}</li>
+						<li class="mlb-m">{{counpon.usedtime | date:'yyyy-MM-dd'}}</li>
 						<li class="mlb-m">{{counpon.del | booleanFilter}}</li>
 						<li class="mlb-m">{{counpon.locked | booleanFilter}}</li>
 						<li class="mlb-m">{{counpon.remark}}</li>
