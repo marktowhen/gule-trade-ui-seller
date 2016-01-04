@@ -100,11 +100,11 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 			}); 
 		}else{
 			file.value = "";
-		}
+		};
 
 		
 
-	}
+	};
 	//文件类型和大小限制
 	var  checkImgType = function(img){
  
@@ -114,18 +114,18 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 	   if(ext!=".PNG"&&ext!=".JPG"){
 	  		alert("图片限于jpg,png格式");
 	  		return false;
-	   }
+	   };
  
 		var file_size = img.files[0].size; 
 		var size = file_size/1024; //kb 
 		if(size > 200){ 
 			alert("上传的文件大小不能超过200kb！"); 
 			return false ;
-		}
+		};
 		 
 		return true;
 				 
-	}
+	};
 	
 	
 
