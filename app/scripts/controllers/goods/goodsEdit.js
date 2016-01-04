@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GoodsEditController', function ($scope,$location,GoodsEditService) {
+shopbackApp.controller('GoodsEditController', function ($scope,$location,GoodsEditService,GoodsOperationService) {
 	$scope.name = '';
 	//默认查询商品+
 	$scope.state = '1';
@@ -16,9 +16,21 @@ shopbackApp.controller('GoodsEditController', function ($scope,$location,GoodsEd
 					$scope.goodslist = data.body;
           $scope.total = $scope.goodslist.length;
 				});
+
+    /*获取当前的商家*/
+  GoodsOperationService.merchantlist().success(function(data){
+    $scope.merchantalllist =data.body;
+  }); 
+    /*获取当前的商家下的品牌*/
+  $scope.getbrandbymid = function(mid){
+    GoodsOperationService.brandlist(mid).success(function(data){
+      $scope.brandlistbymid =data.body;
+    }); 
+  };
+
     //搜索查询商品
     $scope.serch = function(){
-    	 GoodsEditService.queryGoodsList($scope.name,$scope.state,0,100)
+    	 GoodsEditService.queryGoodsList($scope.name,$scope.state,$scope.mid,$scope.bid,0,100)
 				.success(function(data){
 					$scope.goodslist = data.body;
            $scope.total = $scope.goodslist.length;

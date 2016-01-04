@@ -94,7 +94,9 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$timeout,$st
 							  $scope.success5 ="上传成功";
 						}
 					},
-					error: function (data) {alert(JSON.stringify(data));}  
+					error: function (data) {
+						alert("上传失败,请重新上传·····");
+					}  
 					}); 
 			}else{
 				alert("上传对象为空!");
