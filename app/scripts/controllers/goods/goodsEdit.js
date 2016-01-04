@@ -11,7 +11,7 @@ shopbackApp.controller('GoodsEditController', function ($scope,$location,GoodsEd
 	$scope.name = '';
 	//默认查询商品+
 	$scope.state = '1';
-	GoodsEditService.queryGoodsList('',$scope.state,0,100)
+	GoodsEditService.queryGoodsList('',$scope.state,'','',0,100)
 				.success(function(data){
 					$scope.goodslist = data.body;
           $scope.total = $scope.goodslist.length;
