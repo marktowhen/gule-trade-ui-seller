@@ -13,9 +13,10 @@
 				<th class="action-hd">操作</th>
 			</tr>
 			<tr ng-repeat="detail in alldetail">
-				<td ><p class="title-p text-omitted">{{detail.title}}<td></td>
-				<td ><p class="date-p text-omitted">{{detail.addtime}}</td></td>
-				<td ><p class="summary-p text-omitted">{{detail.abstracts}}</td></td>
+				<td><p style="width:120px;text-align:center;">{{detail.sitename}}</p></td>
+				<td><p class="title-p text-omitted">{{detail.title}}</td>
+				<td><p class="date-p text-omitted">{{detail.addtime}}</td>
+				<td><p class="summary-p text-omitted">{{detail.abstracts}}</td>
 				<td>
 					<input type="button" value="删除" ng-click="deletedetails(detail)" />
 					<input type="button" value="修改" ng-click="updatedetails(detail)">
