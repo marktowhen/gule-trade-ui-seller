@@ -138,7 +138,7 @@
 											<tbody>
 												<tr ng-repeat="goods in order.goods">
 													<td class="order-detail-info-product">
-														<img class="order-detail-info-product-img" ng-src="{{goods.imgpath}}@60h_60w.jpg">
+														<a href="http://www.zhonghuaejiao.com/#/product/detail/{{goods.gid}}/description"><img class="order-detail-info-product-img" ng-src="{{goods.imgpath}}@60h_60w.jpg"></a>
 													</td>
 													<td class="order-detail-info-price">￥{{goods.pprice?goods.pprice:goods.price}}</td>
 													<td class="order-detail-info-amount">{{goods.count}}</td>
