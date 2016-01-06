@@ -72,6 +72,10 @@ var shopbackApp= angular
         templateUrl: '/views/trading-center/transaction-management/wait-to-accept.html',
         url:"/order/accept"
       })
+      .state('trading-center.order-detail', {
+        templateUrl: '/views/trading-center/transaction-management/order-detail.html',
+        url:"/order/detail?oid"
+      })
       .state('trading-center.delivering', {
         templateUrl: '/views/trading-center/transaction-management/delivering.html',
         url:"/order/delivering"
