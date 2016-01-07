@@ -68,7 +68,8 @@ shopbackApp.service('ApiService', function () {
             'show':'http://localhost:8080/api/goodsOperation/updateveiw/',
             'save':'http://localhost:8080/api/goodsOperation/save',
             'update':'http://localhost:8080/api/goodsOperation/update/',
-            'updatecount':'http://localhost:8080/api/goodsOperation/modfiycount/:gid/:count'
+            'updatecount':'http://localhost:8080/api/goodsOperation/modfiycount/:gid/:count',
+            'checkcode':'http://localhost:8080/api/goodsOperation/checkcode/:code'
         },       
   
         'merchant':{//根据条件查询商品
