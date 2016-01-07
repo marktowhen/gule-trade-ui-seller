@@ -22,24 +22,11 @@
 	</div>
 	<!-- <div class="info-div">时间：<input type="text" class="info" ng-model="infoschool.addtime"/></div>-->
 	<div class="info-div"> 
-	<script type="text/plain" id="editor" ></script>
-							<script type="text/javascript">
-								var ue = UE.getEditor('editor');
-								UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-								UE.Editor.prototype.getActionUrl= function(action){
-									//alert("上传路径~"+action)
-									if (action == 'uploadimage' || action == 'uploadscrawl' ) {
-										return 'http://localhost:8080/api/resource/ueditor/upload';
-									}
-									else{
-										 return ue._bkGetActionUrl.call(this, action);
-									}
-
-								}
-								function getContents(){
-									$("#texts").val(ue.getContent());
-								}
-							</script>
+	<!-- ueditor begin-->
+	 	<script type="text/plain" id="editor" ></script>
+	 	<ueditor  ng-model="content"></ueditor>
+		<textarea ng-model="content" style="display: none;"/>
+	<!-- ueditor end -->
 	</div>
 	<input type="hidden" id="texts">
 	<div class="info-div" class="info" >
@@ -56,7 +43,7 @@
 	</div>
 	<div class="savebtn">
 		<!-- <input class="btn" type="button" value="保存" ng-click="saveuserinfo(userinfo)"> -->
-		<div class="gl-ser1" style="width: 150px;height: 30px;background-color: #FF9934;color: #fff;line-height: 30px;text-align: center;cursor: pointer;border-radius: 4px;margin-left: -300px;margin-top: 400px;" onclick="getContents()" ng-click="saveuserinfo(infoschool)">保存</div>
+		<div class="gl-ser1" style="width: 150px;height: 30px;background-color: #FF9934;color: #fff;line-height: 30px;text-align: center;cursor: pointer;border-radius: 4px;margin-left: -300px;margin-top: 400px;" ng-click="saveuserinfo(infoschool)">保存</div>
 	</div>
 	</ng-form>
 </div>

@@ -91,9 +91,9 @@ shopbackApp.service('ApiService', function () {
             'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list',
             'deletedetail':'http://localhost:8080/api/information/delete/:id',
             'updateInfo':'http://localhost:8080/api/information/update',
-            'getInfoById':'http://localhost:8080/api/information/detail/:id'
-
-
+            'getInfoById':'http://localhost:8080/api/information/detail/:id',
+            'getInfoByName':'http://localhost:8080/api/information/byname/detail',
+            'maxOrders':'http://localhost:8080/api/information/detail/orders/:id'
 
 
         },
