@@ -1,6 +1,6 @@
 'use strict';
 
-shopbackApp.directive('ueditor', function () {
+shopbackApp.directive('ueditor',['ApiService', function (ApiService) {
   return {
     restrict: 'AE',
     transclude: true,
@@ -9,12 +9,11 @@ shopbackApp.directive('ueditor', function () {
     require: '?ngModel',
     link: function (scope, element, attrs, ngModel) {
       var ue = UE.getEditor('editor');
-      
       UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
       UE.Editor.prototype.getActionUrl= function(action){
-                //alert("上传路径~"+action)
+                
                 if (action == 'uploadimage' || action == 'uploadscrawl' ) {
-                  return 'http://localhost:8080/api/resource/ueditor/upload';
+                  return ApiService.api.resource.ueditor;
                 }
                 else{
                    return ue._bkGetActionUrl.call(this, action);
@@ -49,4 +48,4 @@ shopbackApp.directive('ueditor', function () {
 
     }
   }
-});
+}]);

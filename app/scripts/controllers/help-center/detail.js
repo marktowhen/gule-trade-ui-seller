@@ -13,7 +13,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
        listCategory();
         
     });  
-
+	var ue = UE.getEditor("editor");
 	$scope.detail = {};
 	 //展示分类
 	var listCategory = function(){
@@ -34,13 +34,10 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 	};
 	//根据分类查询列表
 	$scope.listDetail = function(category){
-		HelpCenterDetailService.list(category.id).success(function(data){
-				category.detailList = data.body;
-			});
-
+		
 		$scope.detail = {'parentID':category.id, 'parentName':category.name};
 		$scope.title = '新增';
-		ue.setContent('');
+		$scope.thisContent = '';
 	};
 
 	$scope.title = '新增';
@@ -51,7 +48,10 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 			$scope.detail = data.body;
 			$scope.detail.parentName = getCategoryByID($scope.detail.parentID).name;
 			$scope.title = '修改';
-			ue.setContent(data.body.content);
+			$scope.thisContent = (data.body.content);
+
+			 
+			 ue.setContent($scope.thisContent );
 		});
 	};
 
@@ -71,7 +71,8 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 		}
 		$scope.detail = {'parentID':$scope.detail.parentID, 'parentName':$scope.detail.parentName};
 		$scope.title = '新增';
-		ue.setContent('');
+		$scope.thisContent = '';
+		ue.setContent($scope.thisContent );
 	};
 
 	
@@ -81,7 +82,7 @@ shopbackApp.controller('HelpCenterDetailController', function ($scope,$cookies, 
 		if(ifValid){
 			//已选择分类
 			if(!isEmpty(detail.parentID)){
-				var content = ue.getContent();
+				var content = $scope.content;
 				if(!isEmpty(content)){
 					detail.content = content;
 					if(!isEmpty(detail.id)){
