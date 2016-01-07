@@ -44,6 +44,11 @@ var shopbackApp= angular
         controllerAs: 'about',
         url:"/about"
       })
+      .state('login', {
+        templateUrl: '/views/login/login.html',
+        url:"/login",
+        controller: ''
+      })
       .state('station-goods.release-commodity',{
         templateUrl:'/views/station-goods/commodity-management/release-commodity.html',
         url:"/release-commodity"
