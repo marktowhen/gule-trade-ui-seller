@@ -39,10 +39,12 @@
 										<tr ng-repeat="goods in order.goods">
 											<td class="sgb-product">
 												<div class="sgb-fl">
-													<img class="sgb-p-img" ng-src="../images/seller-center/g1.png"></div>
+													<a href="http://www.zhonghuaejiao.com/#/product/detail/{{goods.gid}}/description" target="_blank"><img class="sgb-p-img" ng-src="{{goods.imgpath}}@90w_90h.jpg">
+													</a>
+												</div>
 												<div class="sgb-p-name fl">
 													<p>
-														{{goods.gname}}
+														<a href="http://www.zhonghuaejiao.com/#/product/detail/{{goods.gid}}/description" target="_blank">{{goods.gname}}</a>
 													</p>
 												</div>
 											</td>

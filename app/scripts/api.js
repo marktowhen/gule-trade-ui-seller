@@ -13,7 +13,10 @@ shopbackApp.service('ApiService', function () {
         'order':{
             'listWithCondition': 'http://localhost:8080/api/orders/seller/:from/:size',
             'accept':'http://localhost:8080/api/orders/acception',
-            'delivered':'http://localhost:8080/api/orders/logistic'
+            'delivered':'http://localhost:8080/api/orders/logistic',
+            'singleByOID':'http://localhost:8080/api/orders/:oid',
+            'listTraces': 'http://localhost:8080/api/orders/:oid/traces',
+            'logistic':'http://localhost:8080/api/orders/:oid/logistic'
         },
         'refund':{
             'listWithCondition': 'http://localhost:8080/api/refund/seller/:from/:size',

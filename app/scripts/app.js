@@ -44,6 +44,11 @@ var shopbackApp= angular
         controllerAs: 'about',
         url:"/about"
       })
+      .state('login', {
+        templateUrl: '/views/login/login.html',
+        url:"/login",
+        controller: ''
+      })
       .state('station-goods.release-commodity',{
         templateUrl:'/views/station-goods/commodity-management/release-commodity.html',
         url:"/release-commodity"
@@ -71,6 +76,10 @@ var shopbackApp= angular
       .state('trading-center.wait-to-accept', {
         templateUrl: '/views/trading-center/transaction-management/wait-to-accept.html',
         url:"/order/accept"
+      })
+      .state('trading-center.order-detail', {
+        templateUrl: '/views/trading-center/transaction-management/order-detail.html',
+        url:"/order/detail?oid"
       })
       .state('trading-center.delivering', {
         templateUrl: '/views/trading-center/transaction-management/delivering.html',

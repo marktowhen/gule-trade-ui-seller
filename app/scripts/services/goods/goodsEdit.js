@@ -9,9 +9,9 @@
  */
 shopbackApp.service('GoodsEditService', function($http,$location,$resource,$state,ApiService){
 	   //根据条件查询商品列表
-       this.queryGoodsList = function(name,state,offset,size){
+       this.queryGoodsList = function(name,state,mid,bid,offset,size){
             return $http.get(ApiService.api.goods.queryGoodsList, 
-                {params:{'name':name,'state':state,'offset':offset,'size':size}})
+                {params:{'name':name,'state':state,'MID':mid,'BID':bid,'offset':offset,'size':size}})
        }; 
        this.up = function(id){
          return $http.put(ApiService.api.goods.up+id,{'Content-Type': 'application/json;charset=UTF-8'})

@@ -37,7 +37,7 @@
 					</li>
 					<div class="clear"></div>
 					<li>
-						<div class="release-commodity-info-label fl">商品名称：</div>
+						<div class="release-commodity-info-label fl">商品标题：</div>
 						<div class="release-commodity-info-txt fl">
 							<input class="release-commodity-name"   type="text" ng-model="goods.name" name="name" required >
 						</div>
@@ -144,12 +144,12 @@
 						</div>
 					</li>
 					<div class="clear"></div>
-					<li>
-						<div class="release-commodity-info-label fl">商品标题：</div>
-						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-title"  type="text" ng-model="goods.goodsTitle">
-						</div>
-					</li>
+		<!-- 			<li>
+			<div class="release-commodity-info-label fl">商品标题：</div>
+			<div class="release-commodity-info-txt fl">
+				<input class="release-commodity-title"  type="text" ng-model="goods.goodsTitle">
+			</div>
+		</li> -->
 					<li>
 						<div class="release-commodity-info-label fl">商品描述：</div>
 						<div class="release-commodity-info-txt fl">
@@ -235,16 +235,17 @@
 						<div class="release-commodity-info-label fl">规格：</div>
 						<div class="release-commodity-info-txt fl">
 							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.specifications" name="specifications" required>
+							&nbsp;&nbsp; 
 						</div>
-						<p ng-show="saveForm.specifications.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+						<p ng-show="saveForm.specifications.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填 (例: 15g*10)</p>
 					</li>
 					<div class="clear"></div>
 					<li>
-						<div class="release-commodity-info-label fl">成分含量：</div>
+						<div class="release-commodity-info-label fl">口味：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.ingredient" name="ingredient" >
+							<input class="release-commodity-food-safety-txt"  type="text" ng-model="goods.taste" name="taste" required>
 						</div>
-<!-- 						<p ng-show="saveForm.ingredient.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p> -->
+ 						<p ng-show="saveForm.taste.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p> 
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -289,18 +290,14 @@
 					</li>
 					<div class="clear"></div>
 					<li>
-						<div class="release-commodity-info-label fl">重量：</div>
+						<div class="release-commodity-info-label fl">商品重量：</div>
 						<div class="release-commodity-info-txt fl">
 							<input class="release-commodity-shelf-start-day"  type="text" ng-model="goods.weight" pattern="^[+-]?\d+(\.\d+)?$" name="weight">
 							<p ng-show="saveForm.weight.$dirty && saveForm.weight.$error. pattern" style="color: red" >只能输入数字</p>
 						</div>
 						<div class="release-commodity-info-txt fl">
-						<select class="release-commodity-select-length" ng-model="goods.unit" name="unit" required>
-								<option value="g"  ng-selected="goods.unit=='g'">g</option>
-								<option value="ml" ng-selected="goods.unit=='ml'">ml</option>
-						</select>
-						</div>
-						<p ng-show="saveForm.unit.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+								&nbsp;&nbsp; 克(g) 
+						</div> 
 
 					</li>
 					<div class="clear"></div>
@@ -403,28 +400,11 @@
 					</li>
 					<div class="clear"></div>
 					<li>
-						
-		
-					 
-
-					<script type="text/plain" id="editor" ></script>
-						<script type="text/javascript">
-							var ue = UE.getEditor('editor');
-							UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-							UE.Editor.prototype.getActionUrl= function(action){
-								//alert("上传路径~"+action)
-								if (action == 'uploadimage' || action == 'uploadscrawl' ) {
-									return 'http://localhost:8080/api/resource/ueditor/upload';
-								}
-								else{
-									 return ue._bkGetActionUrl.call(this, action);
-								}
-
-							}
-							function getContents(){
-								$("#texts").val(ue.getContent());
-							}
-						</script>
+						<!-- ueditor begin-->
+					 	<script type="text/plain" id="editor" ></script>
+					 	<ueditor  ng-model="content"></ueditor>
+						<textarea ng-model="content" style="display: none;"/>
+						<!-- ueditor end -->
 					</li>
 				</ul>
 			</div>
@@ -459,7 +439,7 @@
 				</ul>
 			</div>
 		</div>
- 	<textarea  id="texts" style="display: none;"></textarea>
+
 	<input type="hidden" ng-model="goods.thumbpath1"/>
 	<input type="hidden" ng-model="goods.thumbpath2"/>
 	<input type="hidden" ng-model="goods.thumbpath3"/>
@@ -467,8 +447,8 @@
 	<input type="hidden" ng-model="goods.thumbpath5"/>
 
 		<div class="release-commodity-footer" >
-			<button class="release-commodity-btn" onclick="getContents()" ng-click="update(goods)"
-			ng-disabled="saveForm.$invalid "
+		<!---->
+			<button class="release-commodity-btn"  ng-click="update(goods)" ng-disabled="saveForm.$invalid "
 			>修改
 			</button>
 		</div>
