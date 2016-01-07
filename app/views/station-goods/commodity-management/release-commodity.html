@@ -402,26 +402,11 @@
 					</li>
 					<div class="clear"></div>
 					<li>
-
+						<!-- ueditor begin-->
 					 	<script type="text/plain" id="editor" ></script>
-						<script type="text/javascript">
-							var ue = UE.getEditor('editor');
-							
-							UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-							UE.Editor.prototype.getActionUrl= function(action){
-								//alert("上传路径~"+action)
-								if (action == 'uploadimage' || action == 'uploadscrawl' ) {
-									return 'http://localhost:8080/api/resource/ueditor/upload';
-								}
-								else{
-									 return ue._bkGetActionUrl.call(this, action);
-								}
-
-							}
-							function getContents(){
-								$("#texts").val(ue.getContent());
-							}
-						</script>
+					 	<ueditor  ng-model="content"></ueditor>
+						<textarea ng-model="content" style="display: none;"/>
+						<!-- ueditor end -->
 					</li>
 					<div class="clear"></div>
 				</ul>
@@ -457,7 +442,6 @@
 				</ul>
 			</div>
 		</div>
- 	<textarea  id="texts" style="display: none;"></textarea>
 	<input type="hidden" ng-model="goods.thumbpath1"/>
 	<input type="hidden" ng-model="goods.thumbpath2"/>
 	<input type="hidden" ng-model="goods.thumbpath3"/>
@@ -465,9 +449,9 @@
 	<input type="hidden" ng-model="goods.thumbpath5"/>
 
 		<div class="release-commodity-footer" >
-		<!--  -->
-			<button class="release-commodity-btn" onclick="getContents()" ng-click="submit(goods)"
-			ng-disabled="saveForm.$invalid "
+		<!--   "-->
+			<button class="release-commodity-btn"  ng-click="submit(goods)"
+			ng-disabled="saveForm.$invalid"
 			>
 				发布
 			</button>

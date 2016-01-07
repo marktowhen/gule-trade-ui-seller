@@ -17,15 +17,7 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$timeout,$st
 					GoodsOperationService.brandlist($scope.goods.mid).success(function(data){
 						$scope.brandlist =data.body;
 					});
-
-					$timeout(function(){
-						ue.ready( function () { 
-						   if($scope.goods.content!=null){
-							 ue.setContent($scope.goods.content);
-							}
-						});   
-							      
-					}, 3000);
+					$scope.thisContent = $scope.goods.content;
 			});
 
 
@@ -105,8 +97,8 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$timeout,$st
 	/*保存*/
 	$scope.submit=function(goods){
 		/*获取ueditor*/
-		var content_ = $("#texts").val();
-		/*获取时间控件的时间*/
+		var content_ = $scope.content;
+		//alert("content:"+content_ );
 		var uptime = $("#uptime").val();
 		var downtime = $("#downtime").val();
 		var onSaleBeginTime = $("#pro_start").val();
@@ -125,14 +117,13 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$timeout,$st
 	$scope.update =function(goods){
 		
 		/*获取ueditor*/
-		var content_ = $("#texts").val();
-
+		var content_ = $scope.content;
+		//alert("content_::"+content_)
 		var uptime = $("#uptime").val();
 		var downtime = $("#downtime").val();
 		var onSaleBeginTime = $("#pro_start").val();
 		var onSaleEndTime = $("#pro_end").val();
 		var productionDate = $("#productionDate").val();
-		
 		goods.upTime = uptime;
 		goods.downTime = downtime;
 		goods.onSaleBeginTime = onSaleBeginTime;
