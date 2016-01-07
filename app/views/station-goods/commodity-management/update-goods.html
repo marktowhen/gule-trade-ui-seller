@@ -144,6 +144,16 @@
 						</div>
 					</li>
 					<div class="clear"></div>
+
+
+					<li>
+						<div class="release-commodity-info-label fl">推广序号：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length"  type="text" ng-model="goods.expandSort" pattern="^[+-]?\d+(\.\d+)?$" name="expandSort">
+						</div>
+						<p ng-show="saveForm.expandSort.$dirty && saveForm.expandSort.$error. pattern" style="color: red" >&nbsp;只能输入数字</p>
+					</li>
+					<div class="clear"></div>
 		<!-- 			<li>
 			<div class="release-commodity-info-label fl">商品标题：</div>
 			<div class="release-commodity-info-txt fl">
