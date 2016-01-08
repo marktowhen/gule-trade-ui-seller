@@ -10,8 +10,8 @@
 shopbackApp.controller('LoginController', function ($scope, $http, $location, $cookies,$timeout, ApiService,$rootScope,$stateParams, $state,$cookieStore) {
 
     //cookie信息
-    var LOGIN_KEY = "LOGIN_KEY"; //手机/邮箱/用户名的key
-    var LOGIN_REMEMBER = "LOGIN_REMEMBER"; //登录是否记住我
+    var LOGIN_KEY = "LOGIN_KEY_BACK"; //手机/邮箱/用户名的key
+    var LOGIN_REMEMBER = "LOGIN_REMEMBER_BACK"; //登录是否记住我
 
     //从cookie中获取登录信息
      $scope.$watch('$viewContentLoaded', function() {  
@@ -26,10 +26,19 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
            }
         });  
 
+    //默认卖家登录
+    $scope.loginForSeller = true;
+    $scope.changeLoginType = function(){
+        $scope.loginForSeller = !$scope.loginForSeller;
+    }
+	$scope.login = function(user){
 
-	$scope.login = function(user, dialog){
+        var loginUrl = ApiService.api.login.seller;
+        if(!$scope.loginForSeller){
+            loginUrl = ApiService.api.login.manager;
+        }
          
-    	$http.post(ApiService.api.login, getSubmitUser(user), {'Content-Type': 'application/json;charset=UTF-8'}).success(function(response){
+    	$http.post(loginUrl , getSubmitUser(user), {'Content-Type': 'application/json;charset=UTF-8'}).success(function(response){
     		if(response.code == 200){
                 //如果用户点选记住我 将用户名密码放入cookie
                 
@@ -48,28 +57,19 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
                 $rootScope.user = response.body;
 
 
-                if(dialog){
-                    $("#login-dialog").modal("hide");
-                }else{
-                    //被拒绝跳转的页面
-                    var rejectState = $cookieStore.get('rejectState');
-                     //跳转到登录页前的页面
-                    var previous = $cookieStore.get('previousState'); //
-                    if(rejectState && rejectState.name){
-                        $state.go(rejectState.name, $cookieStore.get('rejectParams'));//
-                    }
-
-                    else if(previous && previous.name && (previous.name!='login')){
-
-                        $state.go(previous.name, $cookieStore.get('previousParams'));//
-                        $cookieStore.remove('previousState' );
-                        $cookieStore.remove('previousParams' );
-                    }else{
-                        $location.path("/");
-                    }
+                //被拒绝跳转的页面
+                var rejectState = $cookieStore.get('rejectState');
+                 //跳转到登录页前的页面
+                var previous = $cookieStore.get('previousState'); //
+                if(rejectState && rejectState.name){
+                    $state.go(rejectState.name, $cookieStore.get('rejectParams'));//
+                }
+                else{
+                    $location.path("/");
+                }
 
                     
-                }
+                
                
     		}else{
                 alert( response.message);
