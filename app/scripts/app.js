@@ -147,7 +147,7 @@ var shopbackApp= angular
     if(toState.name=='login'){
       return ;
     }
-    var uid = $cookies.get("LOGIN_ID");
+    var uid = $cookies.get("LOGIN_USER_ID");
     if(!uid){
         event.preventDefault();// 取消默认跳转行为
 
@@ -162,7 +162,7 @@ var shopbackApp= angular
         //刷新cookie 失效时间
         var expireDate = new Date();
         expireDate.setMinutes(expireDate.getMinutes()+10);
-        $cookies.put('LOGIN_ID' , uid,{'expires': expireDate});
+        $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
     }
     //--------身份验证   end
   });
@@ -183,12 +183,12 @@ shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', function($q,
     var cookiesRefreshInterceptor = {
         request: function(config) {
             //用户身份标识
-            var uid = $cookies.get("LOGIN_ID");
+            var uid = $cookies.get("LOGIN_USER_ID");
             if(uid){
                   //刷新cookie 失效时间
                   var expireDate = new Date();
                   expireDate.setMinutes(expireDate.getMinutes()+10);
-                  $cookies.put('LOGIN_ID' , uid,{'expires': expireDate});
+                  $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
             }
             return config;
         }

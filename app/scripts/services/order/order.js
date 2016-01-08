@@ -8,9 +8,9 @@
  * Controller of the jingyunshopApp
  */
 shopbackApp.service('OrderService', function ($http, $location, ApiService) {
-   this.listWithCondition  = function (mid, from, size, status){
+   this.listWithCondition  = function (from, size, status, orderno, gname, uname, mname, fromdate, enddate){
         return  $http.get(ApiService.api.order.listWithCondition.replace(':from', from).replace(':size', size),
-                    {'params': {'status':status, 'mid': mid}});
+                    {'params': {'status':status, 'orderno':orderno, 'gname':gname, 'uname':uname, 'mname': mname, 'fromdate':fromdate, 'enddate':enddate}});
     };
 
     this.accept = function(order){
@@ -30,5 +30,9 @@ shopbackApp.service('OrderService', function ($http, $location, ApiService) {
     };
     this.logistic = function(oid){
         return $http.get(ApiService.api.order.logistic.replace(":oid", oid));
+    };
+
+    this.listOrderStatus = function(){
+        return $http.get(ApiService.api.order.listOrderStatus);
     };
 });

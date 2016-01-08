@@ -1,45 +1,22 @@
-<div class="sold-goods">
+<div class="sold-goods" ng-controller="OrderListController">
 	<div class="sg-top-title">交易管理&gt已卖出的宝贝</div>
 	<div class="sg-mid-detail">
 		<ul class="sg">
 			<li class="sg-detail">
 				<p>宝贝名称：</p>
-				<input type="text" class="sg-t"></li>
+				<input type="text" class="sg-t" ng-model="gname"></li>
 			<li class="sg-detail">
 				<p>成交时间：从&nbsp</p>
-				<input type="text" class="sg-tt">
-				<span class="sg">&nbsp日&nbsp</span>
-				<select class="sg-s">
-					<option class="sg-o" value="">1</option>
-					<option class="sg-o" value="">2</option>
-					<option class="sg-o" value="">3</option>
-				</select>
-				<span class="sg">&nbsp时&nbsp</span>
+				<input  id="fromtime" class="release-commodity-shelf-start-day" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" ng-model="fromdate">
 				<span class="sg">到&nbsp</span>
-				<input type="text" class="sg-tt">
-				<span class="sg">&nbsp日&nbsp</span>
-				<select class="sg-s">
-					<option class="sg-o" value="">1</option>
-					<option class="sg-o" value="">2</option>
-					<option class="sg-o" value="">3</option>
-				</select>
-				<span class="sg">&nbsp时</span>
+				<input  id="endtime" class="release-commodity-shelf-start-day" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" ng-model="enddate">
 			</li>
 			<li class="sg-detail">
 				<p>买家昵称：</p>
-				<input type="text" class="sg-t"></li>
+				<input type="text" class="sg-t" ng-model="uname"></li>
 			<li class="sg-detail">
 				<p>订单状态：</p>
-				<select class="sg-ss">
-					<option class="sg-o" value="">全部</option>
-					<option class="sg-o" value="">等待买家付款</option>
-					<option class="sg-o" value="">买家已付款</option>
-					<option class="sg-o" value="">卖家已发货</option>
-					<option class="sg-o" value="">交易成功</option>
-					<option class="sg-o" value="">交易关闭</option>
-					<option class="sg-o" value="">待付款和待发货订单</option>
-					<option class="sg-o" value="">退款中的订单</option>
-					<option class="sg-o" value="">异常订单</option>
+				<select class="sg-ss my-order-state-select" ng-model="currentstatus" ng-options="status.name for status in orderstatus">
 				</select>
 			</li>
 			<!-- <li class="sg-detail">
@@ -53,7 +30,7 @@
 			</li> -->
 			<li class="sg-detail">
 				<p>订单编号：</p>
-				<input type="text" class="sg-t">
+				<input type="text" class="sg-t" ng-model="orderno">
 			</li>
 			<!-- <li class="sg-detail">
 				<p>售后服务：</p>
@@ -65,7 +42,7 @@
 			</li> -->
 		</ul>
 		<div class="clear h10"></div>
-		<div class="sg-ser">搜索</div>
+		<div class="sg-ser" ng-click="search()">搜索</div>
 	</div>
 	<div class="sg-content">
 		<div class="sg-hd">
@@ -113,16 +90,16 @@
 			</div> -->
 		</div>
 		<div class="sg-bd">
-			<div class="sgb-item">
+			<div class="sgb-item" ng-repeat="order in orders">
 				<table  class="sgb-hd">
 					<tbody>
 						<tr class="sgb-info">
 							<td class="sgb-no">
 								<span >订单号：</span>
-								<span class="sgb-no-info">1396072725790946</span>
+								<span class="sgb-no-info">{{order.orderno}}</span>
 							</td>
 							<td class="sgb-date">
-								<span>下单时间：2015-11-03 23：33：50</span>
+								<span>下单时间：{{order.addtime | date:'yyyy-MM-dd hh:mm:ss'}}</span>
 							</td>
 						</tr>
 					</tbody>
@@ -133,49 +110,36 @@
 							<td class="sgb-products-item">
 								<table class="sgb-clu">
 									<tbody>
-										<tr>
+										<tr ng-repeat="goods in order.goods">
 											<td class="sgb-product">
 												<div class="sgb-fl">
-													<img class="sgb-p-img" ng-src="../images/seller-center/g1.png"></div>
+													<a href="http://www.zhonghuaejiao.com/#/product/detail/{{goods.gid}}/description" target="_blank"><img class="sgb-p-img" ng-src="{{goods.imgpath}}@90w_90h.jpg">
+													</a>
+												</div>
 												<div class="sgb-p-name fl">
 													<p>
-														东阿阿胶光坊旗舰店
-												东阿阿胶片红240g
+														<a href="http://www.zhonghuaejiao.com/#/product/detail/{{goods.gid}}/description" target="_blank">{{goods.gname}}</a>
 													</p>
 												</div>
 											</td>
-											<td class="sgb-pri">36.00</td>
-											<td class="sgb-amount">1</td>
-										</tr>
-										<tr>
-											<td class="sgb-product">
-												<div class="sgb-fl">
-													<img class="sgb-p-img" ng-src="../images/seller-center/g1.png"></div>
-												<div class="sgb-p-name fl">
-													<p>
-														东阿阿胶光坊旗舰店
-												东阿阿胶片红240g
-													</p>
-												</div>
-											</td>
-											<td class="sgb-pri">36.00</td>
-											<td class="sgb-amount">1</td>
+											<td class="sgb-pri">{{goods.pprice?goods.pprice:goods.price}}</td>
+											<td class="sgb-amount">{{goods.count}}</td>
 										</tr>
 									</tbody>
 								</table>
 							</td>
 							<td class="sgb-receiver" >
-								<p>silenttracks</p>
-								<p>乔佩佩</p>
+								<p>{{order.uname}}</p>
+								<p>{{order.receiver}}</p>
 								<div class="sgb-sms">短信通知</div>
 							</td>
 							<td class="sgb-state" >
-								<p class="sgb-ed" ui-sref="#">已发货</p>
-								<p class="sgb-detail" ui-sref="#">详情</p>
+								<p class="sgb-ed" ui-sref="#">{{order.statusName}}</p>
+								<p class="sgb-detail" ui-sref="#/trading-center/order/detail?oid={{order.id}}">详情</p>
 								<p class="sgb-close" ui-sref="#">关闭交易</p>
 							</td>
 							<td class="sgb-sum" >
-								<p class="sgb-sum-money">72.00（含快递10.00）</p>
+								<p class="sgb-sum-money">{{order.payout}}（含快递{{order.postage}}）</p>
 								<p class="sgb-logistics">查看物流</p>
 							</td>
 						</tr>
