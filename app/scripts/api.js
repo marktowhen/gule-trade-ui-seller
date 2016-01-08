@@ -24,6 +24,8 @@ shopbackApp.service('ApiService', function () {
             'deny':'http://localhost:8080/api/refund/denial',
             'done':'http://localhost:8080/api/refund/completion'
         },
+        'login':'http://localhost:8080/api/back/login',
+
         'helpCenter':{
             'category' : {
             	'list' : 'http://localhost:8080/api/information/help/center/category/list',

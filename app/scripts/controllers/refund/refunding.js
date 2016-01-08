@@ -38,7 +38,7 @@ shopbackApp.controller('RefundingController', function ($scope, $state, Constant
     		}
     	}else{
     		if(confirm("您确定要同意买家的退款申请吗？请将您的收货地址告诉卖家")){
-    			$state.go("seller-center.refunding-accept", {'rid': refund.id});
+    			$state.go("trading-center.refunding-accept", {'rid': refund.id});
     			return;
     		}else{
     			return ;

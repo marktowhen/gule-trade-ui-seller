@@ -24,6 +24,8 @@
 	margin-bottom: 48px;
 }
 .center-view .hd .account-login{
+	float: left;
+	width: 200px;
 	height: 38px;
 	padding-left:52px;
 	padding-right:29px;
@@ -41,7 +43,7 @@
 .center-view .hd .account-login .bottom{
 	position: absolute;
 	top:36px;
-	left:151px;
+	left:54px;
 	width:119px;  
 	height: 3px;
 	background-color:#FE4240;
@@ -50,10 +52,43 @@
 .center-view .hd .account-login.on .bottom{
 	display: block;
 }
+.center-view .hd .sms-login{
+	float: left;
+	width: 200px;
+	height: 38px;
+	padding-left:57px;
+	padding-right:63px;
+	position: relative;
+	cursor: pointer;
+}
+.center-view .hd .sms-login p{
+	text-align: center;
+	font-size:@t3-size; 
+	color:#666565;
+}
+.center-view .hd .sms-login.on p{
+	color:#FB4041;
+}
+.center-view .hd .sms-login .bottom{
+	position: absolute;
+	top:36px;
+	left:38px;
+	width:119px;  
+	height: 3px;
+	background-color:#FE4240;
+	display: none;
+
+}
+.center-view .hd .sms-login.on .bottom{
+	display: block;
+}
+.center-view .hd .sms-login.on {
+	color:#FB4041;
+}
 .center-view .bd{
 	width: 400px;
 	height:374px;
-	margin-bottom:122px;
+	margin-bottom:95px;
 }
 .center-view .bd .account{
 	display: none;
@@ -61,12 +96,12 @@
 .center-view .bd .account.cur{
 	display: block;
 }
-.center-view .bd .account .account-user{
+ .account-user{
 	width: 650px;
 	height: 50px;
 	margin-bottom: 25px;
 }
-.center-view .bd .account .account-user .icon1{
+.account-user .icon1{
 	float: left;
 	width:50px;
 	height: 50px;
@@ -74,12 +109,12 @@
 	padding-top: 17px;
 	padding-left: 15px;
 }
-.center-view .bd .account .account-user .icon1 .pic1{
+.account-user .icon1 .pic1{
 	width:18px;
 	height:19px;
 	background: url(../images/icons.png) no-repeat -2px -248px; 
 }
-.center-view .bd .account .account-user input.account-user{
+.account-user input.account-user{
 	float: left;
 	width: 350px;
 	height: 50px;
@@ -90,12 +125,12 @@
 	line-height:30px;
 	color:#BEBEBE;
 } 
-.center-view .bd .account .account-password{
+.account-password{
 	width: 650px;
 	height: 50px;
 	margin-bottom:10px;
 }
-.center-view .bd .account .account-password .icon2{
+.account-password .icon2{
 	float: left;
 	width:50px;
 	height: 50px;
@@ -103,12 +138,12 @@
 	padding-top: 15px;
 	padding-left: 18px;
 }
-.center-view .bd .account .account-password .icon2 .pic2{
+.account-password .icon2 .pic2{
 	width:14px;
 	height:19px;
 	background: url(../images/icons.png) no-repeat -35px -248px; 
 }
-.center-view .bd .account .account-password input.account-password{
+.account-password input.account-password{
 	float: left;
 	width: 350px;
 	height: 50px;
@@ -120,7 +155,7 @@
 	color:#BEBEBE;
 	position: relative;
 } 
-.center-view .bd .account .account-password input.account-password::after{
+.account-password input.account-password::after{
 	content:"";
 	position: absolute;
 	top:18px;
@@ -156,6 +191,12 @@
 .center-view .bd  p a.login-a:link,a.login-a:visited{
 	text-decoration: none;
 	color:#656464;  
+}
+.center-view .bd .sms{
+	display: none;
+}
+.center-view .bd .sms.cur{
+	display: block;
 }
 .center-view .bd input.login-btn{
 	width: 400px;
