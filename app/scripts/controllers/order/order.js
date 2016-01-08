@@ -14,7 +14,7 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
     });
 
 	$scope.condition = {};
-	$scope.logistic = {'expressno':'', 'expressName':'', 'oid':'', 'typeCode':'', 'typeName':''};
+	
 	$scope.search2Accept = function(){
 		OrderService.listWithCondition($scope.mid, 0, 10, 'PAID')
 		.success(function(data){
@@ -38,21 +38,24 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 	$scope.searchDelivering = function(){
 		OrderService.listWithCondition($scope.mid, 0, 10, 'ACCEPT')
 		.success(function(data){
-			$scope.orders = data.body;
+			if(data.ok){
+				$scope.orders = data.body;
+				for (var i = 0; i < $scope.orders.length; i++) {
+					var order = $scope.orders[i];
+					order.logistic = {'expressno':'', 'expressName':'', 'oid':order.id, 'typeCode':order.deliveryTypeCode, 'typeName':order.deliveryTypeName};
+				};
+			}
 		});
 	};
 
 	$scope.delivered = function(order){
-		if(!$scope.logistic || !$scope.logistic.expressno || !$scope.logistic.expressName){
+		if(!order.logistic || !order.logistic.expressno || !order.logistic.expressName){
 			alert("请完善物流信息！");
 			return;
 		}
-		$scope.logistic.typeCode = order.deliveryTypeCode;
-		$scope.logistic.typeName = order.deliveryTypeName;
-		$scope.logistic.oid = order.id;
-		OrderService.delivered($scope.logistic)
+		OrderService.delivered(order.logistic)
 		.success(function(data){
-			if(data.code == 200)
+			if(data.ok)
 				$scope.orders.splice($scope.orders.indexOf(order), 1);
 			else
 				alert(data.message);

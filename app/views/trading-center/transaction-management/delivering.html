@@ -61,8 +61,9 @@
 								<p>{{order.mname}}</p>
 							</td>
 							<td class="sgb-state" >
-								快递单号：<input type="text" ng-model="logistic.expressno" required max-length=20><br>
-								快递名称：<input type="text" ng-model="logistic.expressName" required max-length=20><br>
+								快递单号：<input type="text" ng-model="order.logistic.expressno" required max-length=20><br>
+								快递名称：<input type="text" ng-model="order.logistic.expressName" required max-length=20><br>
+								<p class="sgb-close"><a href="#/trading-center/order/detail?oid={{order.id}}">订单详情</a></p>
 								<p class="sgb-close" ng-click="delivered(order)">邮寄商品</p>
 							</td>
 						</tr>
