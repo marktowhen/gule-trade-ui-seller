@@ -64,8 +64,6 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 		});
 	};
 	$scope.topdetails = function(detail,infoschool){
-
-		alert(detail.id+"----"+infoschool.name)
 		SchoolSiteService.maxOrders(detail.id).success(function(data){
 			if(data.code==200){
 				$scope.alldetail=[];
