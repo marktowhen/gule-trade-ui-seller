@@ -12,11 +12,11 @@ shopbackApp.controller('UpdateInfoController', function ($scope,ApiService, Upda
 
 		UpdateInfoService.getInfobyId(id).success(function(data){
 			$scope.infoschool=data.body;
-			ue.setContent($scope.infoschool.content);
+			$scope.thisContent=$scope.infoschool.content;
 		});
 
 		$scope.saveuserinfo = function(infoschool){
-			infoschool.content=$('#texts').val();
+			infoschool.content=$scope.content;
 			UpdateInfoService.updateInfo(infoschool).success(function(data){
 				if(data.code==200){
 					alert("修改成功");

@@ -94,6 +94,18 @@ shopbackApp.controller('GoodsOperationController', function ($scope,$timeout,$st
 				alert("上传对象为空!");
 			}
 		};
+
+
+
+		$scope.checkCode = function(code){
+			GoodsOperationService.checkCode(code).success(function(data){
+				if(data.body=='success'){
+					$scope.codeFlag="";
+				}else{
+					$scope.codeFlag="*商品编码重复";
+				}
+			});
+		};
 	/*保存*/
 	$scope.submit=function(goods){
 		/*获取ueditor*/

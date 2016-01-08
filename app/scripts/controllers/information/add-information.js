@@ -23,14 +23,12 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 		/*getSchool($scope.names);*/
 
 	});
+	$scope.showhide=false;
 	$scope.size=10;
 	$scope.alldetail=[];
 	$scope.more = false;
 	$scope.$watch('$viewContentLoaded', function() { 
-		 		
-
 		$scope.getList($scope.size);
-		 		
 	});
 	$scope.getList = function(size){
 		SchoolSiteService.alldetail($scope.alldetail.length,size).success(function(data){
@@ -48,15 +46,52 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 
 		});
 	};
-	
+	$scope.checkInfo = function(infoschool){
+		$scope.showhide=true;
+		$scope.alldetail=[];
+		SchoolSiteService.getInfoDetail(infoschool.name,$scope.alldetail.length,$scope.size).success(function(data){
+			if(data.code=200){
+	 				//是否显示'查看更多'
+		 			if(data.body.length==$scope.size){
+		 				$scope.more = true;
+		 			}else{
+		 				$scope.more = false;
+		 			}
+		 			for (var i = 0; i < data.body.length; i++) {
+		 				$scope.alldetail.push(data.body[i]);
+		 			};
+	 			};
+		});
+	};
+	$scope.topdetails = function(detail,infoschool){
+
+		alert(detail.id+"----"+infoschool.name)
+		SchoolSiteService.maxOrders(detail.id).success(function(data){
+			if(data.code==200){
+				$scope.alldetail=[];
+				SchoolSiteService.getInfoDetail(infoschool.name,0,$scope.size).success(function(data){
+					if(data.code=200){
+	 				//是否显示'查看更多'
+		 			if(data.body.length==$scope.size){
+		 				$scope.more = true;
+		 			}else{
+		 				$scope.more = false;
+		 			}
+		 			for (var i = 0; i < data.body.length; i++) {
+		 				$scope.alldetail.push(data.body[i]);
+		 			};
+	 			};
+				});
+			};
+		});
+	};
 	$scope.deletedetails = function(detail){
 		SchoolSiteService.deletedetail(detail.id).success(function(data){
 			alert("删除成功");
 		});
 	};
 	$scope.saveuserinfo = function(infoschool){
-		infoschool.content=$('#texts').val();
-		/*alert(infoschool.content)*/
+		infoschool.content= $scope.content;
 		SchoolSiteService.saveuserinfo(infoschool).success(function(data){
 			if(data.code==200){
 				alert("保存成功");
@@ -65,6 +100,7 @@ shopbackApp.controller('SchoolSiteController', function ($scope,ApiService, Scho
 			}
 		})
 	};
+
 		/*$scope.historyDetail = function(datails){
  		$state.go('story-detail',{id:datails.id});
  	};*/
