@@ -21,4 +21,11 @@ shopbackApp.service('SchoolSiteService', function ($http, $location, ApiService)
 	this.deletedetail = function(id){
 		return $http.delete(ApiService.api.getinformation.deletedetail.replace(':id',id));
 	};
+	this.getInfoDetail = function(name,from,size){
+		return  $http.get(ApiService.api.getinformation.getInfoByName+'?name='+name+'&from='+from+'&size='+size);
+	};
+	this.maxOrders = function(id){
+		return $http.put(ApiService.api.getinformation.maxOrders.replace(':id',id));
+	}
+
 });

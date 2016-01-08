@@ -3,7 +3,7 @@
 	<div class='left'>
 		<ul ng-repeat="category in categoryList" >
 			<span class="on" ng-click='listDetail(category);showOrHideList(category);'>{{category.sort}}-->{{category.name}} </span> 
-			<div ng-repeat="detail in category.detailList" ng-if="category.showDetail">
+			<div ng-repeat="detail in category.helpCenterDetailList" ng-if="category.showDetail">
 				<span class="on dtail-item"  ng-click="getSingle(detail.id)">{{detail.sort}}--> {{detail.name}}</span>
 				<a class="remove" ng-click="remove(detail.id, category)">x</a>
 			</div>
@@ -51,24 +51,11 @@
 					<tr>
 						<td>内容:</td>
 						<td>
-							<script type="text/plain" id="editor" ></script>
-							<script type="text/javascript">
-								var ue = UE.getEditor('editor');
-								UE.Editor.prototype._bkGetActionUrl = UE.Editor.prototype.getActionUrl;
-								UE.Editor.prototype.getActionUrl= function(action){
-									//alert("上传路径~"+action)
-									if (action == 'uploadimage' || action == 'uploadscrawl' ) {
-										return 'http://localhost:8080/api/resource/ueditor/upload';
-									}
-									else{
-										 return ue._bkGetActionUrl.call(this, action);
-									}
-
-								}
-								function getContents(){
-									$("#texts").val(ue.getContent());
-								}
-							</script>
+							<!-- ueditor begin-->
+						 	<script type="text/plain" id="editor" ></script>
+						 	<ueditor  ng-model="content"></ueditor>
+						 	<textarea ng-model="content" style="display: none;"/>
+							<!-- ueditor end -->
 						</td>
 						<td  ng-show="noContent">
 							<p class='red'>请输入内容</p>

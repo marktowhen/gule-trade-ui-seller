@@ -24,6 +24,8 @@ shopbackApp.service('ApiService', function () {
             'deny':'http://localhost:8080/api/refund/denial',
             'done':'http://localhost:8080/api/refund/completion'
         },
+        'login':'http://localhost:8080/api/back/login',
+
         'helpCenter':{
             'category' : {
             	'list' : 'http://localhost:8080/api/information/help/center/category/list',
@@ -68,7 +70,8 @@ shopbackApp.service('ApiService', function () {
             'show':'http://localhost:8080/api/goodsOperation/updateveiw/',
             'save':'http://localhost:8080/api/goodsOperation/save',
             'update':'http://localhost:8080/api/goodsOperation/update/',
-            'updatecount':'http://localhost:8080/api/goodsOperation/modfiycount/:gid/:count'
+            'updatecount':'http://localhost:8080/api/goodsOperation/modfiycount/:gid/:count',
+            'checkcode':'http://localhost:8080/api/goodsOperation/checkcode/:code'
         },       
   
         'merchant':{//根据条件查询商品
@@ -91,9 +94,9 @@ shopbackApp.service('ApiService', function () {
             'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list',
             'deletedetail':'http://localhost:8080/api/information/delete/:id',
             'updateInfo':'http://localhost:8080/api/information/update',
-            'getInfoById':'http://localhost:8080/api/information/detail/:id'
-
-
+            'getInfoById':'http://localhost:8080/api/information/detail/:id',
+            'getInfoByName':'http://localhost:8080/api/information/byname/detail',
+            'maxOrders':'http://localhost:8080/api/information/detail/orders/:id'
 
 
         },

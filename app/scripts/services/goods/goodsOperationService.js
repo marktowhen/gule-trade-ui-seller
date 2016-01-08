@@ -34,6 +34,11 @@ shopbackApp.service('GoodsOperationService', function ($http, $state,$location,A
                         {'Content-Type': 'application/json;charset=UTF-8'});
         };
 
+
+        this.checkCode  = function (code){
+            return  $http.get(ApiService.api.goodsOperation.checkcode.replace(":code",code),
+                        {'Content-Type': 'application/json;charset=UTF-8'}); 
+            };
         this.saveGoods = function (goods){
         	/*var parmas ={'mid':goods.m.mid,'bid':goods.b.bid,'name':goods.name,'code':goods.code,
         				'tid':goods.t.tid,'price':goods.price,'promotionPrice':goods.promotionPrice,

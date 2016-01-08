@@ -49,9 +49,11 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品编码：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-code"  type="text" ng-model="goods.code" name="code" required>
+							<input class="release-commodity-code"  type="text" ng-model="goods.code" name="code" required  ng-blur="checkCode(goods.code)">
 						</div>
 						<p ng-show="saveForm.code.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+						<p style="color: red" >&nbsp;{{codeFlag}}</p>
+						
 					</li>
 					<div class="clear"></div>
 					<li>

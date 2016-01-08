@@ -23,6 +23,7 @@ var shopbackApp= angular
   .config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.defaults.withCredentials = true;
     $urlRouterProvider.otherwise("/");
+    $httpProvider.interceptors.push('cookiesRefreshInterceptor');
     $stateProvider
       .state('index', {
         /*templateUrl: '/views/main.html',*/
@@ -46,8 +47,7 @@ var shopbackApp= angular
       })
       .state('login', {
         templateUrl: '/views/login/login.html',
-        url:"/login",
-        controller: ''
+        url:"/login"
       })
       .state('station-goods.release-commodity',{
         templateUrl:'/views/station-goods/commodity-management/release-commodity.html',
@@ -136,4 +136,63 @@ var shopbackApp= angular
         url:"/goods/list"
       })
       ;
+  })
+.run(function($rootScope, $state,$cookieStore,$cookies) {
+  //state 跳转前监听
+  $rootScope.$on('$stateChangeStart',function(event, toState, toParams, fromState, fromParams){
+
+    
+    //------------身份验证 start
+    //如果跳到登录页面直接放行
+    if(toState.name=='login'){
+      return ;
+    }
+    var uid = $cookies.get("LOGIN_ID");
+    if(!uid){
+        event.preventDefault();// 取消默认跳转行为
+
+        //记录被拦截的页面信息 当登录后再调至该页面
+        //失效时间
+        var expireDate = new Date();
+        expireDate.setMinutes(expireDate.getMinutes()+10);
+        $cookieStore.put('rejectState' , toState,{'expires': expireDate});
+        $cookieStore.put('rejectParams' , toParams, {'expires': expireDate});
+        $state.go("login",{w:'notLogin'});//跳转到登录界面
+    }else{
+        //刷新cookie 失效时间
+        var expireDate = new Date();
+        expireDate.setMinutes(expireDate.getMinutes()+10);
+        $cookies.put('LOGIN_ID' , uid,{'expires': expireDate});
+    }
+    //--------身份验证   end
   });
+
+  //state 跳转成功 将被拦截的state从cookie中移除
+  $rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+      //assign the "from" parameter to something
+      if(to.name!='login') {
+          $cookieStore.remove('rejectState');
+          $cookieStore.remove('rejectParams');
+      }
+
+  });
+})
+
+//请求拦截器 每当有请求发生，更新cookies失效时间
+shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', function($q, $cookies) {
+    var cookiesRefreshInterceptor = {
+        request: function(config) {
+            //用户身份标识
+            var uid = $cookies.get("LOGIN_ID");
+            if(uid){
+                  //刷新cookie 失效时间
+                  var expireDate = new Date();
+                  expireDate.setMinutes(expireDate.getMinutes()+10);
+                  $cookies.put('LOGIN_ID' , uid,{'expires': expireDate});
+            }
+            return config;
+        }
+    };
+
+    return cookiesRefreshInterceptor;
+}]);
