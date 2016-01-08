@@ -37,6 +37,7 @@ module.exports = function(config) {
       'bower_components/angular-ueditor/dist/angular-ueditor.min.js',
       'bower_components/jquery-ui/jquery-ui.js',
       'bower_components/angular-ui-date/src/date.js',
+      'bower_components/js-md5/build/md5.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       &#34;app/scripts/**/*.js&#34;,
