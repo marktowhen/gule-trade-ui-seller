@@ -12,7 +12,11 @@
       		<div class="clear h142"></div>
 			<div class="hd">
 				<div class="account-login on">
-					<p>账号登录</p>
+					<p>卖家登录</p>
+					<div class="bottom"></div>
+				</div>	
+				<div class="sms-login " ng-click="smsLogin()">
+					<p>管理员登录</p>
 					<div class="bottom"></div>
 				</div>			
 			</div>
@@ -20,6 +24,26 @@
 			<div class="bd">
 				<form ng-submit="login(user, false)" name='myForm'>
 					<div class="account tab-bd cur">
+						<div class="account-user">
+							<div class="icon1">
+								<div class="pic1"></div>
+							</div>
+							<input ng-model="user.key" name='userLoginKey' class="account-user" type="text"  placeholder="用户名/邮箱/手机号" required>
+						</div>
+
+						<div class="account-password">
+							<div class="icon2">
+								<div class="pic2"></div>
+							</div>
+							<input ng-model="user.password" name='userLoginPsw' class="account-password" type="password"  placeholder="请输入密码" required>
+						</div>
+						<div class="select-item">
+							<input class="select-checkbox cur" type="checkbox" class="checkbox" name="remember">
+							<p class="remember">记住我</p>
+							<p class="forget"><a class="login-a" href="#" ui-sref="mobilebox-password">忘记密码</a></p>
+						</div>
+					</div>
+					<div class="sms tab-bd">
 						<div class="account-user">
 							<div class="icon1">
 								<div class="pic1"></div>
