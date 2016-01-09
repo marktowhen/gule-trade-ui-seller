@@ -161,7 +161,7 @@ var shopbackApp= angular
     }else{
         //刷新cookie 失效时间
         var expireDate = new Date();
-        expireDate.setMinutes(expireDate.getMinutes()+60);
+        expireDate.setMinutes(expireDate.getMinutes()+10);
         $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
     }
     //--------身份验证   end
@@ -179,7 +179,7 @@ var shopbackApp= angular
 })
 
 //请求拦截器 每当有请求发生，更新cookies失效时间
-shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', function($q, $cookies) {
+shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', '$rootScope',function($q, $cookies,$rootScope) {
     var cookiesRefreshInterceptor = {
         request: function(config) {
             //用户身份标识
@@ -187,8 +187,11 @@ shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', function($q,
             if(uid){
                   //刷新cookie 失效时间
                   var expireDate = new Date();
-                  expireDate.setMinutes(expireDate.getMinutes()+60);
+                  expireDate.setMinutes(expireDate.getMinutes()+10);
                   $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
+            }else{
+              //弹出登录弹出框
+              $rootScope.$broadcast("request-without-login",true);
             }
             return config;
         }
