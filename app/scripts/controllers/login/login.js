@@ -45,15 +45,16 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
     	$http.post(loginUrl , getSubmitUser(user), {'Content-Type': 'application/json;charset=UTF-8'}).success(function(response){
     		if(response.code == 200){
                 //如果用户点选记住我 将用户名密码放入cookie
-                
+                //失效时间
+                var expireDate = new Date();
+                //30天
+                expireDate.setDate(expireDate.getDate() + 30);
+                $cookies.put(LOGIN_FOR_SELLER, $scope.loginForSeller, {'expires': expireDate});
                 if($("input[name='remember']:checked").length>0){
-                    //失效时间
-                    var expireDate = new Date();
-                    //30天
-                    expireDate.setDate(expireDate.getDate() + 30);
+                    
                     $cookies.put(LOGIN_KEY , user.key,{'expires': expireDate});
                     $cookies.put(LOGIN_REMEMBER, 1, {'expires': expireDate});
-                    $cookies.put(LOGIN_FOR_SELLER, $scope.loginForSeller, {'expires': expireDate});
+                    
                 }else{
                     $cookies.remove(LOGIN_KEY );
                     $cookies.put(LOGIN_REMEMBER, 0);

@@ -1,14 +1,10 @@
 <div class="top-bar" >
   
-    <div class="center-view" >
-      <!-- 未登录-->
-      <div class="top-bar-l fl"  >
-          <span class="top-login">你好，请<a ui-sref="login">登录</a></span>
-          <span class="service-hotline">服务热线：<span>400-800-0815</span></span>
-      </div>
+    <div class="center-view" ng-controller='HeaderTopController'>
+      
       <!--已登录 -->
-      <div class="top-bar-l fl" ng-if="topUser!=null && topUser!=undefinde">
-            <span class="top-login">你好&nbsp;<a ui-sref="user-center.myaccount">{{topUser.username}}</a>&nbsp;<a ng-click='logout()' href='#'>安全退出</a></span>
+      <div class="top-bar-l fl">
+            <span class="top-login">你好&nbsp;<a ui-sref="user-center.myaccount">{{topUsername}}</a>&nbsp;<a ng-click='logout()' href='#'>安全退出</a></span>
             <span class="service-hotline">服务热线：<span>400-800-0815</span></span>
       </div>
     </div>
