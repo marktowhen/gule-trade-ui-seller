@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('HeaderTopController', function ($scope,$cookies,UserService,HeaderTopService,ManagerService,SellerService) {
+shopbackApp.controller('HeaderTopController', function ($scope,$cookies,$state,UserService,HeaderTopService,ManagerService,SellerService) {
 
 	//卖家
 	if($cookies.get('LOGIN_FOR_SELLER')=='true'){
