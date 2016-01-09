@@ -8,3 +8,11 @@ shopbackApp.directive('header', ['$http' ,function ($http){
         };
     }
 ]);
+shopbackApp.directive('headerTop', ['$http' ,function ($http){
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl:'/views/header/header-top.html'
+        };
+    }
+]);
