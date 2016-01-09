@@ -13,6 +13,12 @@ shopbackApp.service('OrderService', function ($http, $location, ApiService) {
                     {'params': {'status':status, 'orderno':orderno, 'gname':gname, 'uname':uname, 'mname': mname, 'fromdate':fromdate, 'enddate':enddate}});
     };
 
+    this.count = function(status, orderno, gname, uname, mname, fromdate, enddate){
+        return $http.get(
+            ApiService.api.order.count,
+            {params:{'status':status, 'orderno':orderno, 'gname':gname, 'uname':uname, 'mname': mname, 'fromdate':fromdate, 'enddate':enddate}});
+    }
+
     this.accept = function(order){
         return $http.put(ApiService.api.order.accept, [order.id], {'Content-Type':'application/json;charset=UTF-8'});
     };
@@ -34,5 +40,8 @@ shopbackApp.service('OrderService', function ($http, $location, ApiService) {
 
     this.listOrderStatus = function(){
         return $http.get(ApiService.api.order.listOrderStatus);
+    };
+    this.cancel = function(oid, reason){
+        return $http.put(ApiService.api.order.cancel, {'oid':oid, 'note':reason.v}, {headers:{'Content-Type':'application/json;charset=UTF-8'}});
     };
 });

@@ -43,6 +43,7 @@
 		</ul>
 		<div class="clear h10"></div>
 		<div class="sg-ser" ng-click="search()">搜索</div>
+		<div>查询到{{count}}条数据</div>
 	</div>
 	<div class="sg-content">
 		<div class="sg-hd">
@@ -131,22 +132,22 @@
 							<td class="sgb-receiver" >
 								<p>{{order.uname}}</p>
 								<p>{{order.receiver}}</p>
-								<div class="sgb-sms">短信通知</div>
 							</td>
 							<td class="sgb-state" >
-								<p class="sgb-ed" ui-sref="#">{{order.statusName}}</p>
-								<p class="sgb-detail" ui-sref="#/trading-center/order/detail?oid={{order.id}}">详情</p>
-								<p class="sgb-close" ui-sref="#">关闭交易</p>
+								<p class="sgb-ed">{{order.statusName}}</p>
+								<p class="sgb-detail"><a href="#/trading-center/order/detail?oid={{order.id}}">详情</a></p>
+								<p class="sgb-close" ng-show="canCancel(order)" ng-click="closeOrder(order)">关闭交易</p>
+								<p class="sgb-close" ng-show="canAccept(order)" ng-click="acceptOrder(order)">接受订单</p>
 							</td>
 							<td class="sgb-sum" >
 								<p class="sgb-sum-money">{{order.payout}}（含快递{{order.postage}}）</p>
-								<p class="sgb-logistics">查看物流</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-
+			<div ng-hide="hasData">未查询到相关数据。</div>
+			<div ng-show="hasMore" ng-click="listMore()" style="cursor:pointer;text-align:center;">查看更多&gt;&gt;</div>
 		</div>
 	</div>
 </div>

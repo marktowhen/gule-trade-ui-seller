@@ -17,7 +17,9 @@ shopbackApp.service('ApiService', function () {
             'singleByOID':'http://localhost:8080/api/orders/:oid',
             'listTraces': 'http://localhost:8080/api/orders/:oid/traces',
             'logistic':'http://localhost:8080/api/orders/:oid/logistic',
-            'listOrderStatus':'http://localhost:8080/api/order/status/visible'
+            'listOrderStatus':'http://localhost:8080/api/order/status/visible',
+            'cancel':'http://localhost:8080/api/orders/cancellation',
+            'count':'http://localhost:8080/api/orders/seller/count'
         },
         'refund':{
             'listWithCondition': 'http://localhost:8080/api/refund/seller/:from/:size',
