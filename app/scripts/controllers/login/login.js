@@ -21,7 +21,7 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
                 $scope.user = {
                                 'key':$cookies.get(LOGIN_KEY)
                             };
-                if(!$cookies.get(LOGIN_FOR_SELLER)){
+                if($cookies.get(LOGIN_FOR_SELLER)=='false'){
                     $scope.loginForSeller = false;
                 }
            }else{
@@ -34,8 +34,9 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
     $scope.changeLoginType = function(){
         $scope.loginForSeller = !$scope.loginForSeller;
     }
-	$scope.login = function(user){
-        $scope.loginForSeller = true;
+
+	$scope.login = function(user, byDialog){
+		$scope.loginForSeller = true;
         var loginUrl = ApiService.api.login.seller;
         if(!$scope.loginForSeller){
             loginUrl = ApiService.api.login.manager;
@@ -60,7 +61,10 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
 
                 $rootScope.user = response.body;
 
-
+                if(byDialog){
+                    $("#login-dialog").modal("hide");
+                    return;
+                }
                 //被拒绝跳转的页面
                 var rejectState = $cookieStore.get('rejectState');
                  //跳转到登录页前的页面
