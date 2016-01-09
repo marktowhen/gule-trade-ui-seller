@@ -9,9 +9,9 @@
  */
 shopbackApp.controller('OrderController', function ($scope, ConstantService, OrderService, GoodsOperationService, OrderStatusService) {
 	
-	GoodsOperationService.merchantlist().success(function(data){
-        $scope.merchantlist =data.body;
-    });
+	// GoodsOperationService.merchantlist().success(function(data){
+ //        $scope.merchantlist =data.body;
+ //    });
 
 	$scope.condition = {};
 	

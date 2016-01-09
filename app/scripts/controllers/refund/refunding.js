@@ -9,9 +9,9 @@
  */
 shopbackApp.controller('RefundingController', function ($scope, $state, ConstantService, RefundService, GoodsOperationService) {
 	/*获取当前的商家*/
-    GoodsOperationService.merchantlist().success(function(data){
-        $scope.merchantlist =data.body;
-    }); 
+    // GoodsOperationService.merchantlist().success(function(data){
+    //     $scope.merchantlist =data.body;
+    // }); 
     $scope.search = function (){
     	RefundService.listWithCondition($scope.mid, 0, 10, "RREQUEST")
     	.success(function(data){
