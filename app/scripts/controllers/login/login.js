@@ -36,7 +36,7 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
     }
 
 	$scope.login = function(user, byDialog){
-		//$scope.loginForSeller = true;
+		$scope.loginForSeller = true;
         var loginUrl = ApiService.api.login.seller;
         if(!$scope.loginForSeller){
             loginUrl = ApiService.api.login.manager;
