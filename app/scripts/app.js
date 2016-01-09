@@ -161,7 +161,7 @@ var shopbackApp= angular
     }else{
         //刷新cookie 失效时间
         var expireDate = new Date();
-        expireDate.setMinutes(expireDate.getMinutes()+10);
+        expireDate.setMinutes(expireDate.getMinutes()+60);
         $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
     }
     //--------身份验证   end
@@ -187,7 +187,7 @@ shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', function($q,
             if(uid){
                   //刷新cookie 失效时间
                   var expireDate = new Date();
-                  expireDate.setMinutes(expireDate.getMinutes()+10);
+                  expireDate.setMinutes(expireDate.getMinutes()+60);
                   $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
             }
             return config;

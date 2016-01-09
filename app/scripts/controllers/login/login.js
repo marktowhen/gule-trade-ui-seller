@@ -12,6 +12,7 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
     //cookie信息
     var LOGIN_KEY = "LOGIN_KEY_BACK"; //手机/邮箱/用户名的key
     var LOGIN_REMEMBER = "LOGIN_REMEMBER_BACK"; //登录是否记住我
+    var LOGIN_FOR_SELLER = "LOGIN_FOR_SELLER";
 
     //从cookie中获取登录信息
      $scope.$watch('$viewContentLoaded', function() {  
@@ -20,7 +21,9 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
                 $scope.user = {
                                 'key':$cookies.get(LOGIN_KEY)
                             };
-                
+                if(!$cookies.get(LOGIN_FOR_SELLER)){
+                    $scope.loginForSeller = false;
+                }
            }else{
                 $scope.user = {};
            }
@@ -49,6 +52,7 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
                     expireDate.setDate(expireDate.getDate() + 30);
                     $cookies.put(LOGIN_KEY , user.key,{'expires': expireDate});
                     $cookies.put(LOGIN_REMEMBER, 1, {'expires': expireDate});
+                    $cookies.put(LOGIN_FOR_SELLER, $scope.loginForSeller, {'expires': expireDate});
                 }else{
                     $cookies.remove(LOGIN_KEY );
                     $cookies.put(LOGIN_REMEMBER, 0);
