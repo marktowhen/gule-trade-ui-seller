@@ -11,10 +11,14 @@
 	        </a>
       		<div class="clear h142"></div>
 			<div class="hd">
-				<div class="account-login on">
+				<div class="account-login" ng-class="{'on': loginForSeller}" ng-click="changeLoginType()">
 					<p>卖家登录</p>
 					<div class="bottom"></div>
-				</div>	
+				</div>
+				<div class="account-login" ng-class="{'on': !loginForSeller}" ng-click="changeLoginType()">
+					<p>管理员登录</p>
+					<div class="bottom"></div>
+				</div>
 			</div>
 			
 			<div class="bd">
