@@ -31,6 +31,19 @@ shopbackApp.service('ApiService', function () {
             'seller':'http://localhost:8080/api/login/seller',
             'manager':'http://localhost:8080/api/login/manager'
         },
+        'logout':'http://localhost:8080/api/logout',
+        //用户
+        'user':{
+            'getLoginUser' :'http://localhost:8080/api/user/current'
+        },
+        //卖家
+        'seller':{
+            'current' :'http://localhost:8080/api/seller/current'
+        },
+        //管理员
+        'manager':{
+            'current' :'http://localhost:8080/api/manager/current'
+        },
 
         'helpCenter':{
             'category' : {
