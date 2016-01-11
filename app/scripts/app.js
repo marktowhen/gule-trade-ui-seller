@@ -197,11 +197,13 @@ shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', '$rootScope'
                   var expireDate = new Date();
                   expireDate.setMinutes(expireDate.getMinutes()+10);
                   $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
+                  return config;
             }else{
               //弹出登录弹出框
               $rootScope.$broadcast("request-without-login",true);
+              return $q.reject('not login');
             }
-            return config;
+            
         }
     };
 
