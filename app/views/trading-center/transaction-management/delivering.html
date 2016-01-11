@@ -15,7 +15,21 @@
 		<div class="ml-ser" ng-click="searchDelivering()">查询</div>
 	</div>
 	<div class="sg-content">
+		<div class="sg-hd">
+			<div class="sgh-mid">
+				<ul class="sghm">
+					<li class="sgh-m">商品名称</li>
+					<li class="sgh-m">单价（元）</li>
+					<li class="sgh-m">数量</li>
+					<li class="sgh-m">买家</li>
+					<li class="sgh-m">交易状态</li>
+					<li class="sgh-m">实收款（元）</li>
+					<li class="sgh-m">评价</li>
+				</ul>
+			</div>
+		</div>
 		<div class="sg-bd">
+			<div ng-show="emptyorder">未查询到订单信息</div>
 			<div class="sgb-item" ng-repeat="order in orders">
 				<table  class="sgb-hd">
 					<tbody>
@@ -56,9 +70,10 @@
 							</td>
 							<td class="sgb-receiver" >
 								<p>{{order.receiver}}</p>
+								<p>{{order.mobile}}</p>
 							</td>
 							<td class="sgb-receiver" >
-								<p>{{order.mname}}</p>
+								<p>{{order.address}}</p>
 							</td>
 							<td class="sgb-state" >
 								快递单号：<input type="text" ng-model="order.logistic.expressno" required max-length=20><br>
