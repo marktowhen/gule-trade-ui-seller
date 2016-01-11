@@ -9,8 +9,10 @@
  */
 shopbackApp.service('OrderService', function ($http, $location, ApiService) {
    this.listWithCondition  = function (from, size, status, orderno, gname, uname, mname, fromdate, enddate){
-        return  $http.get(ApiService.api.order.listWithCondition.replace(':from', from).replace(':size', size),
-                    {'params': {'status':status, 'orderno':orderno, 'gname':gname, 'uname':uname, 'mname': mname, 'fromdate':fromdate, 'enddate':enddate}});
+        return  $http.get(ApiService.api.order.listWithCondition,
+                    {'params': {'status':status, 'orderno':orderno, 
+                            'gname':gname, 'uname':uname, 'mname': mname, 
+                            'fromdate':fromdate, 'enddate':enddate, 'from':from, 'size':size}});
     };
 
     this.count = function(status, orderno, gname, uname, mname, fromdate, enddate){
