@@ -32,6 +32,7 @@ shopbackApp.service('ApiService', function () {
             'manager':'http://localhost:8080/api/login/manager'
         },
         'logout':'http://localhost:8080/api/logout',
+        'refreshPwd':'http://localhost:8080/api/pwd/seller',
         //用户
         'user':{
             'getLoginUser' :'http://localhost:8080/api/user/current'
