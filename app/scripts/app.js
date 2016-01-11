@@ -161,7 +161,7 @@ var shopbackApp= angular
     }else{
         //刷新cookie 失效时间
         var expireDate = new Date();
-        expireDate.setMinutes(expireDate.getMinutes()+10);
+        expireDate.setMinutes(expireDate.getMinutes()+1);
         $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
     }
     //--------身份验证   end
@@ -182,12 +182,15 @@ var shopbackApp= angular
 shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', '$rootScope',function($q, $cookies,$rootScope) {
     var cookiesRefreshInterceptor = {
         request: function(config) {
+          if (config.url.indexOf('login')>-1 || config.url.indexOf('header')>-1 || config.url.indexOf('footer')>-1) {
+            return config;
+          };
             //用户身份标识
             var uid = $cookies.get("LOGIN_USER_ID");
             if(uid){
                   //刷新cookie 失效时间
                   var expireDate = new Date();
-                  expireDate.setMinutes(expireDate.getMinutes()+10);
+                  expireDate.setMinutes(expireDate.getMinutes()+1);
                   $cookies.put('LOGIN_USER_ID' , uid,{'expires': expireDate});
             }else{
               //弹出登录弹出框
