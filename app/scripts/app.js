@@ -88,7 +88,12 @@ var shopbackApp= angular
       .state('trading-center.delivered', {
         templateUrl: '/views/trading-center/transaction-management/delivered.html',
         url:"/order/delivered"
-      }).state('station-goods',{
+      })
+      .state('trading-center.update-pwd', {
+        templateUrl: '/views/trading-center/password/update.html',
+        url:"/password/update"
+      })
+      .state('station-goods',{
         url:"/station-goods",
         views: { 
                   '': {
@@ -182,6 +187,9 @@ var shopbackApp= angular
 shopbackApp.factory('cookiesRefreshInterceptor', ['$q', '$cookies', '$rootScope',function($q, $cookies,$rootScope) {
     var cookiesRefreshInterceptor = {
         request: function(config) {
+            if (config.url.indexOf('login')>-1 || config.url.indexOf('.html')>-1) {
+              return config;
+            };
             //用户身份标识
             var uid = $cookies.get("LOGIN_USER_ID");
             if(uid){
