@@ -18,7 +18,14 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 	$scope.search2Accept = function(){
 		OrderService.listWithCondition(0, 10, OrderStatusService.PAID_CODE)
 		.success(function(data){
-			$scope.orders = data.body;
+			if(data.ok){
+				$scope.orders = data.body;
+				if($scope.orders.length == 0){
+					$scope.emptyorder = true;
+				}
+			}else{
+				alert(data.message);
+			}
 		});
 	};
 
@@ -44,6 +51,11 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 					var order = $scope.orders[i];
 					order.logistic = {'expressno':'', 'expressName':'', 'oid':order.id, 'typeCode':order.deliveryTypeCode, 'typeName':order.deliveryTypeName};
 				};
+				if($scope.orders.length == 0){
+					$scope.emptyorder = true;
+				}
+			}else{
+				alert(data.message);
 			}
 		});
 	};
@@ -67,7 +79,14 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 	$scope.searchDelivered = function(){
 		OrderService.listWithCondition(0, 10, OrderStatusService.DELIVERED_CODE)
 		.success(function(data){
-			$scope.orders = data.body;
+			if(data.ok){
+				$scope.orders = data.body;
+				if($scope.orders.length == 0){
+					$scope.emptyorder = true;
+				}
+			}else{
+				alert(data.message);
+			}
 		});
 	};
 	
