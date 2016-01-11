@@ -23,7 +23,7 @@ shopbackApp.controller('CashcounponAddController', function ($scope,$cookies, Co
 		 	})
 		 	.error(function(data){
 		 		$scope.submiting = false;
-	 			alert("生成失败 请稍后再试");
+	 			alert( "网络异常,请稍后重试");
 		 	});
 	 };
 });

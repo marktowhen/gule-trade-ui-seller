@@ -84,7 +84,7 @@ shopbackApp.controller('LoginController', function ($scope, $http, $location, $c
                 alert( response.message);
     		}
     	}).error(function(response){
-            alert( "登录失败 请稍后再试");
+            alert( "网络异常,请稍后重试");
     	});
 	};
 

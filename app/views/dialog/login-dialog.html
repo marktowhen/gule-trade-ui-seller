@@ -1,4 +1,4 @@
-<div style="display: none;" class="modal in" id="login-dialog" tabindex="-1" role="dialog" ng-controller="LoginController as lgctrl">
+<div style="display: none;" class="modal in" id="login-dialog" tabindex="-1" role="dialog" ng-controller="LoginController as lgctrl" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog" role="document">
     <div class="modal-content login-dialog">
       <div class="modal-header">
@@ -10,14 +10,11 @@
          <form ng-submit="login(user, true)" name='myForm'>
           <div class="ldb">
             <div class="ld-hd">
-              <div class="account-login " ng-class="{'on':loginForSeller}" ng-click='changeLoginType()'>
+              <div class="account-login on" >
                 <p>卖家登录</p>
                 <div class="bottom"></div>
               </div>
-              <div class="sms-login " ng-class="{'on':!loginForSeller}" ng-click='changeLoginType()'>
-                <p>管理员登录</p>
-                <div class="bottom"></div>
-              </div>
+              
             </div>
             <div class="ld-bd">
               <div class="account tab-bd cur">
@@ -41,7 +38,7 @@
                 <input class="select-checkbox cur" type="checkbox" class="checkbox" name="remember">
                 <p class="remember">记住我</p>
                 <p class="forget">
-                  <a class="login-a" href >忘记密码</a>
+                 <!--  <a class="login-a" href >忘记密码</a> -->
                 </p>
               </div>
               <input type="submit" class="login-btn" value="登录" ng-disabled="myForm.userLoginKey.$error.required || myForm.userLoginPsw.$error.required">
