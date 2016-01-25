@@ -35,6 +35,19 @@ shopbackApp.controller('OrderDetailController', function ($scope, $stateParams, 
         .success(function(data){
             if(data.ok){
                 $scope.logistic = data.body;
+
+                if($scope.logistic!=null){
+                     //通过查询出来的logistic信息 传入快递接口查询物流轨迹···
+                    //oid 订单号
+                    //$scope.logistic.expressCode  快递代码
+                    //$scope.logistic.expressno     运单号
+                    OrderService.logisticinfo(oid,$scope.logistic.expressCode,$scope.logistic.expressno)
+                    .success(function(data){
+                                $scope.expressinfo = data.body;
+                               // console.log(data.body);
+                    });
+
+                }
             }
         });
     $scope.ifNew = function(order){

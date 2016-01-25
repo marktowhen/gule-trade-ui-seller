@@ -46,4 +46,13 @@ shopbackApp.service('OrderService', function ($http, $location, ApiService) {
     this.cancel = function(oid, reason){
         return $http.put(ApiService.api.order.cancel, {'oid':oid, 'note':reason.v}, {headers:{'Content-Type':'application/json;charset=UTF-8'}});
     };
+
+      this.logisticlist = function(){
+        return $http.get(ApiService.api.logistic.logisticlist);
+    };
+
+    this.logisticinfo = function(oid,code,codeid){
+        return $http.get(ApiService.api.logistic.expressinfo.replace(":oid",oid)
+            .replace(":code",code).replace(":codeid",codeid));
+    };
 });

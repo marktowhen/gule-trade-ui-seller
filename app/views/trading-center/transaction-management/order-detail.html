@@ -23,31 +23,23 @@
 						<div class="order-detail-li-no fl">运单号：{{logistic?logistic.expressno:'未发货'}}</div>
 					</div>
 					<div class="clear"></div>
-					<!-- <div>
-						<table class="order-detail-logistics-info-tb">
+					<div>
+						<table class="order-detail-logistics-info-tb"  >
 							<tr >
 								<th class="order-detail-li-trade-date-h">处理时间</th>
 								<th class="order-detail-li-trade-info-h">处理信息</th>
-								<th class="order-detail-li-trade-person-h">操作人</th>
+								<th class="order-detail-li-trade-person-h">备注</th>
 							</tr>
-							<tr >
-								<td class="order-detail-li-trade-date">2015-11-03 23：33：50</td>
-								<td class="order-detail-li-trade-info">您提交了订单，请等待系统确认</td>
-								<td class="order-detail-li-trade-person">客户</td>
+							<tr  ng-repeat="ex in expressinfo">
+								<td class="order-detail-li-trade-date">{{ex.time}}</td>
+								<td class="order-detail-li-trade-info">{{ex.content}}</td>
+								<td class="order-detail-li-trade-person">{{ex.remark}}</td>
 							</tr>
-							<tr>
-								<td class="order-detail-li-trade-date">2015-11-03 23：33：50</td>
-								<td class="order-detail-li-trade-info">打包成功</td>
-								<td class="order-detail-li-trade-person">打包员</td>
-							</tr>
-							<tr>
-								<td class="order-detail-li-trade-date">2015-11-03 23：33：50</td>
-								<td class="order-detail-li-trade-info">您的订单在【苏州外单分拣中心】发货完成，准备送往【济南分拨中心】</td>
-								<td class="order-detail-li-trade-person">打包员</td>
-							</tr>
+							
 						</table>
-					</div> -->
-				</div>
+					</div> 
+
+
 				<div class="order-detail-receiver-info">
 					<div class="order-detail-li-hd order-detail-common">
 						<div class="order-detail-li-hd-txt fl">收货人信息</div>
