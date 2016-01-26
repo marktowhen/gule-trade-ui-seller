@@ -91,6 +91,23 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 		});
 	};
 
+	$scope.pickupself = function(order){
+		if(confirm("您确定要将发货信息设置为")){
+			order.logistic.expressName = '自提';
+			order.logistic.expressno = 'PICKUPBYUSER';
+			order.logistic.expressCode = 'USERPICKUP';
+			OrderService.delivered(order.logistic)
+			.success(function(data){
+				if(data.ok)
+					$scope.orders.splice($scope.orders.indexOf(order), 1);
+				else
+					alert(data.message);
+			}).error(function(data){
+				alert("网络异常，稍后重试。")
+			});
+		}
+	};
+
 	$scope.searchDelivered = function(){
 		OrderService.listWithCondition(0, 10, OrderStatusService.DELIVERED_CODE)
 		.success(function(data){

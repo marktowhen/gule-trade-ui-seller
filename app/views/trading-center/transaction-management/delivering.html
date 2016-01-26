@@ -39,7 +39,7 @@
 								<span class="sgb-no-info">{{order.orderno}}</span>
 							</td>
 							<td class="sgb-date">
-								<span>下单时间：{{order.addtime | date: 'yyyy-MM-dd hh:mm:ss'}}</span>
+								<span>下单时间：{{order.addtime | date: 'yyyy-MM-dd HH:mm:ss'}}</span>
 							</td>
 						</tr>
 					</tbody>
@@ -86,6 +86,7 @@
 								<br>
 								<p class="sgb-close"><a href="#/trading-center/order/detail?oid={{order.id}}">订单详情</a></p>
 								<p class="sgb-close" ng-click="delivered(order)">邮寄商品</p>
+								<p class="sgb-close" ng-click="pickupself(order)">自提</p>
 							</td>
 						</tr>
 					</tbody>
