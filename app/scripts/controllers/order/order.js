@@ -19,7 +19,7 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
     });
 
 	$scope.condition = {};
-	
+	var acceptcurrentpage = 0;
 	$scope.search2Accept = function(){
 		OrderService.listWithCondition(0, 10, OrderStatusService.PAID_CODE)
 		.success(function(data){
@@ -28,12 +28,31 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 				if($scope.orders.length == 0){
 					$scope.emptyorder = true;
 				}
+				$scope.hasData = ($scope.orders && $scope.orders.length > 0);
+				acceptcurrentpage =  $scope.orders ? $scope.orders.length : 0;
+	            $scope.hasMore = (acceptcurrentpage == 10);	
 			}else{
 				alert(data.message);
 			}
 		});
 	};
 
+	$scope.listMoreAccept = function(){
+		OrderService.listWithCondition(acceptcurrentpage, 10, OrderStatusService.PAID_CODE)
+				.success(function(data){
+					if(data.ok){
+						for (var i = 0; i <data.body.length; i++) {
+		                    $scope.orders.push(data.body[i]);
+		                }
+		                var len = ($scope.orders.length);
+		                acceptcurrentpage = len;
+		                $scope.hasMore = (data.body.length == 10);
+					}else{
+						alert(data.message);
+					}
+				});	
+	};
+	
 	$scope.accept = function(order){
 		OrderService.accept(order)
 		.success(function(data){
@@ -47,6 +66,7 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 		});
 	};
 
+	var deliveringcurrentpage = 0;
 	$scope.searchDelivering = function(){
 		OrderService.listWithCondition(0, 10, OrderStatusService.ACCEPT_CODE)
 		.success(function(data){
@@ -59,12 +79,30 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 				if($scope.orders.length == 0){
 					$scope.emptyorder = true;
 				}
+				$scope.hasData = ($scope.orders && $scope.orders.length > 0);
+				deliveringcurrentpage =  $scope.orders ? $scope.orders.length : 0;
+	            $scope.hasMore = (deliveringcurrentpage == 10);	
 			}else{
 				alert(data.message);
 			}
 		});
 	};
 
+	$scope.listMoreDelivering = function(){
+		OrderService.listWithCondition(deliveringcurrentpage, 10, OrderStatusService.ACCEPT_CODE)
+		.success(function(data){
+			if(data.ok){
+				for (var i = 0; i <data.body.length; i++) {
+                    $scope.orders.push(data.body[i]);
+                }
+                var len = ($scope.orders.length);
+                deliveringcurrentpage = len;
+                $scope.hasMore = (data.body.length == 10);
+			}else{
+				alert(data.message);
+			}
+		});
+	};
 
 	$scope.getexpressName = function(code){
 		for (var i = 0; i<$scope.logisticlist.length;i++) {
@@ -108,6 +146,7 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 		}
 	};
 
+	var deliveredcurrentpage = 0;
 	$scope.searchDelivered = function(){
 		OrderService.listWithCondition(0, 10, OrderStatusService.DELIVERED_CODE)
 		.success(function(data){
@@ -116,10 +155,28 @@ shopbackApp.controller('OrderController', function ($scope, ConstantService, Ord
 				if($scope.orders.length == 0){
 					$scope.emptyorder = true;
 				}
+				$scope.hasData = ($scope.orders && $scope.orders.length > 0);
+				deliveredcurrentpage =  $scope.orders ? $scope.orders.length : 0;
+	            $scope.hasMore = (deliveredcurrentpage == 10);	
 			}else{
 				alert(data.message);
 			}
 		});
 	};
-	
+
+	$scope.listMoreDelivered = function(){
+		OrderService.listWithCondition(deliveredcurrentpage, 10, OrderStatusService.DELIVERED_CODE)
+		.success(function(data){
+			if(data.ok){
+				for (var i = 0; i <data.body.length; i++) {
+                    $scope.orders.push(data.body[i]);
+                }
+                var len = ($scope.orders.length);
+                deliveredcurrentpage = len;
+                $scope.hasMore = (data.body.length == 10);
+			}else{
+				alert(data.message);
+			}
+		});
+	};
 });
