@@ -48,18 +48,18 @@ shopbackApp.service('ApiService', function () {
 
         'helpCenter':{
             'category' : {
-            	'list' : 'http://localhost:8080/api/information/help/center/category/list',
-            	'single' : 'http://localhost:8080/api/information/help/center/category/:id',
-            	'save' :'http://localhost:8080/api/information/help/center/category/',
-            	'refresh' :'http://localhost:8080/api/information/help/center/category/:id',
-            	'remove' :'http://localhost:8080/api/information/help/center/category/:id'
+            	'list' : 'http://localhost:8080/api/statics/help/center/category/list',
+            	'single' : 'http://localhost:8080/api/statics/help/center/category/:id',
+            	'save' :'http://localhost:8080/api/statics/help/center/category/',
+            	'refresh' :'http://localhost:8080/api/statics/help/center/category/:id',
+            	'remove' :'http://localhost:8080/api/statics/help/center/category/:id'
             },
             'detail' : {
-            	'list' : 'http://localhost:8080/api/information/help/center/detail/list/:categoryID',
-            	'single' : 'http://localhost:8080/api/information/help/center/detail/:id',
-            	'save' :'http://localhost:8080/api/information/help/center/detail/',
-            	'refresh' :'http://localhost:8080/api/information/help/center/detail/:id',
-            	'remove' :'http://localhost:8080/api/information/help/center/detail/:id'
+            	'list' : 'http://localhost:8080/api/statics/help/center/detail/list/:categoryID',
+            	'single' : 'http://localhost:8080/api/statics/help/center/detail/:id',
+            	'save' :'http://localhost:8080/api/statics/help/center/detail/',
+            	'refresh' :'http://localhost:8080/api/statics/help/center/detail/:id',
+            	'remove' :'http://localhost:8080/api/statics/help/center/detail/:id'
             }
         },
 
@@ -102,20 +102,20 @@ shopbackApp.service('ApiService', function () {
             'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list'
         },
         'getinformation':{
-            'getSchoolSite':'http://localhost:8080/api/information/sites/:siteid',
-            'getSchoolName':'http://localhost:8080/api/information/sitesSchool/:names',
-            'saveSchool':'http://localhost:8080/api/information/savedetails',
-            'alldetail':'http://localhost:8080/api/information/alldetail',
+            'getSchoolSite':'http://localhost:8080/api/statics/information/sites/:siteid',
+            'getSchoolName':'http://localhost:8080/api/statics/information/sitesSchool/:names',
+            'saveSchool':'http://localhost:8080/api/statics/information/savedetails',
+            'alldetail':'http://localhost:8080/api/statics/information/alldetail',
             'getMerchantInfo':'http://localhost:8080/api/merchant/info/:mid',
             'update':'http://localhost:8080/api/merchant/updatemerchant',
             'save':'http://localhost:8080/api/merchant/savemerchant',
 			 'invoicelist':'http://localhost:8080/api/merchant/invoicetype/list',
             'deliverylist':'http://localhost:8080/api/merchant/deliverytype/list',
-            'deletedetail':'http://localhost:8080/api/information/delete/:id',
-            'updateInfo':'http://localhost:8080/api/information/update',
-            'getInfoById':'http://localhost:8080/api/information/detail/:id',
-            'getInfoByName':'http://localhost:8080/api/information/byname/detail',
-            'maxOrders':'http://localhost:8080/api/information/detail/orders/:id'
+            'deletedetail':'http://localhost:8080/api/statics/information/delete/:id',
+            'updateInfo':'http://localhost:8080/api/statics/information/update',
+            'getInfoById':'http://localhost:8080/api/statics/information/detail/:id',
+            'getInfoByName':'http://localhost:8080/api/statics/information/byname/detail',
+            'maxOrders':'http://localhost:8080/api/statics/information/detail/orders/:id'
 
 
         },
