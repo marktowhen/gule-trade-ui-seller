@@ -18,3 +18,17 @@ shopbackApp.filter('booleanFilter', function (){
 	
 });
 
+shopbackApp.filter('transportFilter', function (){
+	return function(attr){
+		if(attr=='POST'){
+			return '平邮';
+		}else if(attr=='EXPRESS'){
+			return '快递';
+		}else if(attr=='EMS'){
+			return 'EMS';
+		}
+		return attr;
+	};
+	
+});
+

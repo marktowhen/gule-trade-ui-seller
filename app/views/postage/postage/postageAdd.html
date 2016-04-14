@@ -1,0 +1,83 @@
+<div class="center-view" ng-controller="DiscountcounponAddController">
+<ng-form  name='saveForm'>
+
+	<div class="commodity-main">
+		<div class="commodity-main-hd" >
+			邮费模板
+		</div>
+		<div class="commodity-base-info"  >
+			<div class="release-commodity-hd" >
+				基本信息
+			</div>
+			<div class="release-commodity-info">
+				<ul class="release-commodity-info-list">
+					<li>
+						<div class="release-commodity-info-label fl">标题：</div>
+						<div class="release-commodity-info-txt fl" >
+							<input name="title" ng-model="postage.title" ></input>
+						</div>
+						<p ng-show="saveForm.title.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+					</li>
+					<li>
+						<div class="release-commodity-info-label fl">收费方式:</div>
+						<input type="radio" name='type' value="number" ng-model="postage.type" ng-change=""> 按件收费
+						<input type="radio" name='type' value="weight" ng-model="postage.type" ng-change=""> 按重量收费
+						<input type="radio" name='type' value="volume" ng-model="postage.type" ng-change=""> 按体积收费
+					</li>
+					<li>
+						<div class="release-commodity-info-label fl">运送方式:</div>
+						<input type="checkbox" name='transportType' value="EXPRESS" > 快递
+						<input type="checkbox" name='transportType' value="EMS" > EMS
+						<input type="checkbox" name='transportType' value="POST"> 平邮
+					</li>
+					<div class="clear"></div>
+					
+					
+				</ul>
+				<table ng-if="expression">
+					<tr><td>快递运费设置</td></tr>
+					<tr>
+						<td>配送区域</td>
+						<td>是否包邮</td>
+						<td ng-if="{postage.type=='number'}">首件(个)</td>
+						<td ng-if="{postage.type=='weight'}">首重(kg)</td>
+						<td ng-if="{postage.type=='vulome'}">首体积(m³)</td>
+						<td>首费(元)</td>
+						<td ng-if="{postage.type=='number'}">续件(个)</td>
+						<td ng-if="{postage.type=='weight'}">续重(kg)</td>
+						<td ng-if="{postage.type=='vulome'}">续体积(m³)</td>
+						<td>续费(元)</td>
+
+					</tr>
+					<tr ng-repeat="detail in expressList">
+						<td>配送区域</td>
+						<td><input type="radio" value="true"></input></td>
+						<td ng-if="{postage.type=='number'}"><input ng-model="detail.firstNumber"></td>
+						<td ng-if="{postage.type=='weight'}"><input ng-model="detail.firstWeight"></td>
+						<td ng-if="{postage.type=='vulome'}"><input ng-model="detail.firstVolume"></td>
+						<td><input ng-model="detail.firstCost"></td>
+						<td ng-if="{postage.type=='number'}"><input ng-model="detail.nextNumber"></td>
+						<td ng-if="{postage.type=='weight'}"><input ng-model="detail.nextWeight"></td>
+						<td ng-if="{postage.type=='vulome'}"><input ng-model="detail.nextVolumn"></td>
+						<td><input ng-model="detail.nextCost"></td>
+
+					</tr>
+
+				</table>
+			</div>
+		</div>
+
+
+		<div class="release-commodity-footer" >
+		<!--  -->
+			<button class="release-commodity-btn"  ng-click="submit(counpon)"
+			ng-disabled="saveForm.$invalid || submiting"
+			>
+				发布
+			</button>
+		</div>
+	</div>
+
+</ng-form>
+</div>
+

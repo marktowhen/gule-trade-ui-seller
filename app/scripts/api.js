@@ -77,6 +77,9 @@ shopbackApp.service('ApiService', function () {
                 'unlock' : 'http://localhost:8080/api/vip/coupon/discountcoupon/unlock/:ids'
             }
         },
+        'postage' : {
+            'list' : 'http://localhost:8080/api/logistic/postage/:MID'
+        },
         'goods':{//根据条件查询商品
             'queryGoodsList':'http://localhost:8080/api/back/goods/list',
             'up':'http://localhost:8080/api/goodsOperation/up/',
