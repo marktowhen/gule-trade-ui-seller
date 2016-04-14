@@ -1,0 +1,135 @@
+<div class="center-view" ng-controller="WapGoodsOperationController as wapGoodsOperationController">
+<ng-form  name='saveForm'> 
+<!-- ================================goods============================================ -->
+	<div class="commodity-main">
+		<div class="commodity-main-hd">
+			商品管理&gt;发布商品
+		</div>
+		<div class="commodity-base-info">
+			<div class="release-commodity-hd">
+				1、商品基本信息
+			</div>
+			<div class="release-commodity-info">
+				<ul class="release-commodity-info-list">
+					<li>
+						<div class="release-commodity-info-label fl">所属商家：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length"   
+							type="text" value="{{thisMerchant.name}}" readonly="true">
+						</div>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">商品类型：</div>
+						<div class="release-commodity-info-txt fl">
+							<select class="release-commodity-select-length" required 
+							ng-model="goods.tid" 
+							ng-options="t.id as t.name for t in types"
+							name="type">
+							</select>
+						</div>
+						<p ng-show="saveForm.type.$error.required" style="color: red" >*必填</p>
+
+					</li>
+					<div class="clear"></div>
+
+					<li>
+						<div class="release-commodity-info-label fl">商品名称：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length"   type="text" ng-model="goods.name" name="name" required>
+						</div>
+						<p ng-show="saveForm.name.$error. required" style="color: red" >&nbsp;*必填</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">商品编码：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length"  type="text" ng-model="goods.code" name="code" required  ng-blur="checkCode(goods.code)">
+						</div>
+						<p ng-show="saveForm.code.$error.required" style="color: red" >&nbsp;*必填</p>
+						
+					</li>
+					<div class="clear"></div>
+	
+					<li>
+						<div class="release-commodity-info-label fl">商品描述：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length"   
+							type="text" ng-model="goods.about" name="about" required>
+						</div>
+						<p ng-show="saveForm.about.$error.required" style="color: red" >&nbsp;*必填</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">商品价格：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length" type="text" ng-model="goods.price"  pattern="^[+-]?\d+(\.\d+)?$" name="price" required>
+						</div>
+						<p ng-show="saveForm.price.$error.pattern" style="color: red" >&nbsp;价格只能输入数字</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">折扣价格：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length" type="text" ng-model="goods.salePrice"  pattern="^[+-]?\d+(\.\d+)?$" name="salePrice" required>
+						</div>
+						<p ng-show="saveForm.salePrice.$error.pattern" style="color: red" >&nbsp;价格只能输入数字</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">上架时间：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length" 
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="uptime">
+							&nbsp;&nbsp;&nbsp;&nbsp;到&nbsp;&nbsp;&nbsp;&nbsp;
+							<input class="release-commodity-input-length" 
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="downtime">
+						</div>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">邮费模板：</div>
+						<div class="release-commodity-info-txt fl">
+							<select class="release-commodity-select-length" required
+							ng-model="goods.pid" 
+							ng-options="p.id as p.title for p in postages"
+							name="postage">
+							</select>
+						</div>
+						<p ng-show="saveForm.postage.$error.required" style="color: red" >*必填</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">展示图片：</div>
+						<div class="release-commodity-info-txt fl">
+								<div class="release-commodity-desc-img">
+									<img ng-src="{{goods.thumbpath3}}">
+								</div>
+							<div class="release-commodity-desc-btn">
+							<form  id="pathFile">
+							<input class="release-commodity-upload-img" type="file" id="path_file" name="file"  onchange="$('#submitPath').trigger('click')"/>
+							<input id="submitPath" type="hidden" ng-click="submitPathUpload(100)"/>
+							</form>
+						</div>
+						{{pathSuccess}}
+						</div>		
+					</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+
+	<input type="hidden" ng-model="goods.path"/>
+	<input type="hidden" ng-model="goods.mid" value="{{thisMerchant.id}}" />
+
+<!-- ===================================================================================================== -->
+		<div class="release-commodity-footer" >
+			<button class="release-commodity-btn"  ng-click="saveGoods(goods)"
+			ng-disabled="saveForm.$invalid">
+				发布
+			</button>
+		</div>
+	</div>
+</ng-form>
+</div>
+
