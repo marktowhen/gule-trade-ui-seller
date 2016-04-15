@@ -1,13 +1,15 @@
 <div class="center-view" ng-controller="WapGoodsOperationController as wapGoodsOperationController">
 <ng-form  name='saveForm'> 
 <!-- ================================goods============================================ -->
+	<!--
 	<div class="commodity-main">
 		<div class="commodity-main-hd">
 			商品管理&gt;发布商品
 		</div>
+
 		<div class="commodity-base-info">
 			<div class="release-commodity-hd">
-				1、商品基本信息
+				商品基本信息
 			</div>
 			<div class="release-commodity-info">
 				<ul class="release-commodity-info-list">
@@ -121,7 +123,33 @@
 
 	<input type="hidden" ng-model="goods.path"/>
 	<input type="hidden" ng-model="goods.mid" value="{{thisMerchant.id}}" />
+-->
+<!-- ===================================================================================================== -->
 
+<!-- ================================规格展示区============================================================-->
+		<div class="commodity-food-safety-info">
+			<div class="release-commodity-hd">商品规格</div>
+			<hr>	
+			属性: <input type="text" ng-model="a.name"/> <br>
+			内容: <input type="text"  ng-model="v.name"/> 
+			&nbsp;&nbsp; <a ng-click="addV(a.name,v.name)">添加值</a> <br>
+			
+			<span ng-repeat="v in careate_values">
+						<b>{{v.value}} <a ng-click="delV(v.value)">X</a> </b> &nbsp;&nbsp;
+			</span>
+			 <br>
+			<a ng-click="addA(a.name)">确定</a>
+			<a ng-click="out()">取消</a>
+			<hr>
+			<!-- 展示属性-->
+			<div class="release-commodity-info" ng-repeat="attr in attrs" >
+					<b>{{attr.key}} <a ng-click="delA(attr.key)">X</a> </b> <br>
+					<span ng-repeat="v in attr.values">
+						<b>{{v.value}}</b> &nbsp;&nbsp;
+					</span>
+					
+			</div>
+		</div>					
 <!-- ===================================================================================================== -->
 		<div class="release-commodity-footer" >
 			<button class="release-commodity-btn"  ng-click="saveGoods(goods)"
