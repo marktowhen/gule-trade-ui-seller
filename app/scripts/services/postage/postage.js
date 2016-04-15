@@ -9,9 +9,21 @@
  */
 shopbackApp.service('PostageService', function ($http, $location, ApiService) {
 
-	//新增
+	//list
 	this.list = function(MID){
 		return $http.get(ApiService.api.postage.list.replace(':MID', MID));
+	}
+
+	this.save = function(postage){
+		return $http.post(ApiService.api.postage.save, postage);
+	}
+
+	this.refresh = function(postage){
+		return $http.put(ApiService.api.postage.refresh.replace(':ID', postage.ID), postage);
+	}
+
+	this.remove = function(postageID){
+		return $http.delete(ApiService.api.postage.remove.replace(':MID', MID));
 	}
 
 	

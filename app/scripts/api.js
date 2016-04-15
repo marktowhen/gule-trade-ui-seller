@@ -78,8 +78,21 @@ shopbackApp.service('ApiService', function () {
             }
         },
         'postage' : {
-            'list' : 'http://localhost:8080/api/logistic/postage/:MID'
+            'list' : 'http://localhost:8080/api/logistic/postage/list/:MID',
+            'save' : 'http://localhost:8080/api/logistic/postage',
+            'refresh' : 'http://localhost:8080/api/logistic/postage/:ID',
+            'remove' : 'http://localhost:8080/api/logistic/postage/:ID'
         },
+        'area' : {
+            'province' : {
+                'list' : 'http://localhost:8080/api/statics/area/province/list',
+                'listWithCity' : 'http://localhost:8080/api/statics/area/province/city/list'
+            },
+            'city' : {
+                'list' : 'http://localhost:8080/api/statics/area/city/list/:provinceID'
+            }
+        },
+        
         'goods':{//根据条件查询商品
             'queryGoodsList':'http://localhost:8080/api/back/goods/list',
             'up':'http://localhost:8080/api/goodsOperation/up/',

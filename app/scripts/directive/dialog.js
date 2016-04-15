@@ -9,3 +9,12 @@ shopbackApp.directive('loginDialog', ['$http' ,function ($http){
         };
     }
 ]);
+
+shopbackApp.directive('areaTreeDialog', ['$http' ,function ($http){
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl:'/views/dialog/area-tree-dialog.html'
+        };
+    }
+]);

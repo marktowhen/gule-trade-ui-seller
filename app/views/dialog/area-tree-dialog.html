@@ -1,0 +1,43 @@
+<div style="display: none;" class="modal in" id="area-tree-dialog" tabindex="-1" role="dialog" ng-controller="AreaTreeController" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content area-tree-dialog">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form ng-submit="login(user, true)" name='myForm'>
+           <div id="main">
+            <button id="btn1" >获取选中数量</button>
+            <button id="btn2" >获取半选中数量</button>
+            <ul id='browser' class='filetree'>
+              
+              <li ng-repeat="province in provinceList">
+                <span class='folder'>
+                  <input type="checkbox" name="ids" id="t3" pId="t0" value="3" ng-model="province" ng-change="child(this)"/>{{province.provinceName}}
+                </span>
+                <ul>
+                  <li ng-repeat="city in province.cityList">
+                    <span class='file'>
+                      <input type="checkbox" name="ids" id='t12' pId="t3" value="12" ng-model="a" ng-change="child(this)"/>{{city.cityName}}
+                    </span>
+                  </li>
+                </ul>
+              </li>
+              <!-- 
+              <li><span class='folder'><input type="checkbox" name="ids" id="t4" pId="t0" value="4" ng-model="a" ng-change="child(this)"/>招贤纳士</span>
+                <ul>
+                  <li><span class='file'><input type="checkbox" name="ids" id="t15" pId="t4" value="15" ng-model="a" ng-change="child(this)"/>招聘信息</span></li>
+                  <li><span class='file'><input type="checkbox" name="ids" id="t16" pId="t4" value="16" ng-model="a" ng-change="child(this)"/>人才理念</span></li>
+                  <li><span class='file'><input type="checkbox" name="ids" id="t17" pId="t4" value="17" ng-model="a" ng-change="child(this)"/>培训制度</span></li>
+                </ul>
+              </li>
+               -->
+            </ul>
+          </div>  
+         </form>
+      </div>
+    </div>
+  </div>
+</div>
