@@ -123,7 +123,7 @@
 
 	<input type="hidden" ng-model="goods.path"/>
 	<input type="hidden" ng-model="goods.mid" value="{{thisMerchant.id}}" />
--->
+-- >
 <!-- ===================================================================================================== -->
 
 <!-- ================================规格展示区============================================================-->
@@ -149,10 +149,122 @@
 					</span>
 					
 			</div>
-		</div>					
+		</div>		
+		<hr>	
+<!-- =========================sku区===================================================================== -->
+
+<div ng-repeat="attr in skuAttrs" >
+					<b>{{attr.key}} </b> <br>
+					<span ng-repeat="v in attr.values">
+						<input type="checkbox"  ng-model="selected" ng-click="check(v.key,v.value,selected)"> 
+						{{v.value}}</input>
+					</span>&nbsp;&nbsp;
+					
+</div>
+
+<br>
+<table border="1" width="70%" style="text-align: center;"  id="sku_table">
+	<tr >	
+		<td ng-repeat="t in titles"> {{t.title}} </td>	
+	</tr>
+
+	
+	<tr ng-repeat="sku in skus">
+	<td><input type="text" ng-model="sku.stock"/> </td>	
+	<td><input type="text" ng-model="sku.volume"/> </td>
+	<td><input type="text" ng-model="sku.price"/> </td>
+	<td><input type="text" ng-model="sku.saleprice"/></td>		
+	</tr>
+</table>
+			<br>	<a ng-click="addSku()">提交sku</a>	
+<!-- ===================================================================================================== -->
+<!-- ==========================图片区===================================================================== -->
+<!--
+<div class="commodity-food-safety-info">
+			<div class="release-commodity-hd">
+				展示图片
+			</div>
+			<div class="release-commodity-info">
+				<ul class="release-commodity-desc-info-list">
+					<li>
+					 	<div class="release-commodity-desc-img">
+						 <img ng-src="{{path1}}"> 
+						</div>
+						<div class="release-commodity-desc-btn">
+							<form  id="fileinfo1">
+							<input class="release-commodity-upload-img" type="file" id="file1" name="file" onchange="$('#sub1').trigger('click')" />
+							<input id="sub1" type="hidden" ng-click="doUpload(1)"/>
+							</form>
+						</div>
+						{{success1}}
+					</li>
+					<li>
+						<div class="release-commodity-desc-img">
+							 <img ng-src="{{path2}}"> 
+						</div>
+						<div class="release-commodity-desc-btn">
+							<form  id="fileinfo2">
+							<input class="release-commodity-upload-img" type="file" id="file2" name="file"  onchange="$('#sub2').trigger('click')"/>
+							<input id="sub2" type="hidden" ng-click="doUpload(2)"/>
+							</form>
+						</div>
+						{{success2}}
+					</li>
+					<li>
+					 <div class="release-commodity-desc-img">
+							 <img ng-src="{{path3}}"> 
+						</div>
+						<div class="release-commodity-desc-btn">
+							<form  id="fileinfo3">
+							<input class="release-commodity-upload-img" type="file" id="file3" name="file"  onchange="$('#sub3').trigger('click')"/>
+							<input id="sub3" type="hidden" ng-click="doUpload(3)"/>
+							</form>
+						</div>
+						{{success3}}
+					</li>
+					<li>
+					 <div class="release-commodity-desc-img">
+							 <img ng-src="{{path4}}"> 
+						</div>
+						<div class="release-commodity-desc-btn">
+							<form  id="fileinfo4">
+							<input class="release-commodity-upload-img" type="file" id="file4" name="file" onchange="$('#sub4').trigger('click')"/>
+							<input id="sub4" type="hidden" ng-click="doUpload(4)"/>
+							</form>
+						</div>
+						{{success4}}
+					</li>
+					<li>
+					 <div class="release-commodity-desc-img">
+							 <img ng-src="{{path5}}"> 
+						</div>
+						<div class="release-commodity-desc-btn">
+							<form  id="fileinfo5">
+							<input class="release-commodity-upload-img" type="file" id="file5" name="file" onchange="$('#sub5').trigger('click')"/>
+							<input id="sub5" type="hidden" ng-click="doUpload(5)"/>
+							</form>
+						</div>
+						{{success5}}
+					</li>
+					<div class="clear"></div>
+					<li>
+					 	<script type="text/plain" id="editor" ></script>
+					 	<ueditor  ng-model="content"></ueditor>
+						<textarea ng-model="content" style="display: none;"/>
+					</li>
+					<div class="clear"></div>
+				</ul>
+			</div>
+		</div>
+	<input type="hidden" value="{{path1}}" id="path1" />
+	<input type="hidden" value="{{path2}}" id="path2" />
+	<input type="hidden" value="{{path3}}" id="path3" />
+	<input type="hidden" value="{{path4}}" id="path4" />
+	<input type="hidden" value="{{path5}}" id="path5" />
+-->
 <!-- ===================================================================================================== -->
 		<div class="release-commodity-footer" >
-			<button class="release-commodity-btn"  ng-click="saveGoods(goods)"
+			<button class="release-commodity-btn"  ng-click="saveGoods(goods,img)"
 			ng-disabled="saveForm.$invalid">
 				发布
 			</button>
