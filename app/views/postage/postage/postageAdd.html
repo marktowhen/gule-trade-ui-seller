@@ -14,7 +14,7 @@
 					<li>
 						<div class="release-commodity-info-label fl">标题：</div>
 						<div class="release-commodity-info-txt fl" >
-							<input name="title" ng-model="postage.title" ></input>
+							<input name="title" ng-model="postage.title" required ></input>
 						</div>
 						<p ng-show="saveForm.title.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
@@ -26,7 +26,7 @@
 					</li>
 					<li>
 						<div class="release-commodity-info-label fl">运送方式:</div>
-						<p ng-repeat="transport in transportList">
+						<p ng-repeat="transport in transportList" class="fl">
 							<input  type="checkbox" name='transportType' ng-click="changeTransport(transport)" value="{{transport.transportType}}" > {{transport.transportType| transportFilter}}
 						</p>
 						
@@ -58,8 +58,8 @@
 							<span ng-click="areaTree()">地区弹出框</span>
 						</td>
 						<td>
-							<input type="radio" name='free' value="true" ng-model="detail.free">是
-							<input type="radio" name='free' value="" ng-model="detail.free">否
+							<input type="radio" name='{{$index+detail.transportType}}' value="true" ng-model="detail.free">是
+							<input type="radio" name='{{$index+detail.transportType}}' value="" ng-model="detail.free">否
 						</td>
 						<td ng-if="postage.type=='number'"><input ng-model="detail.firstNumber" ng-disabled="detail.free"></td>
 						<td ng-if="postage.type=='weight'"><input ng-model="detail.firstWeight" ng-disabled="detail.free"></td>
@@ -72,7 +72,7 @@
 						<td ng-if="$index!=0"><span ng-click="removeDetail(transport.details,$index)">删除</span></td>
 
 					</tr>
-					<tr><td ng-click="addItem(transport.details)">指定地区城市设置运费</td></tr>
+					<tr><td ng-click="addItem(transport.details,transport.transportType)">指定地区城市设置运费</td></tr>
 
 				</table>
 			</div>
@@ -82,9 +82,8 @@
 		<div class="release-commodity-footer" >
 		<!--  -->
 			<button class="release-commodity-btn"  ng-click="submit(postage)"
-			ng-disabled="saveForm.$invalid || submiting"
-			>
-				发布
+			ng-disabled="saveForm.$invalid">
+				确定
 			</button>
 		</div>
 	</div>

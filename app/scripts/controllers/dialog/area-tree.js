@@ -13,57 +13,68 @@ shopbackApp.controller('AreaTreeController', function ($scope, $http, $location,
         $scope.provinceList = data.body;
     })
 
-    $(document).ready(function(){
-        $("#browser").treeview({});
-
-        $("#btn1").click(function(){
-            var c = $("input[name='ids']:checked");
-            
-            alert(c.length);
-        })
-
-        $("#btn2").click(function(){
-            var h = $("input[name='ids']:indeterminate");
-            alert(h.length);
-        })
-        
-    });
     
-    function findParent(p,checked) {
-         $("input[id='"+p+"']").attr("indeterminate",checked);
-    }
-    $scope.child = function(e) {
-        var pId = e.id;
-        var checked = e.checked;
-        var p = $("#"+pId+"").attr("pId");
-        
-        if(checked) {
-            findParent(p,checked);
-            var children = $("input[pId='"+pId+"']");
-            for(var i = 0; i < children.length; i++){
-                $(children[i]).attr("checked", checked);
-            }
-
-            var checkLevelLengh = $("input[pId='"+p+"']:checked").length;
-            var levelLengh = $("input[pId='"+p+"']").length;
-            if(checkLevelLengh == levelLengh) {
-                $("#"+p+"").removeAttr("indeterminate");
-                $("#"+p+"").attr("checked",checked);
-            }
-        }else {
-            var children = $("input[pId='"+pId+"']");
-            for(var i = 0; i < children.length; i++){
-                $(children[i]).attr("checked", checked);
-            }
-
-            var checkLevelLengh = $("input[pId='"+p+"']:checked").length;
-            if(checkLevelLengh == 0) {
-                $("#"+p+"").removeAttr("indeterminate");
-                $("#"+p+"").attr("checked",checked);
-            }else {
-                $("#"+p+"").attr("indeterminate",true);
-            }
+    $scope.checkAll = function(province){
+        for (var i = province.cityList.length - 1; i >= 0; i--) {
+            province.cityList[i].checked = province.checkedAll;
         }
     }
+
+    $scope.changeProvince = function(province){
+        $scope.cityList = province.cityList;
+        $scope.province = province;
+    }
+
+    var selectedIDS = [];
+
+    $scope.selectItem = function(city){
+        var province = $scope.province;
+        
+        var checkedAll = true;
+        for (var i = province.cityList.length - 1; i >= 0; i--) {
+            
+            if(!province.cityList[i].checked){
+               checkedAll = false;
+               break;
+            }
+        }
+        if (checkedAll) {
+            $scope.province.checkedAll = true;
+        }else{
+            $scope.province.checkedAll = false;
+        }
+    };
+
+    $scope.finish = function(){
+        var fitArea = "";
+        var fitAreaName = "";
+        for (var i = 0; i < $scope.provinceList.length; i++) {
+            var province = $scope.provinceList[i];
+            
+            var hasChecked = false;
+            var fitCityName = "";
+            for (var j = 0; j < province.cityList.length; j++) {
+                var city = province.cityList[j];
+                if(city.checked ){
+                    hasChecked = true;
+                    fitArea+="{"+city.cityID+"},"
+                    if(!province.checkedAll){
+                        fitCityName+=city.cityName+","
+                    }
+                }
+            }
+            if(hasChecked){
+                if (province.checkedAll) {
+                    fitAreaName = fitAreaName+province.provinceName+",";
+                }else{
+                    fitAreaName = fitAreaName+province.provinceName+"("+fitCityName+")"+",";
+                }
+            }
+
+        }
+        $scope.result = "fitArea:"+fitArea+"=====fitAreaName："+fitAreaName;
+    }
+
+    
     
   });

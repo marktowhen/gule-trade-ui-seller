@@ -78,8 +78,8 @@ shopbackApp.service('ApiService', function () {
             }
         },
         'postage' : {
-            'list' : 'http://localhost:8080/api/logistic/postage/list/:MID',
-            'save' : 'http://localhost:8080/api/logistic/postage',
+            'list' : 'http://localhost:8080/api/logistic/postage/list/detail',
+            'save' : 'http://localhost:8080/api/logistic/postage/',
             'refresh' : 'http://localhost:8080/api/logistic/postage/:ID',
             'remove' : 'http://localhost:8080/api/logistic/postage/:ID'
         },

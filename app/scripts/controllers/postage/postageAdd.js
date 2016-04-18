@@ -11,13 +11,35 @@ shopbackApp.controller('PostageAddController', function ($scope,$cookies, Consta
 
 	var MID = $cookies.get(ConstantService.LOGIN_MERCHANT_ID);
 	var ID = "";
-	$scope.submint = function(postage){
+	$scope.submit = function(postage){
+		var postageDetailList = [];
+		for (var i = 0; i < $scope.transportList.length; i++) {
+			for (var j = 0; j < $scope.transportList[i].details.length; j++) {
+				postageDetailList.push($scope.transportList[i].details[j]);
+			}
+			
+		}
+		postage.postageDetailList = postageDetailList;
 		if(ID!=null&&ID!=''&&ID!=undefined){
+
 			//refresh
+			PostageService.refresh(postage).success(function(data){
+				if (data.ok) {
+					alert("修改成功");
+				}else{
+					alert(data.message);
+				}
+			})
 
 		}else{
 			//save
-
+			PostageService.save(postage).success(function(data){
+				if (data.ok) {
+					alert("保存成功");
+				}else{
+					alert(data.message);
+				}
+			})
 		}
 	}
 
@@ -34,26 +56,24 @@ shopbackApp.controller('PostageAddController', function ($scope,$cookies, Consta
 			{"transportType":"POST","selected":false,"details":[]}
 		];
 
-	$scope.setPostageType = function(type){
-		$scope.type = type;
-	}
+	
 	$scope.changeTransport = function(transport){
 
-		//点击前是选中状态
+		//取消选中
 		if(transport.selected){
 			transport.details = [];
 		}
-		//点击前是非选中状态
+		//选中运送方式
 		else{
-			transport.details = [{"fitArea":"default","fitAreaName":"全国默认"}];
+			transport.details = [{"fitArea":"default","fitAreaName":"全国默认","transportType":transport.transportType}];
 		}
 
 
 		transport.selected = !transport.selected;
 	}	
 
-	$scope.addItem = function(details){
-		var newItem = {};
+	$scope.addItem = function(details,transportType){
+		var newItem = {"transportType":transportType};
 		details.push(newItem);
 	}
 
