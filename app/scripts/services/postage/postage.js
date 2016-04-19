@@ -19,11 +19,15 @@ shopbackApp.service('PostageService', function ($http, $location, ApiService) {
 	}
 
 	this.refresh = function(postage){
-		return $http.put(ApiService.api.postage.refresh.replace(':ID', postage.ID), postage,{'Content-Type': 'application/json;charset=UTF-8'});
+		return $http.put(ApiService.api.postage.refresh.replace(':ID', postage.id), postage,{'Content-Type': 'application/json;charset=UTF-8'});
 	}
 
 	this.remove = function(postageID){
 		return $http.delete(ApiService.api.postage.remove.replace(':ID', postageID));
+	}
+
+	this.single = function(postageID){
+		return $http.get(ApiService.api.postage.single.replace(':ID', postageID));
 	}
 
 	

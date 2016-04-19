@@ -1,4 +1,4 @@
-<div class="center-view" ng-controller="PostageAddController">
+<div class="center-view" ng-controller="PostageRefreshController">
 <ng-form  name='saveForm'>
 
 	<div class="commodity-main">
@@ -27,7 +27,7 @@
 					<li>
 						<div class="release-commodity-info-label fl">运送方式:</div>
 						<p ng-repeat="transport in transportList" class="fl">
-							<input  type="checkbox" name='transportType' ng-click="changeTransport(transport)" value="{{transport.transportType}}" > {{transport.transportType| transportFilter}}
+							<input  type="checkbox" name='transportType' ng-click="changeTransport(transport)" ng-model="transport.selected" value="true" > {{transport.transportType| transportFilter}}
 						</p>
 						
 
@@ -62,50 +62,50 @@
 						</td>
 						<td class="fit-area" ng-if="detail.fitArea!=null && detail.fitArea!='default'&& detail.fitArea!=''" ng-click="areaTree(detail)">指定区域[{{detail.fitAreaName}}]</td>
 						<td>
-							<input type="radio" name='{{$index+detail.transportType}}' value="true" ng-model="detail.free" ng-click="freeSet(detail)" >是
-							<input type="radio" name='{{$index+detail.transportType}}'  ng-model="detail.free" >否
+							<input type="radio" name='{{$index+detail.transportType}}'  ng-model="detail.free" ng-click="freeSet(detail)" ng-value="true">是
+							<input type="radio" name='{{$index+detail.transportType}}'  ng-model="detail.free" ng-value="0" >否
 						</td>
 						<td ng-if="postage.type=='number'">
-							<input ng-model="detail.firstNumber" name="{{detail.transportType+$index+'firstNumber'}}" ng-disabled="detail.free" required pattern="^\d+$">
+							<input ng-model="detail.firstNumber" name="{{detail.transportType+$index+'firstNumber'}}" ng-disabled="detail.free!=0" required pattern="^\d+$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstNumber'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstNumber'}}.$dirty && saveForm.{{detail.transportType+$index+'firstNumber'}}.$error.pattern">只能填数字</p>
 						</td>
 						<td ng-if="postage.type=='weight'">
-							<input ng-model="detail.firstWeight" name="{{detail.transportType+$index+'firstWeight'}}" ng-disabled="detail.free" required pattern="^[+-]?\d+(\.\d+)?$">
+							<input ng-model="detail.firstWeight" name="{{detail.transportType+$index+'firstWeight'}}" ng-disabled="detail.free!=0" required pattern="^[+-]?\d+(\.\d+)?$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstWeight'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstWeight'}}.$dirty && saveForm.{{detail.transportType+$index+'firstWeight'}}.$error.pattern">只能填数字</p>
 						</td>
 						<td ng-if="postage.type=='volume'">
-							<input ng-model="detail.firstVolume" name="{{detail.transportType+$index+'firstVolume'}}" ng-disabled="detail.free" required pattern="^[+-]?\d+(\.\d+)?$">
+							<input ng-model="detail.firstVolume" name="{{detail.transportType+$index+'firstVolume'}}" ng-disabled="detail.free!=0" required pattern="^[+-]?\d+(\.\d+)?$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstVolume'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstVolume'}}.$dirty && saveForm.{{detail.transportType+$index+'firstVolume'}}.$error.pattern">只能填数字</p>
 						</td>
 						<td>
-							<input ng-model="detail.firstCost" name="{{detail.transportType+$index+'firstCost'}}" ng-disabled="detail.free" required pattern="^[+-]?\d+(\.\d+)?$">
+							<input ng-model="detail.firstCost" name="{{detail.transportType+$index+'firstCost'}}" ng-disabled="detail.free!=0" required pattern="^[+-]?\d+(\.\d+)?$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstCost'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'firstCost'}}.$dirty && saveForm.{{detail.transportType+$index+'firstCost'}}.$error.pattern">只能填数字</p>
 						</td>
 						<td ng-if="postage.type=='number'">
-							<input ng-model="detail.nextNumber" name="{{detail.transportType+$index+'nextNumber'}}" ng-disabled="detail.free" required pattern="^\d+$">
+							<input ng-model="detail.nextNumber" name="{{detail.transportType+$index+'nextNumber'}}" ng-disabled="detail.free!=0" required pattern="^\d+$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextNumber'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextNumber'}}.$dirty && saveForm.{{detail.transportType+$index+'nextNumber'}}.$error.pattern">只能填数字</p>
 						</td>
 						<td ng-if="postage.type=='weight'">
-							<input ng-model="detail.nextWeight" name="{{detail.transportType+$index+'nextWeight'}}" ng-disabled="detail.free" required pattern="^[+-]?\d+(\.\d+)?$">
+							<input ng-model="detail.nextWeight" name="{{detail.transportType+$index+'nextWeight'}}" ng-disabled="detail.free!=0" required pattern="^[+-]?\d+(\.\d+)?$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextWeight'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextWeight'}}.$dirty && saveForm.{{detail.transportType+$index+'nextWeight'}}.$error.pattern">只能填数字</p>
 						</td>
 						<td ng-if="postage.type=='volume'">
-							<input ng-model="detail.nextVolumn" name="{{detail.transportType+$index+'nextVolumn'}}" ng-disabled="detail.free" required pattern="^[+-]?\d+(\.\d+)?$">
+							<input ng-model="detail.nextVolumn" name="{{detail.transportType+$index+'nextVolumn'}}" ng-disabled="detail.free!=0" required pattern="^[+-]?\d+(\.\d+)?$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextVolumn'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextVolumn'}}.$dirty && saveForm.{{detail.transportType+$index+'nextVolumn'}}.$error.pattern">只能填数字</p>
 						</td>
 						<td>
-							<input ng-model="detail.nextCost" name="{{detail.transportType+$index+'nextCost'}}" ng-disabled="detail.free" required pattern="^[+-]?\d+(\.\d+)?$">
+							<input ng-model="detail.nextCost" name="{{detail.transportType+$index+'nextCost'}}" ng-disabled="detail.free!=0" required pattern="^[+-]?\d+(\.\d+)?$">
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextCost'}}.$error.required">必填</p>
 							<p ng-show="saveForm.{{detail.transportType+$index+'nextCost'}}.$dirty && saveForm.{{detail.transportType+$index+'nextCost'}}.$error.pattern">只能填数字</p>
 						</td>
-						<td ng-if="$index!=0"><span ng-click="removeDetail(transport.details,$index)">删除</span></td>
+						<td ng-if="detail.fitArea!='default'"><span ng-click="removeDetail(transport.details,$index)">删除</span></td>
 
 					</tr>
 					<tr><td ng-click="addItem(transport.details,transport.transportType)"style="color: red">点击指定地区城市设置运费</td></tr>

@@ -28,5 +28,9 @@ shopbackApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) 
       .state('postage.add', {
         templateUrl: '/views/postage/postage/postageAdd.html',
         url:"/add"
+      })
+      .state('postage.refresh', {
+        templateUrl: '/views/postage/postage/postageRefresh.html',
+        url:"/refresh/:ID"
       });
   });

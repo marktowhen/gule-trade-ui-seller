@@ -81,7 +81,8 @@ shopbackApp.service('ApiService', function () {
             'list' : 'http://localhost:8080/api/logistic/postage/list/detail',
             'save' : 'http://localhost:8080/api/logistic/postage/',
             'refresh' : 'http://localhost:8080/api/logistic/postage/:ID',
-            'remove' : 'http://localhost:8080/api/logistic/postage/:ID'
+            'remove' : 'http://localhost:8080/api/logistic/postage/:ID',
+            'single' : 'http://localhost:8080/api/logistic/postage/:ID'
         },
         'area' : {
             'province' : {

@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('PostageAddController', function ($scope,$cookies, ConstantService ,PostageService,$stateParams,$state) {
+shopbackApp.controller('PostageRefreshController', function ($scope,$cookies, ConstantService ,PostageService,$stateParams,$state) {
 
 	var postageExemple = {
 		"type" :"计费类型",
@@ -22,33 +22,61 @@ shopbackApp.controller('PostageAddController', function ($scope,$cookies, Consta
 			{"transportType":"POST","selected":false,"details":[]}
 		];
 	var ID = $stateParams.ID;
-	
+	if (ID!=null&&ID!=''&&ID!=undefined) {
+		PostageService.single(ID).success(function(data){
+			if(data.ok){
+				$scope.postage = data.body;
+				for (var i = 0; i < $scope.transportList.length; i++) {
+
+					for (var j = 0; j < $scope.postage.postageDetailList.length; j++) {
+						if (!$scope.postage.postageDetailList[j].free) {
+							$scope.postage.postageDetailList[j].free = '0';
+						}
+						if($scope.postage.postageDetailList[j].transportType == $scope.transportList[i].transportType){
+							$scope.transportList[i].selected = true;
+							$scope.transportList[i].details.push($scope.postage.postageDetailList[j]);
+						}
+					}
+				}
+				
+			}
+		})
+	}else{
+		alert("数据错误 请重新打开该页面");
+	}
 
 	$scope.submit = function(postage){
 		if(!check($scope.transportList)){
 			return;
 		}
+
 		var postageDetailList = [];
 		for (var i = 0; i < $scope.transportList.length; i++) {
 			for (var j = 0; j < $scope.transportList[i].details.length; j++) {
+				if($scope.transportList[i].details[j].free=='0'){
+					$scope.transportList[i].details[j].free = null;
+				}
 				postageDetailList.push($scope.transportList[i].details[j]);
 			}
-			
+		}
+		for (var i = 0; i < postageDetailList.length; i++) {
+			if (postageDetailList[i].free==0) {
+				postageDetailList[i].free = false;
+			}
 		}
 		postage.postageDetailList = postageDetailList;
-		
-			//save
-			PostageService.save(postage).success(function(data){
-				if (data.ok) {
-					alert("保存成功");
-					$state.go('postage.list');
-				}else{
-					alert(data.message);
-				}
-			})
-		
-	}
 
+		//refresh
+		PostageService.refresh(postage).success(function(data){
+			if (data.ok) {
+				alert("修改成功");
+				$state.go('postage.list');
+			}else{
+				alert(data.message);
+			}
+		})
+
+	}
 	var check = function(transportList){
 		for (var i = 0; i < transportList.length; i++) {
 			var fitArea = [];
@@ -83,21 +111,21 @@ shopbackApp.controller('PostageAddController', function ($scope,$cookies, Consta
 	
 	$scope.changeTransport = function(transport){
 
-		//取消选中
+		//选中
 		if(transport.selected){
+			transport.details = [{"fitArea":"default","fitAreaName":"全国默认","transportType":transport.transportType,"free":"0"}];
+			
+		}
+		//取消选中运送方式
+		else{
 			transport.details = [];
 		}
-		//选中运送方式
-		else{
-			transport.details = [{"fitArea":"default","fitAreaName":"全国默认","transportType":transport.transportType}];
-		}
 
 
-		transport.selected = !transport.selected;
 	}	
 
 	$scope.addItem = function(details,transportType){
-		var newItem = {"transportType":transportType};
+		var newItem = {"transportType":transportType,"free":"0"};
 		details.push(newItem);
 	}
 

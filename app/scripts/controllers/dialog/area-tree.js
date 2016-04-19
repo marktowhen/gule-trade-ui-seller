@@ -9,10 +9,36 @@
  */
 shopbackApp.controller('AreaTreeController', function ($scope, $http, $location,ProvinceService,CityService) {
 
-    ProvinceService.listWithCity().success(function(data){
-        $scope.provinceList = data.body;
-    })
+   
+    
+    $scope.$on("transportDetail",
+      function (event, msg) {
+           $scope.currentPostageDetail = msg;
+           //默认选中的city
+           ProvinceService.listWithCity().success(function(data){
+                $scope.provinceList = data.body;
+                $scope.cityList = [];
+                var fitArea  = $scope.currentPostageDetail.fitArea;
+                if (fitArea!=undefined && fitArea.indexOf("{") >-1) {
+                    for (var i = 0; i < $scope.provinceList.length; i++) {
+                       var province = $scope.provinceList[i];
+                       $scope.province = province;
+                       for (var j = 0; j < province.cityList.length; j++) {
+                           var city =  province.cityList[j];
+                           var cityID = "{"+city.cityID+"}";
+                           if (fitArea.indexOf(cityID)>-1) {
+                                city.checked = true;
+                                $scope.selectItem(city);
+                           }
+                       }
 
+                   }
+                }
+            })
+           
+           
+        
+      });
     
     $scope.checkAll = function(province){
         for (var i = province.cityList.length - 1; i >= 0; i--) {
@@ -59,10 +85,11 @@ shopbackApp.controller('AreaTreeController', function ($scope, $http, $location,
                     hasChecked = true;
                     fitArea+="{"+city.cityID+"},"
                     if(!province.checkedAll){
-                        fitCityName+=city.cityName+","
+                        fitCityName+=city.cityName +=",";
                     }
                 }
             }
+            fitCityName = fitCityName.substring(0,fitCityName.length-1);
             if(hasChecked){
                 if (province.checkedAll) {
                     fitAreaName = fitAreaName+province.provinceName+",";
@@ -72,7 +99,9 @@ shopbackApp.controller('AreaTreeController', function ($scope, $http, $location,
             }
 
         }
-        $scope.result = "fitArea:"+fitArea+"=====fitAreaName："+fitAreaName;
+
+        $scope.currentPostageDetail.fitArea = fitArea.substring(0,fitArea.length-1);
+        $scope.currentPostageDetail.fitAreaName = fitAreaName.substring(0,fitAreaName.length-1);
     }
 
     
