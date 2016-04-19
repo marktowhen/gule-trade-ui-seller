@@ -207,45 +207,60 @@ $scope.skuAttrs = [
 
 
 $scope.titles = [{'title':'库存'},{'title':'销量'},{'title':'价格'},{'title':'促销价'}];
+
 $scope.skus = [
 
 			  ];
 // {'stock':'','volume':'','price':'','saleprice':'', '颜色':'sdds'},
 // 				{'stock':'','volume':'','price':'','saleprice':''}
+var attrObj = new Array();
+attrObj.push("stock");
+attrObj.push("volume");
+attrObj.push("price");
+attrObj.push("saleprice");
+
 
 $scope.check = function(k,v,s){
 		
 	if(s){
-		alert($scope.skus.length)
 		if($scope.skus.length > 0){
-			var checkedv = $scope.skus[0][k];
-			alert(checkedv)
-			if(checkedv && checkedv != v){
-				var rownum = $scope.skus.length;
-				for(var i = 0; i < rownum; i++){
-					var row = {};
-					row.stock = '';
-					row.volume = '';
-					row.price = '';
-					row.saleprice = '';
-					row[k] = v;
-					console.log(row)
-					$scope.skus.push(row);
-				}
+			var skuslen = $scope.skus.length;
+			console.log(k,v,s)
+
+			if(isInSkus($scope.skus,k,v)==-1){
+				var row = {};
+				row.stock = '';
+				row.volume = '';
+				row.price = '';
+				row.saleprice = '';
+				row[k] = v;
+				$scope.skus.push(row);
+				console.log($scope.skus)
 			}
 		}else{
+
 			var row = {};
 			row.stock = '';
 			row.volume = '';
 			row.price = '';
 			row.saleprice = '';
 			row[k] = v;
-			console.log(row)
 			$scope.skus.push(row);
+			console.log($scope.skus)
 		}
 		
 	 }
 
+};
+
+
+var isInSkus = function(arr,k,v){
+	for (var i = 0; i < arr.length; i++) {
+		if(arr[i][k] == v){
+			return i;
+		}
+	}
+	return -1;
 };
 
 $scope.addSku =function(){
