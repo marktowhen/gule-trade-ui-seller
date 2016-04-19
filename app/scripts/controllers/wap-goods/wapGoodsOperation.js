@@ -201,59 +201,113 @@ var Vflag = function(arr,v){
 //////////////////////////////////商品sku操作///////////////////////////////////
 
 $scope.skuAttrs = [
-			{'key':'颜色', 'values':[{'key':'颜色','value':'红色'},{'key':'颜色','value':'黄色'}] },
-			{'key':'大小', 'values':[{'key':'大小','value':'XL'},{'key':'大小','value':'XXXL'}] }
+			{'key':'颜色', 'values':[{'attrName':'颜色','value':'红色'},{'attrName':'颜色','value':'黄色'},
+			{'attrName':'颜色','value':'紫色'}] },
+			{'key':'大小', 'values':[{'attrName':'大小','value':'XL'}, {'attrName':'大小','value':'XXXL'}] },
+			{'key':'网络', 'values':[{'attrName':'网络','value':'联通'},{'attrName':'网络','value':'移动'}] }
 ];
 
-
+//标题集合
 $scope.titles = [{'title':'库存'},{'title':'销量'},{'title':'价格'},{'title':'促销价'}];
 
+//sku集合
 $scope.skus = [
 
 			  ];
-// {'stock':'','volume':'','price':'','saleprice':'', '颜色':'sdds'},
-// 				{'stock':'','volume':'','price':'','saleprice':''}
-var attrObj = new Array();
-attrObj.push("stock");
-attrObj.push("volume");
-attrObj.push("price");
-attrObj.push("saleprice");
+// 				{'stock':'','volume':'','price':'','saleprice':'', '颜色':'sdds'}
+
+//属性集合
+$scope.attrObj = [
+				 {'k':'stock','v':''},{'k':'volume','v':''},{'k':'price','v':''},{'k':'saleprice','v':''}
+				 ];
+
 
 
 $scope.check = function(k,v,s){
-		
+
 	if(s){
 		if($scope.skus.length > 0){
-			var skuslen = $scope.skus.length;
-			console.log(k,v,s)
+			var index = isInSkus($scope.skus,k,v);
+			if(index==-1){
+				//$scope.attrObj 代表属性集合    里面没有当前属性k
+				if(isHasKey($scope.attrObj,k)==-1){
+					//把选择的属性加进属性集合
+						var obj ={};
+					 	obj.k=k;
+					 	obj.v=v;
+					 	$scope.attrObj.push(obj);
+					 	//加进标题集合///////
+					 	var t = {};
+					 	t.title=k;
+					 	$scope.titles.push(t);
 
-			if(isInSkus($scope.skus,k,v)==-1){
-				var row = {};
-				row.stock = '';
-				row.volume = '';
-				row.price = '';
-				row.saleprice = '';
-				row[k] = v;
-				$scope.skus.push(row);
-				console.log($scope.skus)
+					 for (var i = 0; i < $scope.skus.length; i++) {
+					 	var thisObj = $scope.skus[i];
+					 	thisObj[k]=v;
+					 }
+					 // console.log($scope.skus)
+				}else{
+					//没有当前的属性
+					// 在以前的集合里全部增加一遍
+					//$scope.attrObj 代表属性集合
+						var len = $scope.skus.length;
+						for (var s = 0; s <len ; s++) {
+								 var thisObj = $scope.skus[s];
+									 var row = {};
+								  for (var i = 0; i < $scope.attrObj.length; i++) {
+								  		var a = $scope.attrObj[i].k;
+								  		var b = $scope.attrObj[i].k;
+								  		if(a==k){
+								  			row[a]=v;
+								  		}else{
+								  			row[a]=thisObj[a];
+								  		}
+								  		
+								  }
+								  $scope.skus.push(row);
+								  //console.log( $scope.skus)
+			 			 }
+				}
+
 			}
 		}else{
-
-			var row = {};
-			row.stock = '';
-			row.volume = '';
-			row.price = '';
-			row.saleprice = '';
-			row[k] = v;
-			$scope.skus.push(row);
-			console.log($scope.skus)
+				//把选择的属性加进属性集合
+			 	var obj ={};
+			 	obj.k=k;
+			 	obj.v=v;
+			 	$scope.attrObj.push(obj);
+			 	//加进标题集合///////
+			 	var t = {};
+			 	t.title=k;
+			 	$scope.titles.push(t);
+			 	////////////////////
+			   var row = {};
+			  for (var i = 0; i < $scope.attrObj.length; i++) {
+			  		var a = $scope.attrObj[i].k;
+			  		if(a==k){
+			  			row[a]=v;
+			  		}else{
+			  			row[a]='';
+			  		}
+			  		
+			  }
+			  	$scope.skus.push(row);
 		}
 		
 	 }
 
 };
 
+var isHasKey = function(arr,k){
+		for (var i = 0; i < arr.length; i++) {
+			if(arr[i].k==k){
+				return i;
+			}
+	    }
+	return -1;
+}
 
+//////////////
 var isInSkus = function(arr,k,v){
 	for (var i = 0; i < arr.length; i++) {
 		if(arr[i][k] == v){
@@ -263,15 +317,19 @@ var isInSkus = function(arr,k,v){
 	return -1;
 };
 
+
+
+
+
 $scope.addSku =function(){
-	console.log($scope.skus)
+	console.log($scope.skus )
 };
 
 ////////商品json/////////////////////////////////////////////////////////////////////////////
 $scope.goods = {'mid':'','tid':'','name':'','code':'','about':'','price':'','salePrice':'',
 				'uptime':'','downtime':'','pid':'','path':'','content':'',
 		'attrValueList':[],
-		'imgList':[] //{'path':''}
+		'imgList':[] 
 	};
 
 //保存商品
