@@ -33,7 +33,7 @@
         , serverUrl: "http://localhost:8080/api/resource/dispatch"
 		
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
-        , toolbars: [[
+        /*, toolbars: [[
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
             'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
             'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
@@ -45,6 +45,21 @@
             'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
             'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', 'charts', '|',
             'print', 'preview', 'searchreplace', 'help', 'drafts'
+        ]]*/
+
+         , toolbars: [[
+            'fullscreen', 'source',  '|',
+            'bold', 'italic', 'underline', 'fontborder', 
+            'removeformat', 'formatmatch', 
+            '|', 'forecolor', 
+            'backcolor',  '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+            'touppercase', 'tolowercase', '|',
+            'customstyle', 'paragraph', 'fontfamily', 'fontsize', '|',
+             
+            
+            'link', 'unlink', 'anchor', '|',
+            'simpleupload', 'insertimage', 'emotion'
         ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
@@ -89,15 +104,15 @@
         //首行缩进距离,默认是2em
         //,indentValue:'2em'
 
-        ,initialFrameWidth:1210  //初始化编辑器宽度,默认1000
-        ,initialFrameHeight:320  //初始化编辑器高度,默认320
+        ,initialFrameWidth:500  //初始化编辑器宽度,默认1000
+        ,initialFrameHeight:400  //初始化编辑器高度,默认320
 
         //,readonly : false //编辑器初始化结束后,编辑区域是否是只读的，默认是false
 
         //,autoClearEmptyNode : true //getContent时，是否删除空的inlineElement节点（包括嵌套的情况）
 
         //启用自动保存
-        //,enableAutoSave: true
+        ,enableAutoSave: false
         //自动保存间隔时间， 单位ms
         //,saveInterval: 500
 
