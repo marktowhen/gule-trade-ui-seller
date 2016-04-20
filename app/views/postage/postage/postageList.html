@@ -1,0 +1,49 @@
+<div class="postage-list" ng-controller="PostageController" style="width: 1200px;">
+	<div class="ml-top-title">邮费模板管理</div>
+	
+	<div class="ml-content" style="width: 1200px;" ng-repeat="postage in posageList">
+		<div class="ml-hd">
+			<div class="mlh-mid">
+				<ul class="mlhm">
+					<li class="mlh-m mlh-m2">{{postage.title}}&nbsp;<span ng-click="goRefresh(postage.id)">修改</span>&nbsp;<span ng-click="remove(postage)">删除</span></li>
+					<li class="mlh-m mlh-m2">配送范围</li>
+					<li class="mlh-m mlh-m2">运送方式</li>
+					<li class="mlh-m mlh-m2">是否包邮</li>
+					<li class="mlh-m mlh-m2" ng-if="postage.type=='number'">首件(个)</li>
+					<li class="mlh-m mlh-m2" ng-if="postage.type=='weight'">首重(kg)</li>
+					<li class="mlh-m mlh-m2" ng-if="postage.type=='vulome'">首体积(m³)</li>
+					<li class="mlh-m mlh-m2">首费(元)</li>
+					<li class="mlh-m mlh-m2" ng-if="postage.type=='number'">续件(个)</li>
+					<li class="mlh-m mlh-m2" ng-if="postage.type=='weight'">续重(kg)</li>
+					<li class="mlh-m mlh-m2" ng-if="postage.type=='vulome'">续体积(m³)</li>
+					<li class="mlh-m mlh-m2">续费(元)</li>
+					
+				</ul>
+			</div>
+		</div>
+		<div class="ml-bd">
+			<div class="mlb-mid">
+				<div  ng-repeat="detail in postage.postageDetailList" class = "mlb-line">
+					
+					<ul class="mlbm" style="text-align: center;">
+						<li class="mlb-m mlb-m2"></li>
+						<li class="mlb-m mlb-m2">{{detail.fitAreaName}}</li>
+						<li class="mlb-m mlb-m2">{{detail.transportType | transportFilter}}</li>
+						<li class="mlb-m mlb-m2">{{detail.free | booleanFilter}}</li>
+						<li class="mlb-m mlb-m2" ng-if="postage.type=='number'">{{detail.firstNumber}}</li>
+						<li class="mlb-m mlb-m2" ng-if="postage.type=='weight'">{{detail.firstWeight}}</li>
+						<li class="mlb-m mlb-m2" ng-if="postage.type=='vulome'">{{detail.firstVolume}}</li>
+						<li class="mlb-m mlb-m2">{{detail.firstCost | currency:'￥'}}</li>
+						<li class="mlb-m mlb-m2" ng-if="postage.type=='number'">{{detail.nextNumber}}</li>
+						<li class="mlb-m mlb-m2" ng-if="postage.type=='weight'">{{detail.nextWeight}}</li>
+						<li class="mlb-m mlb-m2" ng-if="postage.type=='vulome'">{{detail.nextVolumn}}</li>
+						<li class="mlb-m mlb-m2">{{detail.nextCost | currency:'￥'}}</li>
+						
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
