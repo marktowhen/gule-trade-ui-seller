@@ -1,0 +1,35 @@
+<div style="display: none;" class="modal in" id="area-tree-dialog" tabindex="-1" role="dialog" ng-controller="AreaTreeController" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content area-tree-dialog">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <form ng-submit="login(user, true)" name='myForm'>
+           
+          <div class="area-dialog">
+            <div class='left'>
+              <ul>
+                <li ng-repeat="province in provinceList" ng-click="changeProvince(province)">{{province.provinceName}}</li>
+              </ul>
+            </div>
+            <div class='right'>
+              <ul>
+                <li ><input type="checkbox" name="checkAll" ng-model="province.checkedAll" ng-true-value="true" ng-false-value="false" ng-click="checkAll(province)">全选</li>
+                <li ng-repeat="city in cityList"><input type="checkbox" name="city"  ng-true-value="true" ng-false-value="false" ng-model="city.checked"  ng-change="selectItem(city)">{{city.cityName}}</li>
+                
+              </ul>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="confirm-dialog-btns" style="    width: 400px;">
+            <div class="confirm-dialog-btn confirm-dialog-confirm-btn fl" data-dismiss="modal" aria-label="Close" ng-click='finish()'>确定</div>
+            <div class="confirm-dialog-btn confirm-dialog-cancel-btn fr" data-dismiss="modal" aria-label="Close">取消</div>
+          </div>
+         </form>
+      </div>
+    </div>
+  </div>
+</div>
