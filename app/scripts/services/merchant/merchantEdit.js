@@ -12,6 +12,8 @@ shopbackApp.service('MerchantEditService', function($http,$location,$state,$reso
        this.getMerchantInfo = function(mid){
             return $http.get(ApiService.api.merchant.getMerchantInfo.replace(":mid", mid))
        }; 
+
+       
        this.updateMerchant = function (m){
                     $http.post(ApiService.api.merchant.update,
                         m,

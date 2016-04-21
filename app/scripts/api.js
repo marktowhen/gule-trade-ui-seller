@@ -166,11 +166,12 @@ shopbackApp.service('ApiService', function () {
 
         },
         'goodstype':{
-            'typelist':'http://localhost:8080//api/goodstype/list/',
-            'save':'http://localhost:8080/api/goodstype/save',
-            'getbyid':'http://localhost:8080/api/goodstype/single/',
-            'update':'http://localhost:8080/api/goodstype/update/',
-            'del':'http://localhost:8080/api/goodstype/del/'
+            'typelist':'http://localhost:8080/api/goods/type/list/',
+            'save':'http://localhost:8080/api/goods/type/save',
+            'getbyid':'http://localhost:8080/api/goods/type/single/:tid',
+            'update':'http://localhost:8080/api/goods/type/update/:tid',
+            'del':'http://localhost:8080/api/goods/type/del/:tid',
+            'byname':'http://localhost:8080/api/goods/type/singleByName/:tname'
         },
         'logistic':{
             'logisticlist':'http://localhost:8080/api/logistic/express/list',

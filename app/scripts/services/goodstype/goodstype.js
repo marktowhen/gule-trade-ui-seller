@@ -10,7 +10,7 @@
 shopbackApp.service('GoodsTypeService', function($http,$location,$state,$resource,ApiService){
 	
 	 this.listTypesByName  = function (name){
-            return  $http.get(ApiService.api.goodstype.typelist+name,
+            return  $http.get(ApiService.api.goodstype.byname.replace(":tname",name),
                         {'Content-Type': 'application/json;charset=UTF-8'}); 
          };
     this.listTypes = function(){
@@ -35,7 +35,7 @@ shopbackApp.service('GoodsTypeService', function($http,$location,$state,$resourc
 
 
         this.updateGoodsType  = function (gt){
-            return  $http.post(ApiService.api.goodstype.update+gt.id,
+            return  $http.post(ApiService.api.goodstype.update.replace(":tid",gt.id),
             			gt,
                         {'Content-Type': 'application/json;charset=UTF-8'})
             			.success(function(response){
@@ -52,7 +52,7 @@ shopbackApp.service('GoodsTypeService', function($http,$location,$state,$resourc
 
 
         this.delGoodsType =function(tid){
-             return  $http.put(ApiService.api.goodstype.del+tid,
+             return  $http.put(ApiService.api.goodstype.del.replace(":tid",tid),
                      {'Content-Type': 'application/json;charset=UTF-8'})
                   .success(function(response){
                   if(response.code==200){
@@ -67,7 +67,7 @@ shopbackApp.service('GoodsTypeService', function($http,$location,$state,$resourc
         };
 
       this.getById = function (tid){
-      	return  $http.get(ApiService.api.goodstype.getbyid+tid,
+      	return  $http.get(ApiService.api.goodstype.getbyid.replace(":tid",tid),
                         {'Content-Type': 'application/json;charset=UTF-8'}); 
       };
        

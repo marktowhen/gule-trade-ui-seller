@@ -19,7 +19,6 @@
 			<div class="mlh-mid">
 				<ul class="mlhm">
 					<li class="mlh-m mlh-m2">类别名称</li>
-					<li class="mlh-m">管理员排序</li>
 					<li class="mlh-m">操作</li>
 				</ul>
 			</div>
@@ -29,7 +28,6 @@
 				<div  ng-repeat="type in typelist" class = "mlb-line">
 					<ul class="mlbm" style="text-align: center;">
 						<li class="mlb-m mlb-m2">{{type.name}}</li>
-						<li class="mlb-m">{{type.adminsort}}</li>
 						<li class="mlb-m">
 							<a href="#" class="aa" ui-sref="station-goods.type-edit({tid:'{{type.id}}'})"
 							 >编辑</a>

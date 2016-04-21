@@ -84,7 +84,7 @@
 						</div>
 					</li>
 					<div class="clear"></div>
-					<li>
+	<!-- 				<li>
 						<div class="release-commodity-info-label fl">管理员排序：</div>
 						<div class="release-commodity-info-txt fl">
 							<input class="release-commodity-code"  type="text" ng-model="m.adminSortNum" name="adminSortNum" required>
@@ -104,7 +104,7 @@
 						<p ng-show="saveForm.invoiceFlag.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 
 					</li>
-					<div class="clear"></div>     
+					<div class="clear"></div>      -->
 					 <li>
 						<div class="release-commodity-info-label fl">商家等级：</div>
 						<div class="release-commodity-info-txt fl">
@@ -124,39 +124,15 @@
 			</div>
 		</div>
 
-		<div class="commodity-food-safety-info">
-			<div class="release-commodity-hd">
-				2、商家其他信息
-			</div>
-			<div class="release-commodity-info">
-				<ul class="release-commodity-info-list">
-					<li>
-						<div class="release-commodity-info-label fl">发票类型：</div>
-						<div class="release-commodity-info-txt fl" ng-repeat="io in invoicelist">
-							 <input type="checkbox" ng-change="selectInvoice(io)" ng-model="io.selected" value="{{io.code}}" ng-true-value="true" ng-false-value="false">
-							 {{io.name}} &nbsp;&nbsp;&nbsp;&nbsp;
-						</div> 
-					</li>
-					<div class="clear"></div>
-					<li>
-						<div class="release-commodity-info-label fl">邮递类型：</div>
-						<div class="release-commodity-info-txt fl" ng-repeat="do in deliverylist">
-							<input type="checkbox" ng-change="selectDelivery(do)" ng-model="do.selected" value="{{do.code}}" ng-true-value="true" ng-false-value="false">
-							{{do.name}} &nbsp;&nbsp;&nbsp;&nbsp;
-						</div> 
-					</li>
-					<div class="clear"></div>
-				</ul>
-			</div>
-		</div>
 
 		<div class="commodity-food-safety-info">
 			<div class="release-commodity-hd">
 				3、商家图片
 			</div>
+			
 			<div class="release-commodity-info">
 				<ul class="release-commodity-info-list">
-					<li>
+					<li> 
 					 <div class="release-commodity-info-label fl">商品图片：</div>
 						<div class="release-commodity-info-txt fl">
 							<form  id="fileinfo">
@@ -175,12 +151,12 @@
 		</div>
 		<input type="hidden" ng-model="m.id"/>
 		<input type="hidden" ng-model="m.imgPath"/>
-		<input type="hidden" ng-model="m.invoiceCodes"/>
-		<input type="hidden" ng-model="m.deliveryCodes"/>
+
+
 		<div class="release-commodity-footer" >
 			<button class="release-commodity-btn" ng-click="saveorupdate(m)"
 			ng-disabled="saveForm.$invalid"
-			>修改
+			>新增
 			</button>
 		</div>
 	</div>
