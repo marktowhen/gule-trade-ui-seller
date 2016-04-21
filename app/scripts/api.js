@@ -178,9 +178,11 @@ shopbackApp.service('ApiService', function () {
             'expressinfo':'http://localhost:8080/api/logistic/express/info/:oid/:code/:codeid'
         },
          'wapgoods':{
+            'allList':'http://localhost:8080/api/wap/goods/list',
             'thisMerchant':'http://localhost:8080/api/merchant/merchantBySellerId/:sellerId',
             'types':'http://localhost:8080/api/goods/type/list',
-            'save':'http://localhost:8080//api/goods/operation/save'
+            'save':'http://localhost:8080/api/goods/operation/save',
+            'del':'http://localhost:8080/api/goods/operation/del/:gid'
         }
     }
 });

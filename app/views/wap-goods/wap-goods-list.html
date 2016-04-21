@@ -1,0 +1,29 @@
+<div class="center-view" ng-controller="WapGoodsListController as wapGoodsListController">
+
+商品名称:&nbsp;&nbsp; <input type="text"  ng-model="goodsname" /> &nbsp;&nbsp;
+
+<button ng-click="query()">查询</button>
+<br>
+<br>
+
+<table width="60%" border="1" style="text-align: center;">
+
+	<tr >
+		<td style="width: 15%">商品图片</td>
+		<td style="width: 30%">名称</td>
+		<td style="width: 15%">操作</td>
+	</tr>
+	<tr ng-repeat="g in goods">
+		<td>
+			<img src="{{g.path}}" width="50px" height="50px">
+		</td>
+		<td>{{g.name}}</td>
+		<td>
+			<button ng-click="toUpdate(g.gid)">编辑</button>
+			&nbsp;&nbsp;&nbsp;
+			<button ng-click="delGoods(g.gid)">删除</button>
+		</td>
+	</tr>
+
+</table>
+</div>

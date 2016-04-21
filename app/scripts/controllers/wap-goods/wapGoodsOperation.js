@@ -7,8 +7,15 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('WapGoodsOperationController', function ($scope,$location,$cookies,ConstantService,
+shopbackApp.controller('WapGoodsOperationController', function ($scope,$stateParams,$location,$cookies,ConstantService,
 	WapGoodsOperationService) {
+
+	var gid=$stateParams.gid;
+
+		if(gid!="" && typeof(gid) != "undefined"){
+			$scope.gid=gid;
+		};
+
 	
 	//模拟邮费模板
 	  $scope.postages = [
@@ -214,48 +221,68 @@ $scope.skuAttrs = [
 $scope.skus = [
 				//[{'k':'','v':''},] 
 			  ];
-
-$scope.arr=[];
 var addSku =function(){
-
 	var table =$("#process");
-	//console.log(table[0].rows);
 	for (var i = 1; i < table[0].rows.length; i++) {
 		var child = table[0].rows[i].cells;
-			
+			var create = {};
 			for (var k = 0; k < child.length; k++) {
-				 //console.log(child[k].childNodes[0].id+"==="+child[k].childNodes[0].value)
-				 var sku = {};
-				 sku.k=child[k].childNodes[0].id;
-				 sku.v=child[k].childNodes[0].value;
-				$scope.arr.push(sku);
+				// console.log(child[k].childNodes[0].id+"==="+child[k].childNodes[0].value)
+				 var id= child[k].childNodes[0].id;
+				 var v = child[k].childNodes[0].value;
+				   if(id=='stock'){
+						create.stock = v;
+					}else if(id=='price') {
+						create.price = v;
+					}else if(id=='salePrice') {
+						create.salePrice = v;
+					}else{
+						if(create.propertiesValue!=null){
+							create.propertiesValue = create.propertiesValue+"@"+v;
+						}else{
+							create.propertiesValue = v;
+						}
+					}
 			}
-			var one = $scope.arr;
-			$scope.skus.push(one);
-			$scope.arr=[];
+			$scope.skus.push(create);
 	}
 
-//console.log($scope.skus);
-
 };
-
+//////////////////////////////////////info/////////////////
+$scope.infos=[];
+var addInfo =function (){
+		var infotable =$("#infos");
+		for (var i = 1; i < infotable[0].rows.length; i++) {
+				var child = infotable[0].rows[i].cells;
+				var info={};
+				for (var k = 0; k < 2; k++) {
+					var v = child[k].childNodes[0].value;
+					if(k==0){
+						info.key=v;
+					}else{
+						info.value=v;
+					}
+					
+				}
+			$scope.infos.push(info);
+		}
+}
+///////////////////////////////////////////////////////////
 ////////商品json/////////////////////////////////////////////////////////////////////////////
-$scope.goods = {'mid':'','tid':'','name':'','code':'','about':'','price':'','salePrice':'',
+$scope.goods = {'id':'','mid':'','tid':'','name':'','code':'','about':'','price':'','salePrice':'',
 				'uptime':'','downtime':'','pid':'','path':'','content':'',
 		'attrValueList':[],
 		'imgList':[],
-		'skuList':[]
+		'skuList':[],
+		'infoList':[]
 	};
 
 //保存商品
-	$scope.saveGoods = function(goods){
-		//1.保存sku组合的属性
+	var saveGoods = function(goods){
+		//1.表格->保存sku组合的属性
 		addSku();
-		//如果sku保存正常
-		if($scope.skus.length > 0){
-
-
-		/*
+		//2.表格->保存info集合
+		addInfo();
 		//编辑器文本和时间文本赋值-> goods
 		goods.content =$scope.content;
 		goods.uptime=$("#uptime").val();
@@ -270,57 +297,30 @@ $scope.goods = {'mid':'','tid':'','name':'','code':'','about':'','price':'','sal
 			}
 			
 		};
-
-
 		////////商品图片赋值//////////
-
 		for (var i = 1; i <=5; i++) {
 			var img = {};
 			var path = document.getElementById("path"+i).value; 
-			alert(path)
+			//alert(path)
 			img.path = path;
 			$scope.goods.imgList.push(img);
 		}
-		*/
-
-		// $scope.skus = [
-		// 		//[{'k':'','v':''},]
-		// 	  ];
-
-		///////循环组合好的sku集合
-		for (var i = 0; i < $scope.skus.length; i++) {
-				var s = $scope.skus[i];
-				var create = {};
-			for (var k = 0; k < s.length; k++) {
-				var n = s[k].k;
-				var v = s[k].v;
-				if(n=='stock'){
-					create.stock = v;
-				}else if(n=='price') {
-					create.price = v;
-				}else if(n=='salePrice') {
-					create.salePrice = v;
-				}else{
-					if(create.propertiesValue!=null){
-						create.propertiesValue = create.propertiesValue+"@"+v;
-					}else{
-						create.propertiesValue = v;
-					}
-					
-				}
-
-			}
-				$scope.goods.skuList.push(create);
-		}
-		//////商品sku赋值/////
+		///////赋值skus
+		$scope.goods.skuList = $scope.skus;
+		//////info赋值
+		$scope.goods.infoList = $scope.infos;
 		console.log($scope.goods);
-		//WapGoodsOperationService.save(goods);
+		WapGoodsOperationService.save(goods);	
+	};
 
+	$scope.saveOrUpdate = function (goods){
 
-		////////如果sku保存不正常
+		if($scope.gid == "" ||typeof($scope.gid) == "undefined"){
+			alert("add")
+			//saveGoods(goods);
 		}else{
-			alert("添加异常!");
-			return;
+			alert("update")
+
 		}
-}
+	}
 });
