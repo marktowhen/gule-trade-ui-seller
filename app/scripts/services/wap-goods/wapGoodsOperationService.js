@@ -29,6 +29,11 @@ shopbackApp.service('WapGoodsOperationService', function($http,$location,$resour
                         });
         };
 	  
+
+        this.view = function(gid){
+                return  $http.get(ApiService.api.wapgoods.view.replace(":gid",gid),
+                        {'Content-Type': 'application/json;charset=UTF-8'}); 
+        };
        this.thisMerchant  = function (sellerId){
     	  	return  $http.get(ApiService.api.wapgoods.thisMerchant.replace(":sellerId",sellerId),
                         {'Content-Type': 'application/json;charset=UTF-8'}); 

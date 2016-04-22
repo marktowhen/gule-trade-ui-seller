@@ -8,12 +8,78 @@
  * Controller of the jingyunshopApp
  */
 shopbackApp.controller('WapGoodsOperationController', function ($scope,$stateParams,$location,$cookies,ConstantService,
-	WapGoodsOperationService) {
+	WapGoodsOperationService,ApiService) {
 
+	
+	 
+	 ///声明属性数组
+	$scope.attrs = [
+	/*			{'key':'颜色', 'values':[{'key':'','value':'红色'},{'key':'','value':'黄色'}] },
+				{'key':'大小', 'values':[{'key':'','value':'XL'},{'key':'','value':'XXXL'}] }*/
+	];  
+
+	//用于修改的gid
 	var gid=$stateParams.gid;
-
-		if(gid!="" && typeof(gid) != "undefined"){
+	if(gid!="" && typeof(gid) != "undefined"){
 			$scope.gid=gid;
+			WapGoodsOperationService.view(gid).success(function(data){
+				$scope.goods = data.body;
+				//console.log($scope.goods);
+				//----------------------图片回显----
+				var imgList = $scope.goods.imgList;
+				for (var i = 0; i < imgList.length; i++) {
+					var img = imgList[i].path;
+					if(i==0){
+						$scope.path1= img;
+					}else if(i==1){
+						$scope.path2= img;
+					}else if(i==2){
+						$scope.path3= img;
+					}else if(i==3){
+						$scope.path4= img;
+					}else if(i==4){
+						$scope.path5= img;
+					}
+				}
+				//----------ueditor回显------------
+				$scope.thisContent = $scope.goods.content;
+				//--------info 回显------------
+				$scope.infoList = $scope.goods.infoList;
+				//-----------attr回显--------
+				// 型号 XXXL
+				// 型号 M
+				// 型号 XL
+				// 颜色 蓝
+				// 颜色 白
+				// 颜色 黑
+
+//{'key':'颜色','values':[{'key':'颜色','value':'蓝'},{'key':'颜色','value':'白'},{'key':'颜色','value':'黑'}] }
+//{'key':'型号',
+//'values':[{'key':'型号','value':'XXXL'},{'key':'型号','value':'XXXL'},{'key':'型号','value':'XXXL'}] }
+
+
+				var attrList = $scope.goods.attrValueList;
+				for (var i = 0; i < attrList.length; i++) {
+						var key= attrList[i].attrName;
+						var value= attrList[i].value;
+					console.log(key,value)
+					
+				}
+
+				//------------sku回显---------------------
+				var skuList = $scope.goods.skuList;
+				for (var i = 0; i < skuList.length; i++) {
+					var properties = skuList[i].properties;
+					var propertiesValue = skuList[i].propertiesValue;
+					var stock = skuList[i].stock;
+					var price = skuList[i].price;
+					var salePrice = skuList[i].salePrice;
+				
+					console.log(properties,propertiesValue,stock,price,salePrice);
+					
+				}
+				//console.log()
+			});
 		};
 
 	
@@ -81,11 +147,6 @@ shopbackApp.controller('WapGoodsOperationController', function ($scope,$statePar
 
 
 /////////////////////////////////////////////////商品属性////////////////////////////////////////////////
-///属性数组
-$scope.attrs = [
-/*			{'key':'颜色', 'values':[{'key':'','value':'红色'},{'key':'','value':'黄色'}] },
-			{'key':'大小', 'values':[{'key':'','value':'XL'},{'key':'','value':'XXXL'}] }*/
-];
 
 //添加属性
 $scope.addA = function(a){
@@ -164,6 +225,7 @@ var Vflag = function(arr,v){
 /////////////////////商品图片操作////////////////////////
 /*上传图片*/
 	$scope.doUpload = function(id){
+		alert("fileinfo"+id)
 		var form = document.getElementById("fileinfo"+id);  
 		var formData = new FormData(form); 
 		 var file=document.getElementById("file"+id).files[0];
@@ -266,6 +328,7 @@ var addInfo =function (){
 				}
 			$scope.infos.push(info);
 		}
+		console.log($scope.infos)
 }
 ///////////////////////////////////////////////////////////
 ////////商品json/////////////////////////////////////////////////////////////////////////////
@@ -295,7 +358,6 @@ $scope.goods = {'id':'','mid':'','tid':'','name':'','code':'','about':'','price'
 			for (var k = 0; k <= oneAttr.values.length-1; k++) {
 					$scope.goods.attrValueList.push(oneAttr.values[k]);
 			}
-			
 		};
 		////////商品图片赋值//////////
 		for (var i = 1; i <=5; i++) {
@@ -313,14 +375,13 @@ $scope.goods = {'id':'','mid':'','tid':'','name':'','code':'','about':'','price'
 		WapGoodsOperationService.save(goods);	
 	};
 
-	$scope.saveOrUpdate = function (goods){
-
-		if($scope.gid == "" ||typeof($scope.gid) == "undefined"){
-			alert("add")
+	$scope.save = function (goods){
+		alert("save")
 			//saveGoods(goods);
-		}else{
-			alert("update")
-
-		}
 	}
+	$scope.update = function (goods){
+		alert("update")
+			//saveGoods(goods);
+	}
+	
 });

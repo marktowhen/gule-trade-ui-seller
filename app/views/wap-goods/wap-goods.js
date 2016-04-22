@@ -1,10 +1,25 @@
 
-function delinfo(){
-    alert("delinfo")
-}
 
-function addinfo(){
-    alert("addinfo")
+function deleteRow (obj)  
+{  
+
+var tr=obj.parentNode.parentNode;
+var tbody=tr.parentNode;
+tbody.removeChild(tr);
+}   
+
+
+
+function insertRow(){
+  var table = $("#infos");  
+
+  table.append(  
+            "<tr>"+
+            "<td><input type='text' value='' size='50' /></td>"+
+            "<td><input type='text' value='' size='50' /></td>"+
+            "<td><button onclick='deleteRow(this)'>删除</button></td>"+
+            "</tr>"
+            );  
 }
 
 

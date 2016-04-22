@@ -182,7 +182,8 @@ shopbackApp.service('ApiService', function () {
             'thisMerchant':'http://localhost:8080/api/merchant/merchantBySellerId/:sellerId',
             'types':'http://localhost:8080/api/goods/type/list',
             'save':'http://localhost:8080/api/goods/operation/save',
-            'del':'http://localhost:8080/api/goods/operation/del/:gid'
+            'del':'http://localhost:8080/api/goods/operation/del/:gid',
+            'view':'http://localhost:8080/api/goods/operation/view/:gid'
         }
     }
 });

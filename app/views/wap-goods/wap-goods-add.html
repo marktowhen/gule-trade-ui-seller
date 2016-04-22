@@ -2,7 +2,7 @@
 
 <ng-form  name='saveForm'> 
 <!-- ================================goods============================================ -->
-<!--
+<!-- -->
 	<div class="commodity-main">
 		<div class="commodity-main-hd">
 			商品管理&gt;发布商品
@@ -83,10 +83,12 @@
 						<div class="release-commodity-info-label fl">上架时间：</div>
 						<div class="release-commodity-info-txt fl">
 							<input class="release-commodity-input-length" 
-							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="uptime">
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="uptime"
+							ng-model="goods.uptime">
 							&nbsp;&nbsp;&nbsp;&nbsp;到&nbsp;&nbsp;&nbsp;&nbsp;
 							<input class="release-commodity-input-length" 
-							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="downtime">
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="downtime"
+							ng-model="goods.downtime">
 						</div>
 					</li>
 					<div class="clear"></div>
@@ -125,12 +127,10 @@
 	<input type="hidden" ng-model="goods.path"/>
 	<input type="hidden" ng-model="goods.mid" value="{{thisMerchant.id}}" />
 
--->
-<input type="hidden" ng-model="gid" value="{{gid}}" />111
 <!-- ==========================================================================================-->
 
 <!-- ================================规格展示区===============================================-->
-	<!--
+	<!---->
 <div class="commodity-food-safety-info">
 			<div class="release-commodity-hd">商品规格</div>
 			<hr>	
@@ -145,19 +145,19 @@
 			<a ng-click="addA(a.name)">确定</a>
 			<a>取消</a>
 			<hr>
-			<!-- <div class="release-commodity-info" ng-repeat="attr in attrs" >
+
+			<!-- 	<div class="release-commodity-info" ng-repeat="attr in attrs" >
 					<b>{{attr.key}} <a ng-click="delA(attr.key)">X</a> </b> <br>
 					<span ng-repeat="v in attr.values">
 						<b>{{v.value}}</b> &nbsp;&nbsp;
-					</span>
-					
-			</div>
+					</span>	
+			</div> -->
 		 
 </div>		
--->
+
 <!-- =========================sku区===================================================================== -->
 
-<!--
+<!---->
 
 	 <div  class="div_contentlist" ng-repeat="attr in attrs">
 		 <ul class="Father_Title" >
@@ -178,38 +178,30 @@
         <ul> <li><div id="createTable"></div></li></ul>
  </div>
 <br><br><br><br><br>
--->
+
 <!-- ============================================================================================-->
 <!-- ===========================info区===================================-->
-<!--
+<!---->
+            <hr>
 <div class="commodity-food-safety-info">
             <div class="release-commodity-hd">
                 商品详细信息
             </div>
-            <button onclick="addinfo()">添加一条</button><br>
-            <hr>
+            <button onclick="insertRow()">添加一条</button><br>
+
         <table width="80%" border="1" style="text-align: center;" id="infos">
             <tr>
                 <td >标题</td>
                 <td >信息</td>
                 <td style="width: 10%;">操作</td>
             </tr>
-             <tr>
-                <td><input type="text" value="" size="50" /></td>
-                <td><input type="text" value="" size="50" /></td>
-                <td><button onclick="delinfo()">删除</button></td>
-            </tr>
-            <tr>
-                <td><input type="text" value="" size="50" /></td>
-                <td><input type="text" value="" size="50" /></td>
-                <td><button onclick="delinfo()">删除</button></td>
-            </tr>
         </table>
+
 </div>
 <hr>
--->
+
 <!-- ==========================图片区=================================================== -->
-<!--
+<!---->
 <div class="commodity-food-safety-info">
 			<div class="release-commodity-hd">
 				展示图片
@@ -291,10 +283,10 @@
 	<input type="hidden" value="{{path3}}" id="path3" />
 	<input type="hidden" value="{{path4}}" id="path4" />
 	<input type="hidden" value="{{path5}}" id="path5" />
--->
+
 <!-- ============================================================================-->
 		<div class="release-commodity-footer" >
-			<button class="release-commodity-btn"  ng-click="saveOrUpdate(goods)"
+			<button class="release-commodity-btn"  ng-click="save(goods)"
 			ng-disabled="saveForm.$invalid">
 				发布
 			</button>

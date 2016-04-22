@@ -29,6 +29,6 @@ shopbackApp.controller('WapGoodsListController', function ($scope, $state,$locat
 	 };
 
 	 $scope.toUpdate = function(id){
-			$state.go('station-goods.wap-goods-add',{gid:id});		
+			$state.go('station-goods.wap-goods-update',{gid:id});		
 	 };
 });
