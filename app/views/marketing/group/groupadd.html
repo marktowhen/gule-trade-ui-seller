@@ -14,15 +14,23 @@
 					<li>
 						<div class="release-commodity-info-label fl">团购商品：</div>
 						<div class="release-commodity-info-txt fl" >
-							<select  ng-model="gid" ng-options="goods.gid as goods.goodsName for goods in goodslist" class="release-commodity-select-length" required></select>
+							<select name='gid' ng-model="groupGoods.gid" ng-options="goods.gid as goods.name for goods in goodslist" class="release-commodity-select-length" required ng-change="listSku(groupGoods.gid)"></select>
 						</div>
-						<p ng-show="saveForm.value.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+						<p ng-show="saveForm.gid.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">型号:</div>
+						<div class="release-commodity-info-txt fl" >
+							<select name='skuid' ng-model="groupGoods.skuid" ng-options="sku.id as sku.propertiesValue for sku in skulist" class="release-commodity-select-length" required></select>
+						</div>
+						<p ng-show="saveForm.skuid.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">截止日期：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-p-end-day" 
+							<input class="release-commodity-p-end-day" ng-model="groupGoods.deadline"
 							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="pro_end">
 							
 						</div>
@@ -31,13 +39,13 @@
 					<li>
 						<div class="release-commodity-info-label fl">成团时长：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-p-start-day" 
+							<input class="release-commodity-p-start-day" ng-model="groupGoods.day"
 							type="number" id="pro_start">
 							天
-							<input class="release-commodity-p-end-day" 
+							<input class="release-commodity-p-end-day" ng-model="groupGoods.hour"
 							type="number" id="pro_end">
 							小时
-							<input class="release-commodity-p-end-day" 
+							<input class="release-commodity-p-end-day" ng-model="groupGoods.minute"
 							type="number" id="pro_end">
 							分钟
 						</div>
@@ -46,35 +54,35 @@
 					<li>
 						<div class="release-commodity-info-label fl">是否上架：</div>
 						<div class="release-commodity-info-txt fl">
-							<label><input class="fl" type="radio" ng-model="counpon.threshhold" name="threshhold" required value="">是</label>
-							<label><input class="fl" type="radio" ng-model="counpon.threshhold" name="threshhold" required value="">否</label>
+							<label><input class="fl" type="radio" ng-model="groupGoods.show" name="show" required value="true">是</label>
+							<label><input class="fl" type="radio" ng-model="groupGoods.show" name="show" required value="">否</label>
 						</div>							
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">团长佣金：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="counpon.amount" pattern="^\d+$" name="amount" required>
+							<input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="groupGoods.commission" name="commission" required>
 						</div>
-						<p ng-show="saveForm.amount.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
-						<p ng-show="saveForm.amount.$dirty && saveForm.amount.$error. pattern" style="color: red" >&nbsp;数量只能输入正整数</p>
+						<p ng-show="saveForm.commission.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
+						<p ng-show="saveForm.commission.$dirty " style="color: red" >&nbsp;应小于1</p>
 							
 					</li>
 					<div class="clear"></div>
 					<li>
 						<div class="release-commodity-info-label fl">拼团价格：</div>
 						<div class="release-commodity-info-txt fl" >
-							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="counpon.amount" pattern="^\d+$" name="amount" required>人</label>
-							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="counpon.amount" pattern="^\d+$" name="amount" required>元</label>
-							<button>删除</button>
+							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="pricesetting.number" pattern="^\d+$" name="number" required>人</label>
+							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="pricesetting.price" pattern="^\d+$" name="price" required>元</label>
+							
 						</div>
-						<div class="clear"></div>
+						<!--m<div class="clear"></div>
 						<div class="release-commodity-info-txt" ng-repeat="pricesetting in pricesettings">
 							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="pricesetting.number" pattern="^\d+$" name="number" required>人</label>
 							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="pricesetting.price" pattern="^\d+$" name="price" required>元</label>
 							<button ng-click="removepricesetting(pricesetting)">删除</button>
 						</div>
-						<button ng-click="addpricesetting()">添加价格</button>
+						 <button ng-click="addpricesetting()">添加价格</button> -->
 					</li>
 					<div class="clear"></div>
 				</ul>
@@ -84,8 +92,8 @@
 
 		<div class="release-commodity-footer" >
 		<!--  -->
-			<button class="release-commodity-btn"  ng-click="submit(counpon)"
-			ng-disabled="saveForm.$invalid || submiting">
+			<button class="release-commodity-btn"  ng-click="submit(groupGoods)"
+			ng-disabled="saveForm.$invalid">
 				发布
 			</button>
 		</div>

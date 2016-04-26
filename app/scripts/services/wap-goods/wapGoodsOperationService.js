@@ -10,9 +10,9 @@
 shopbackApp.service('WapGoodsOperationService', function($http,$location,$resource,$state,ApiService){
 
 
-        this.allList =function (name){
+        this.allList =function (name,mid, from,size){
             return  $http.get(ApiService.api.wapgoods.allList,
-                         {params:{'name':name}}); 
+                         {params:{'name':name,'mid':mid,'from':0,'size':100}}); 
         };
 
         this.del= function (id){
@@ -57,4 +57,7 @@ shopbackApp.service('WapGoodsOperationService', function($http,$location,$resour
 							alert("添加商品失败:"+response);
 						});
     	  	}
+        this.listSku = function(gid){
+            return  $http.get(ApiService.api.wapgoods.skulist.replace(":gid",gid)); 
+        }
 });

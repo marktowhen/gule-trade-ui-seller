@@ -173,11 +173,17 @@ shopbackApp.service('ApiService', function () {
             'del':'http://localhost:8080/api/goods/type/del/:tid',
             'byname':'http://localhost:8080/api/goods/type/singleByName/:tname'
         },
+        'marketing':{
+            'group':{
+                'save':'http://localhost:8080/api/marketing/group/goods/addition'
+            }
+        },
         'logistic':{
             'logisticlist':'http://localhost:8080/api/logistic/express/list',
             'expressinfo':'http://localhost:8080/api/logistic/express/info/:oid/:code/:codeid'
         },
          'wapgoods':{
+            'skulist':'http://localhost:8080/api/wap/goods/skus/:gid',
             'allList':'http://localhost:8080/api/wap/goods/list',
             'thisMerchant':'http://localhost:8080/api/merchant/merchantBySellerId/:sellerId',
             'types':'http://localhost:8080/api/goods/type/list',

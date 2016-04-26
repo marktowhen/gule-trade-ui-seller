@@ -7,9 +7,9 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GroupAdditionController', function ($scope,$cookies, ConstantService,GoodsEditService) {
-
-	GoodsEditService.queryGoodsList("",1,"","",0,100)
+shopbackApp.controller('GroupAdditionController', function ($scope,$cookies, ConstantService,WapGoodsOperationService,GroupService) {
+	var mid = $cookies.get(ConstantService.LOGIN_MERCHANT_ID);
+	WapGoodsOperationService.allList('',mid,0,200)
 	.success(function(data){
 		if(data.ok){
 			$scope.goodslist = data.body;
@@ -18,31 +18,40 @@ shopbackApp.controller('GroupAdditionController', function ($scope,$cookies, Con
 
 	});
 
-	$scope.pricesettings = [];
-	$scope.addpricesetting = function(){
-		var pricesetting = {};
-		pricesetting.number = 0;
-		pricesetting.price = 0;
-		$scope.pricesettings.push(pricesetting);
-	};
-	$scope.removepricesetting = function(setting){
-		$scope.pricesettings.splice($scope.pricesettings.indexOf(setting), 1);
-	};
+	$scope.listSku = function(gid){
+		WapGoodsOperationService.listSku(gid)
+		.success(function(data){
+			if (data.ok) {
+				$scope.skulist = data.body;
+			}
+		})
+	}
 
-	$scope.submit = function(counpon){
-	 	$scope.submiting = true;
-	 	CashcounponService.save(counpon, counpon.amount)
-	 		.success(function(data){
-		 		$scope.submiting = false;
-		 		if(data.code==200){
-		 			alert("成功");
-		 		}else{
-		 			alert(data.message);
-		 		}
-		 	})
+	$scope.pricesetting = {};
+	$scope.pricesetting.number = 0;
+	$scope.pricesetting.price = 0;
+
+	$scope.submit = function(grouGoods){
+		grouGoods.minpeople = $scope.pricesetting.number;
+		var priceSettings = [];
+		priceSettings.push($scope.pricesetting);
+		grouGoods.priceSettings = priceSettings;
+		grouGoods.duration = getDuration();
+		GroupService.save(grouGoods)
+			.success(function(data){
+				if (data.ok) {
+					alert( "成功");
+				}else{
+					alert(data.message);
+				}
+			})
 		 	.error(function(data){
 		 		$scope.submiting = false;
 	 			alert( "网络异常,请稍后重试");
 		 	});
 	 };
+
+	 var getDuration = function(){
+	 	return $scope.groupGoods.day * 3600 *24 +$scope.groupGoods.hour*3600 +$scope.groupGoods.minute*60
+	 }
 });
