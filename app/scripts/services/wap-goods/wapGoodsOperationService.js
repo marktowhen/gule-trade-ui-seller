@@ -12,7 +12,7 @@ shopbackApp.service('WapGoodsOperationService', function($http,$location,$resour
 
         this.allList =function (name){
             return  $http.get(ApiService.api.wapgoods.allList,
-                         {params:{'name':name}}); 
+                         {params:{'name':name,'from':0,'size':100}}); 
         };
 
         this.del= function (id){
