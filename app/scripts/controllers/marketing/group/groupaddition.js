@@ -33,10 +33,13 @@ shopbackApp.controller('GroupAdditionController', function ($scope,$cookies, Con
 
 	$scope.submit = function(grouGoods){
 		grouGoods.minpeople = $scope.pricesetting.number;
+		$scope.pricesetting.floor = $scope.pricesetting.number;
+		$scope.pricesetting.ceiling = $scope.pricesetting.number;
 		var priceSettings = [];
 		priceSettings.push($scope.pricesetting);
 		grouGoods.priceSettings = priceSettings;
 		grouGoods.duration = getDuration();
+		grouGoods.deadline = $("#pro_end").val();
 		GroupService.save(grouGoods)
 			.success(function(data){
 				if (data.ok) {
