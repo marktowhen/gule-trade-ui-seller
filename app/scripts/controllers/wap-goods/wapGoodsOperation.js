@@ -377,7 +377,7 @@ $scope.goods = {'id':'','mid':'','tid':'','name':'','code':'','about':'','price'
 
 	$scope.save = function (goods){
 		alert("save")
-			//saveGoods(goods);
+			saveGoods(goods);
 	}
 	$scope.update = function (goods){
 		alert("update")
