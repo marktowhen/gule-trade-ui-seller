@@ -7,8 +7,30 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GroupAdditionController', function ($scope,$cookies, ConstantService,WapGoodsOperationService,GroupService) {
+shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,$scope,$cookies,GroupGoodsService, ConstantService,WapGoodsOperationService,GroupService) {
+
+	var notEmpty = function(str){
+	 	if (str==null||str==undefined||str=='') {
+	 		return false;
+	 	}
+	 	return true;
+	 }
 	var mid = $cookies.get(ConstantService.LOGIN_MERCHANT_ID);
+
+	var id = $stateParams.id;
+	if(notEmpty(id)){
+		GroupGoodsService.single(id).success(function(data){
+			if(data.ok){
+				$scope.groupGoods = data.body;
+				$scope.pricesetting = {'number':$scope.groupGoods.priceSettings[0].floor,
+										'price':$scope.groupGoods.priceSettings[0].price};
+				$scope.listSku($scope.groupGoods.gid);
+			}else{
+				alert(data.message);
+			}
+		})
+	}
+
 	WapGoodsOperationService.allList('',mid,0,200)
 	.success(function(data){
 		if(data.ok){
@@ -27,6 +49,9 @@ shopbackApp.controller('GroupAdditionController', function ($scope,$cookies, Con
 		})
 	}
 
+
+	
+
 	$scope.pricesetting = {};
 	$scope.pricesetting.number = 0;
 	$scope.pricesetting.price = 0;
@@ -40,21 +65,52 @@ shopbackApp.controller('GroupAdditionController', function ($scope,$cookies, Con
 		grouGoods.priceSettings = priceSettings;
 		grouGoods.duration = getDuration();
 		grouGoods.deadline = $("#pro_end").val();
-		GroupService.save(grouGoods)
-			.success(function(data){
-				if (data.ok) {
-					alert( "成功");
-				}else{
-					alert(data.message);
-				}
-			})
-		 	.error(function(data){
-		 		$scope.submiting = false;
-	 			alert( "网络异常,请稍后重试");
-		 	});
+		if (notEmpty(id)) {
+			GroupGoodsService.refresh(grouGoods)
+				.success(function(data){
+					if (data.ok) {
+						alert( "成功");
+						$state.go('marketing.group-mngt');
+					}else{
+						alert(data.message);
+					}
+				})
+			 	.error(function(data){
+			 		$scope.submiting = false;
+		 			alert( "网络异常,请稍后重试");
+			 	});
+		}else{
+			GroupGoodsService.save(grouGoods)
+				.success(function(data){
+					if (data.ok) {
+						alert( "成功");
+						$state.go('marketing.group-mngt');
+					}else{
+						alert(data.message);
+					}
+				})
+			 	.error(function(data){
+			 		$scope.submiting = false;
+		 			alert( "网络异常,请稍后重试");
+			 	});
+		}
+		
 	 };
 
 	 var getDuration = function(){
-	 	return $scope.groupGoods.day * 3600 *24 +$scope.groupGoods.hour*3600 +$scope.groupGoods.minute*60
+	 	var second = 0;
+	 	if (notEmpty($scope.groupGoods.day)) {
+	 		second+=$scope.groupGoods.day* 3600 *24;
+	 	}
+	 	if (notEmpty($scope.groupGoods.hour)) {
+	 		second+=$scope.groupGoods.hour*3600;
+	 	}
+	 	if (notEmpty($scope.groupGoods.minute)) {
+	 		second+=$scope.groupGoods.minute*60;
+	 	}
+
+	 	return   second;
 	 }
+
+	 
 });

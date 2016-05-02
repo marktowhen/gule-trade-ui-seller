@@ -16,6 +16,6 @@ shopbackApp.config(function ($stateProvider, $urlRouterProvider, $httpProvider) 
       })
       .state('marketing.group-add', {
         templateUrl: '/views/marketing/group/groupadd.html',
-        url:"/marketing/group/addition"
+        url:"/marketing/group/addition?id"
       })
   });

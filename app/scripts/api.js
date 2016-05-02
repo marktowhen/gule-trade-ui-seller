@@ -175,7 +175,13 @@ shopbackApp.service('ApiService', function () {
         },
         'marketing':{
             'group':{
-                'save':'http://localhost:8080/api/marketing/group/goods/addition'
+                
+            },
+            'groupGoods':{
+                'save':'http://localhost:8080/api/marketing/group/goods/addition',
+                'list':'http://localhost:8080/api/marketing/group/goods/list',
+                'single':'http://localhost:8080/api/marketing/group/goods/detail',
+                'refresh':'http://localhost:8080/api/marketing/group/goods'
             }
         },
         'logistic':{
