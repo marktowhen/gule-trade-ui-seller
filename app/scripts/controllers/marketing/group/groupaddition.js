@@ -69,7 +69,7 @@ shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,
 	$scope.submit = function(grouGoods){
 		grouGoods.minpeople = $scope.pricesetting.number;
 		$scope.pricesetting.floor = $scope.pricesetting.number;
-		$scope.pricesetting.ceiling = $scope.pricesetting.number;
+		$scope.pricesetting.ceiling = $scope.pricesetting.number+1;
 		var priceSettings = [];
 		priceSettings.push($scope.pricesetting);
 		grouGoods.priceSettings = priceSettings;
