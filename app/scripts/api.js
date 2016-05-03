@@ -180,6 +180,7 @@ shopbackApp.service('ApiService', function () {
             'groupGoods':{
                 'save':'http://localhost:8080/api/marketing/group/goods/addition',
                 'list':'http://localhost:8080/api/marketing/group/goods/list',
+                'count':'http://localhost:8080/api/marketing/group/goods/count',
                 'single':'http://localhost:8080/api/marketing/group/goods/detail',
                 'refresh':'http://localhost:8080/api/marketing/group/goods'
             }

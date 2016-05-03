@@ -3,23 +3,13 @@
 	<div class="ml-mid-detail">
 		<ul class="ml">
 			
-			<!-- 卡号:<input ng-model="cash.cardNum" type="text">
-			面额: <select ng-model="cash.value" >
-					<option value='1000' >1000</option>
-					<option value='500' >500</option>
-					<option value='200' >200</option>
-				  </select>
-			是否锁定:<select ng-model="cash.locked" >
-						<option value='true' >是</option>
-						<option value='false' >否</option>
-					  </select>
-			 -->
+			 商品名称:<input ng-model="condition.name" type="text">
+			 
 		</ul>
 		
 		<div class="clear h10"></div>
 	
-		<div class="ml-ser" style='float: left;'ng-click="reSearch()">查询</div>
-		<div class="ml-ser" style='float: left;' ng-click="unlock()">解锁</div>
+		<div class="ml-ser" style='float: left;'ng-click="research()">查询</div>
 		<div class="clear"></div>
 	</div>
 	<div class="ml-content" style="width: 1200px;">
@@ -39,7 +29,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="ml-bd">
+		<div class="ml-bd" style="max-height: 400px;">
 			<div class="mlb-mid">
 				<div  ng-repeat="gg in ggoods" class = "mlb-line">
 					<ul class="mlbm" style="text-align: center;">
@@ -49,7 +39,7 @@
 						<li class="mlb-m mlb-m2"><img style="width: 20px; height: 20px;" src="{{gg.goods.path}}"> </li>
 						<li class="mlb-m mlb-m2">{{gg.minpeople}}</li>
 						<li class="mlb-m mlb-m2" >{{gg.deadline | date:'yyyy-MM-dd hh:mm:ss'}}</li>
-						<li class="mlb-m">{{gg.duration}}秒</li>
+						<li class="mlb-m">{{gg.durationShow}}</li>
 						<li class="mlb-m " >{{gg.show  | booleanFilter}}</li>
 						<li class="mlb-m">{{gg.commission}}</li>
 						<li class="mlb-m"></li>
@@ -60,6 +50,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="ml-bd">数量 {{counpons.length}}/{{amount}}<span ng-click="list()" ng-if="more">展示更多</span> </div>
+		<div class="ml-bd">数量 {{ggoods.length}}/{{amount}}<span ng-click="listMore()" ng-if="hasMore">展示更多</span> </div>
 	</div>
 </div>
