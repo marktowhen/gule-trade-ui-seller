@@ -174,6 +174,15 @@ shopbackApp.service('ApiService', function () {
             'byname':'http://localhost:8080/api/goods/type/singleByName/:tname'
         },
         'marketing':{
+            'auction':{
+                'goods':{
+                    'save' : 'http://localhost:8080/api/marketing/auction/goods/addition',
+                    'list':'http://localhost:8080/api/marketing/auction/goods/list',
+                    'count':'http://localhost:8080/api/marketing/auction/goods/count',
+                    'single':'http://localhost:8080/api/marketing/auction/goods/detail',
+                    'refresh':'http://localhost:8080/api/marketing/auction/goods'
+                }
+            },
             'group':{
                 
             },
