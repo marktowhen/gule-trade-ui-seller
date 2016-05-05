@@ -49,8 +49,8 @@ shopbackApp.controller('AuctionAdditionController', function ($state,$stateParam
 	}
 
 	$scope.submit = function(auctionGoods){
-		auctionGoods.startTime = $("#startTime").val();
-		auctionGoods.endTime = $("#endTime").val();
+		auctionGoods.startTime = new Date($("#startTime").val());
+		auctionGoods.endTime = new Date($("#endTime").val());
 
 		if (notEmpty(id)) {
 			AuctionGoodsService.refresh(auctionGoods)
