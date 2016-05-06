@@ -7,7 +7,7 @@
  * # AboutCtrl
  * Controller of the jingyunshopApp
  */
-shopbackApp.controller('GroupGoodsManagerController', function ($scope, $cookies,$state ,GroupGoodsService,ConstantService) {
+shopbackApp.controller('AuctionManagerController', function ($scope, $cookies,$state ,AuctionGoodsService,ConstantService) {
 
 		var mid = $cookies.get(ConstantService.LOGIN_MERCHANT_ID);
 		$scope.ggoods = [];
@@ -19,14 +19,10 @@ shopbackApp.controller('GroupGoodsManagerController', function ($scope, $cookies
 	        
 	    });  
 		var list = function(mid, name, from, size){
-			GroupGoodsService.list(mid, from, size,name)
+			AuctionGoodsService.list('', from, size,name)
 			.success(function(data){
 				if(data.ok){
 					for (var i = 0; i < data.body.length; i++) {
-						if (data.body[i].duration!=null) {
-							var s = data.body[i].duration;
-							data.body[i].durationShow = getDay(s)+'天'+getHour(s)+'小时'+getMinute(s)+'分钟';
-						}
 						$scope.ggoods .push( data.body[i]);
 					}
 					if (data.body.length<size) {
@@ -38,7 +34,7 @@ shopbackApp.controller('GroupGoodsManagerController', function ($scope, $cookies
 		}
 
 		var count = function(mid, goodsName){
-			GroupGoodsService.count(mid, goodsName)
+			AuctionGoodsService.count(mid, goodsName)
 				.success(function(data){
 					$scope.amount = data.body;
 				})
@@ -51,22 +47,14 @@ shopbackApp.controller('GroupGoodsManagerController', function ($scope, $cookies
 		}
 
 		$scope.refresh = function(id){
-			$state.go('marketing.group-add',{id:id});
+			$state.go('marketing.auction-add',{id:id});
 		}
 
 		$scope.listMore = function(){
 			list(mid,$scope.condition.name,$scope.ggoods.length ,size);
 		}
 
-		var getDay = function(second){
-			return parseInt(second/(60*60*24));
-		}
-		var getHour = function(second){
-			return parseInt((second-getDay(second)*60*60*24)/(60*60));
-		}
-		var getMinute = function(second){
-			return parseInt((second-getDay(second)*60*60*24-getHour(second)*60*60)/60);
-		}
+		
 	
 	
 });

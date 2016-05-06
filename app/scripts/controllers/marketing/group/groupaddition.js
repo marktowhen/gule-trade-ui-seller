@@ -25,6 +25,16 @@ shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,
 				$scope.pricesetting = {'number':$scope.groupGoods.priceSettings[0].floor,
 										'price':$scope.groupGoods.priceSettings[0].price};
 				$scope.listSku($scope.groupGoods.gid);
+
+		 		$scope.groupGoods.day = getDay($scope.groupGoods.duration);
+		 		$scope.groupGoods.hour = getHour($scope.groupGoods.duration);
+		 		$scope.groupGoods.minute = getMinute($scope.groupGoods.duration);
+		 		if($scope.groupGoods.show){
+		 			$scope.groupGoods.show = 'true';
+		 		}else{
+		 			$("#notShow").attr('checked',checked);
+		 		} 
+			 	
 			}else{
 				alert(data.message);
 			}
@@ -59,7 +69,7 @@ shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,
 	$scope.submit = function(grouGoods){
 		grouGoods.minpeople = $scope.pricesetting.number;
 		$scope.pricesetting.floor = $scope.pricesetting.number;
-		$scope.pricesetting.ceiling = $scope.pricesetting.number;
+		$scope.pricesetting.ceiling = $scope.pricesetting.number+1;
 		var priceSettings = [];
 		priceSettings.push($scope.pricesetting);
 		grouGoods.priceSettings = priceSettings;
@@ -111,6 +121,16 @@ shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,
 
 	 	return   second;
 	 }
+
+	 var getDay = function(second){
+			return parseInt(second/(60*60*24));
+	}
+	var getHour = function(second){
+		return parseInt((second-getDay(second)*60*60*24)/(60*60));
+	}
+	var getMinute = function(second){
+		return parseInt((second-getDay(second)*60*60*24-getHour(second)*60*60)/60);
+	}
 
 	 
 });
