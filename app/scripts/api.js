@@ -182,6 +182,12 @@ shopbackApp.service('ApiService', function () {
                 'list':'http://localhost:8080/api/marketing/group/goods/list',
                 'single':'http://localhost:8080/api/marketing/group/goods/detail',
                 'refresh':'http://localhost:8080/api/marketing/group/goods'
+            },
+            'flashsale':{
+                'save':'http://localhost:8080/api/flash/sale/add',
+                'list':'http://localhost:8080/api/flash/sale/list',
+                'single':'http://localhost:8080/api/flash/sale/detail',
+                'refresh':'http://localhost:8080/api/flash/sale/update'
             }
         },
         'logistic':{

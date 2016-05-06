@@ -140,6 +140,14 @@ var shopbackApp= angular
         templateUrl: '/views/station-goods/goods-management/goodslist.html',
         url:"/goods/list"
       })
+      .state('marketing.flash-sale-add', {
+        templateUrl: '/views/marketing/flash-sale/flash-sale-add.html',
+        url:"/flash-sale-add/:id"
+      })
+      .state('marketing.flash-sale-list', {
+        templateUrl: '/views/marketing/flash-sale/flash-sale-list.html',
+        url:"/flash-sale-list"
+      })
       ;
   })
 .run(function($rootScope, $state,$cookieStore,$cookies) {

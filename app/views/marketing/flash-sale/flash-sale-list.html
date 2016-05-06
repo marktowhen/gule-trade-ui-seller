@@ -1,0 +1,42 @@
+<div class="merchant-list" ng-controller="FlashSaleManagerController" style="width: 1200px;">
+	<div class="ml-top-title">秒杀管理</div>
+	<div class="ml-content" style="width: 1200px;">
+		<div class="ml-hd">
+			<div class="mlh-mid">
+				<ul class="mlhm">
+					<li class="mlh-m mlh-m2">商品名称</li>
+					<li class="mlh-m mlh-m2">型号</li>
+					<li class="mlh-m mlh-m2">图片</li>
+					<li class="mlh-m mlh-m2">剩余的产品</li>
+					<li class="mlh-m mlh-m2">活动时间</li>
+					<li class="mlh-m">是否上架</li>
+					<li class="mlh-m">秒杀价</li>
+					<li class="mlh-m">操作</li>
+					
+				</ul>
+			</div>
+		</div>
+		<div class="ml-bd">
+			<div class="mlb-mid">
+				<div  ng-repeat="show in FlashSaleShow" class = "mlb-line">
+					<ul class="mlbm" style="text-align: center;">
+						
+						<li class="mlb-m mlb-m2">{{show.goods.name}}</li>
+						<li class="mlb-m mlb-m2">{{show.sku.propertiesValue}}</li>
+						<li class="mlb-m mlb-m2"><img style="width: 20px; height: 20px;" src="{{show.goods.path}}"> </li>
+						<li class="mlb-m">{{show.stock}}</li>
+						<li class="mlb-m mlb-m2" style="margin-left:40px;" >{{show.activityTime | date:'yyyy-MM-dd hh:mm:ss'}}</li>
+						
+						<li class="mlb-m " >{{show.shows}}</li>
+						<li class="mlb-m">{{show.currentPrice}}</li>
+						<li class="mlb-m"></li>
+						<li class="mlb-m" style="margin-left:-100px;cursor:pointer"><span ng-click="refresh(show.id)">修改</span></li>
+						
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+		<div class="ml-bd"><span ng-click="list(size,shows)" ng-if="hasMore" style="cursor:pointer">展示更多</span> </div>
+	</div>
+</div>

@@ -1,0 +1,82 @@
+<div class="center-view" ng-controller="FlashSalController">
+
+<ng-form  name='saveForm'> 
+<!-- ================================goods============================================ -->
+<!-- -->
+	<div class="commodity-main">
+		<div class="commodity-main-hd">
+			商品管理&gt;发布秒杀商品
+		</div>
+
+		<div class="commodity-base-info">
+			<div class="release-commodity-hd">
+				秒杀商品基本信息
+			</div>
+			<div class="release-commodity-info">
+				<ul class="release-commodity-info-list">
+
+					<li>
+						<div class="release-commodity-info-label fl">商品名称：</div>
+							<select name='gid' ng-model="flashsale.gid" ng-options="goods.gid as goods.name for goods in goodslist" class="release-commodity-select-length" required ng-change="listSku(flashsale.gid)"></select>
+						<p style="color: red" >*必选</p>
+					</li>
+					<div class="clear"></div>
+					
+					<li>
+						<div class="release-commodity-info-label fl">对应商品的型号：</div>
+						<select name='skuId' ng-model="flashsale.skuId" ng-options="sku.id as sku.propertiesValue for sku in skulist" class="release-commodity-select-length" required></select>
+						<p style="color: red" >*必选</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">商品活动数量：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length" type="text" ng-model="flashsale.stock"  pattern="^[+-]?\d+(\.\d+)?$" name="stock" required>
+						</div>
+						<p ng-show="saveForm.stock.$error.pattern" style="color: red" >&nbsp;价格只能输入数字</p>
+					</li>
+					<div class="clear"></div>
+					
+					<li>
+						<div class="release-commodity-info-label fl">商品现在的价格：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length" type="text" ng-model="flashsale.currentPrice"  pattern="^[+-]?\d+(\.\d+)?$" name="currentPrice" required>
+						</div>
+						<p ng-show="saveForm.salePrice.$error.pattern" style="color: red" >&nbsp;价格只能输入数字</p>
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">是否上架：</div>
+						<div class="release-commodity-info-txt fl">
+							<label><input class="fl" type="radio" ng-model="flashsale.shows" name="show" required value="1">是</label>
+							<label><input class="fl" type="radio" ng-model="flashsale.shows" name="show" required value="0">否</label>
+						</div>							
+					</li>
+					<div class="clear"></div>
+					<li>
+						<div class="release-commodity-info-label fl">秒杀的活动时间：</div>
+						<div class="release-commodity-info-txt fl">
+							<input class="release-commodity-input-length" type="text" ng-model="flashsale.activityTime"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="time" name="activityTime" required>
+						</div>
+						<p ng-show="saveForm.activityTime.$error.required" style="color: red" >*必填</p>
+					</li>
+					<div class="clear"></div>
+					
+				
+				</ul>
+			</div>
+		</div>
+
+
+		<div class="release-commodity-footer" >
+			<button class="release-commodity-btn"  ng-click="save(flashsale)">
+				发布
+			</button>
+		</div>
+	</div>
+</ng-form>
+
+
+
+</div>
+
