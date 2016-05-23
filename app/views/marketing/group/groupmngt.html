@@ -19,11 +19,10 @@
 					<li class="mlh-m mlh-m2">商品名称</li>
 					<li class="mlh-m mlh-m2">型号</li>
 					<li class="mlh-m mlh-m2">图片</li>
-					<li class="mlh-m mlh-m2">最小成团人数</li>
 					<li class="mlh-m mlh-m2" >团购截止日期</li>
 					<li class="mlh-m">成团有效时长</li>
 					<li class="mlh-m">是否上架</li>
-					<li class="mlh-m">团长佣金</li>
+					<li class="mlh-m">团长人数</li>
 					<li class="mlh-m">团购价</li>
 					
 				</ul>
@@ -37,12 +36,11 @@
 						<li class="mlb-m mlb-m2">{{gg.goods.name}}</li>
 						<li class="mlb-m mlb-m2">{{gg.sku.propertiesValue}}</li>
 						<li class="mlb-m mlb-m2"><img style="width: 20px; height: 20px;" src="{{gg.goods.path}}"> </li>
-						<li class="mlb-m mlb-m2">{{gg.minpeople}}</li>
 						<li class="mlb-m mlb-m2" >{{gg.deadline | date:'yyyy-MM-dd hh:mm:ss'}}</li>
 						<li class="mlb-m">{{gg.durationShow}}</li>
 						<li class="mlb-m " >{{gg.show  | booleanFilter}}</li>
-						<li class="mlb-m">{{gg.commission}}</li>
-						<li class="mlb-m"></li>
+						<li class="mlb-m">{{gg.groupPeople}}</li>
+						<li class="mlb-m">{{gg.groupPrice}}</li>
 						<li class="mlb-m"><span ng-click="refresh(gg.id)">修改</span></li>
 						
 					</ul>

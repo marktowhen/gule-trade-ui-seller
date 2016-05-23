@@ -59,21 +59,21 @@
 						</div>							
 					</li>
 					<div class="clear"></div>
-					<li>
+					<!--<li>
 						<div class="release-commodity-info-label fl">团长佣金：</div>
-						<div class="release-commodity-info-txt fl">
+						 <div class="release-commodity-info-txt fl">
 							<input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="groupGoods.commission" name="commission" required>
 						</div>
 						<p ng-show="saveForm.commission.$error.required" style="color: red" >&nbsp;&nbsp;&nbsp;*必填</p>
 						<p ng-show="saveForm.commission.$dirty " style="color: red" >&nbsp;应小于1</p>
 							
 					</li>
-					<div class="clear"></div>
+					<div class="clear"></div> -->
 					<li>
 						<div class="release-commodity-info-label fl">拼团价格：</div>
 						<div class="release-commodity-info-txt fl" >
-							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="pricesetting.number" pattern="^\d+$" name="number" required>人</label>
-							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="pricesetting.price" pattern="^\d+$" name="price" required>元</label>
+							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="groupGoods.groupPeople" pattern="^\d+$" name="number" required>人</label>
+							<label><input class="release-commodity-input-length release-commodity-postage fl" type="number" ng-model="groupGoods.groupPrice" pattern="^\d+$" name="price" required>元</label>
 							
 						</div>
 						<!--m<div class="clear"></div>

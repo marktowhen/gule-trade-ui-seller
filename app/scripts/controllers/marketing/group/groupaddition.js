@@ -22,8 +22,8 @@ shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,
 		GroupGoodsService.single(id).success(function(data){
 			if(data.ok){
 				$scope.groupGoods = data.body;
-				$scope.pricesetting = {'number':$scope.groupGoods.priceSettings[0].floor,
-										'price':$scope.groupGoods.priceSettings[0].price};
+				/*$scope.pricesetting = {'number':$scope.groupGoods.priceSettings[0].floor,
+										'price':$scope.groupGoods.priceSettings[0].price};*/
 				$scope.listSku($scope.groupGoods.gid);
 
 		 		$scope.groupGoods.day = getDay($scope.groupGoods.duration);
@@ -67,12 +67,12 @@ shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,
 	$scope.pricesetting.price = 0;
 
 	$scope.submit = function(grouGoods){
-		grouGoods.minpeople = $scope.pricesetting.number;
-		$scope.pricesetting.floor = $scope.pricesetting.number;
-		$scope.pricesetting.ceiling = $scope.pricesetting.number+1;
-		var priceSettings = [];
+		// grouGoods.minpeople = $scope.pricesetting.number;
+		// $scope.pricesetting.floor = $scope.pricesetting.number;
+		// $scope.pricesetting.ceiling = $scope.pricesetting.number+1;
+		/*var priceSettings = [];
 		priceSettings.push($scope.pricesetting);
-		grouGoods.priceSettings = priceSettings;
+		grouGoods.priceSettings = priceSettings;*/
 		grouGoods.duration = getDuration();
 		grouGoods.deadline = $("#pro_end").val();
 		if (notEmpty(id)) {
@@ -93,7 +93,7 @@ shopbackApp.controller('GroupAdditionController', function ($state,$stateParams,
 			GroupGoodsService.save(grouGoods)
 				.success(function(data){
 					if (data.ok) {
-						alert( "成功");
+						alert( "保存成功");
 						$state.go('marketing.group-mngt');
 					}else{
 						alert(data.message);
