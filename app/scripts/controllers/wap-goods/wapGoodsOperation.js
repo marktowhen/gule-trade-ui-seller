@@ -74,11 +74,12 @@ shopbackApp.controller('WapGoodsOperationController', function ($scope,$statePar
 					var stock = skuList[i].stock;
 					var price = skuList[i].price;
 					var salePrice = skuList[i].salePrice;
+					var grade=skuList[i].grade;
 				
 					console.log(properties,propertiesValue,stock,price,salePrice);
 					
 				}
-				//console.log()
+				
 			});
 		};
 
@@ -298,6 +299,8 @@ var addSku =function(){
 						create.price = v;
 					}else if(id=='salePrice') {
 						create.salePrice = v;
+					}else if(id=='grade'){
+						create.grade=v;
 					}else{
 						if(create.propertiesValue!=null){
 							create.propertiesValue = create.propertiesValue+"@"+v;
