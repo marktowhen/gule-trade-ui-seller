@@ -133,7 +133,7 @@ shopbackApp.controller('WapGoodsOperationController', function ($scope,$statePar
 						success: function (data) {  
 						var data = JSON.stringify(data);
 						var body = JSON.parse(data).body;
-						 $scope.goods.path = "path----------";
+						 $scope.goods.path = body;
 						 $scope.pathSuccess ="上传成功";
 					},
 					error: function (data) {

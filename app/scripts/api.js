@@ -140,8 +140,8 @@ shopbackApp.service('ApiService', function () {
             'querycomment':'http://localhost:8888/api/allcomments'
         },
         'resource':{
-            'ueditor':'http://localhost:8888/api/resource/ueditor/upload',
-            'single':'http://localhost:8888/api/resource/upload/single'
+            'ueditor':'http://localhost:8070/api/resource/ueditor/upload',
+            'single':'http://localhost:8070/api/resource/upload/single'
         },
         'track':{//推广系统模块
             'getAddetailInfo':'http://localhost:8888/api/track/addetail/info/:id',
