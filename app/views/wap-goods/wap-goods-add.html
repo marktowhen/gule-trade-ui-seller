@@ -39,9 +39,9 @@
 					<li>
 						<div class="release-commodity-info-label fl">商品名称：</div>
 						<div class="release-commodity-info-txt fl">
-							<input class="release-commodity-input-length"   type="text" ng-model="goods.name" name="name" required>
+							<input class="release-commodity-input-length"   type="text" ng-model="goods.name" ng-maxlength="28" name="name" required>
 						</div>
-						<p ng-show="saveForm.name.$error. required" style="color: red" >&nbsp;*必填</p>
+						<p ng-show="saveForm.name.$error. required" style="color: red" >&nbsp;*必填(最多输入28个汉字或字符)</p>
 					</li>
 					<div class="clear"></div>
 					<li>
@@ -175,7 +175,9 @@
  
 <br>
 <div class="div_contentlist2">
-        <ul> <li><div id="createTable"></div></li></ul>
+        <ul> <li>
+        	<div id="createTable"></div>
+        </li></ul>
  </div>
 <br><br><br><br><br>
 

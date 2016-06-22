@@ -8,7 +8,7 @@
  * Controller of the jingyunshopApp
  */
 shopbackApp.controller('WapGoodsOperationController', function ($scope,$stateParams,$location,$cookies,ConstantService,
-	WapGoodsOperationService,ApiService) {
+	WapGoodsOperationService,ApiService,UploadService) {
 
 	
 	 
@@ -75,6 +75,7 @@ shopbackApp.controller('WapGoodsOperationController', function ($scope,$statePar
 					var price = skuList[i].price;
 					var salePrice = skuList[i].salePrice;
 					var grade=skuList[i].grade;
+					var skuPath=skuList[i].skuPath;
 				
 					console.log(properties,propertiesValue,stock,price,salePrice);
 					
@@ -278,21 +279,46 @@ $scope.skuAttrs = [
 			{'key':'网络', 'values':[{'attrName':'网络','value':'联通'},{'attrName':'网络','value':'移动'}] }
 ];
 
+$scope.skuPathss=[];
+$scope.pathss = {};
 
+$scope.fileNameChanged = function(file){
+			UploadService.single(file).success(function(data){
+		        if(data.ok){
+		        	
+					 	$scope.pathss=data.body;
+					 	$scope.skuPathss.push($scope.pathss);
+					 	/*for(var i=0;i<$scope.skuPathss.length;i++){
+					 		$scope.create.skuPath=$scope.skuPathss[i];
+					 		$scope.goods.skuList.push($scope.create);
+					 		console.log("lll"+$scope.goods.skuList[i].skuPath);
+					 	}*/
+					 	alert("上传成功");
+		            
+		         }else{
+		            alert("上传失败");
+		         }
 
-
+		    }).error(function(data){
+		        alert("服务异常！请重试");
+		    });
+}
 $scope.skus = [
 				//[{'k':'','v':''},] 
 			  ];
+
+var paths ={};
+		
 var addSku =function(){
+
 	var table =$("#process");
 	for (var i = 1; i < table[0].rows.length; i++) {
 		var child = table[0].rows[i].cells;
-			var create = {};
-			for (var k = 0; k < child.length; k++) {
-				// console.log(child[k].childNodes[0].id+"==="+child[k].childNodes[0].value)
+		var create={};	
+				for (var k = 0; k < child.length; k++) {
 				 var id= child[k].childNodes[0].id;
 				 var v = child[k].childNodes[0].value;
+
 				   if(id=='stock'){
 						create.stock = v;
 					}else if(id=='price') {
@@ -301,6 +327,8 @@ var addSku =function(){
 						create.salePrice = v;
 					}else if(id=='grade'){
 						create.grade=v;
+					}else if(id=='sku'){
+						create.paths=v;
 					}else{
 						if(create.propertiesValue!=null){
 							create.propertiesValue = create.propertiesValue+"@"+v;
@@ -308,8 +336,13 @@ var addSku =function(){
 							create.propertiesValue = v;
 						}
 					}
-			}
+					
+					
+				}
+				
+			create.skuPath=$scope.skuPathss[i-1];
 			$scope.skus.push(create);
+			
 	}
 
 };
@@ -371,7 +404,9 @@ $scope.goods = {'id':'','mid':'','tid':'','name':'','code':'','about':'','price'
 			$scope.goods.imgList.push(img);
 		}
 		///////赋值skus
+		
 		$scope.goods.skuList = $scope.skus;
+
 		//////info赋值
 		$scope.goods.infoList = $scope.infos;
 		console.log($scope.goods);
@@ -379,12 +414,41 @@ $scope.goods = {'id':'','mid':'','tid':'','name':'','code':'','about':'','price'
 	};
 
 	$scope.save = function (goods){
-		alert("save");
+		var content_ = $scope.content;
+		//alert("content:"+content_ );
+		var uptime = $("#uptime").val();
+		var downtime = $("#downtime").val();
+		var onSaleBeginTime = $("#pro_start").val();
+		var onSaleEndTime = $("#pro_end").val();
+		var productionDate = $("#productionDate").val();
+		goods.upTime = uptime;
+		goods.downTime = downtime;
+		goods.onSaleBeginTime = onSaleBeginTime;
+		goods.onSaleEndTime = onSaleEndTime;
+		goods.productionDate = productionDate;
+		goods.content = content_;
+
 			saveGoods(goods);
+
 	}
-	$scope.update = function (goods){
+	/*$scope.update = function (goods){
 		alert("update")
+		获取ueditor
+		var content_ = $scope.content;
+		//alert("content_::"+content_)
+		var uptime = $("#uptime").val();
+		var downtime = $("#downtime").val();
+		var onSaleBeginTime = $("#pro_start").val();
+		var onSaleEndTime = $("#pro_end").val();
+		var productionDate = $("#productionDate").val();
+		goods.upTime = uptime;
+		goods.downTime = downtime;
+		goods.onSaleBeginTime = onSaleBeginTime;
+		goods.onSaleEndTime = onSaleEndTime;
+		goods.productionDate = productionDate;
+		goods.content = content_;
+		goods.addTime ="";
 			//saveGoods(goods);
-	}
+	}*/
 	
 });

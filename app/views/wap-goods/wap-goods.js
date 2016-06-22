@@ -73,7 +73,8 @@ function attrChange(){
                 var itemColumHead = $("<th  style=\"width:110px; text-align:center; \">库存</th> "+
                 					  "<th  style=\"width:110px; text-align:center; \">价格</th>"+
                 					  "<th  style=\"width:110px; text-align:center; \">折扣价</th> "+
-                                      "<th  style=\"width:110px; text-align:center; \">级别</th> ");
+                                      "<th  style=\"width:110px; text-align:center; \">级别</th> "+
+                                      "<th  style=\"width:110px; text-align:center; \">图片路径</th> ");
                 itemColumHead.appendTo(trHead);
                 //var itemColumHead2 = $("<td >商家编码</td><td >商品条形码</td>");
                 //itemColumHead2.appendTo(trHead);
@@ -105,6 +106,13 @@ function attrChange(){
                         var td4 = $("<td>"+
                             "<input style=\"text-align:center; \" id=\"grade\" size=\"10\" class=\"l-text\" type=\"text\" value=\"\"></td>");
                         td4.appendTo(tr);
+                        var td5 = $("<td>"+
+                            "<input type=\"file\" id=\"sku\" style=\"text-align:center; \"  onchange=\"angular.element(this).scope().fileNameChanged(this)\"></td>");
+                        td5.appendTo(tr);
+                      /*  var td6 = $("<td>"+
+                            "<input style=\"text-align:center; \" id=\"skupath\" size=\"10\" class=\"l-text\" type=\"hidden\" value=\"\"></td>");
+                        td6.appendTo(tr);*/
+                        
                         //var td3 = $("<td ><input name=\"Txt_NumberSon\" class=\"l-text\" type=\"text\" value=\"\"></td>");
                         //td3.appendTo(tr);
                         //var td4 = $("<td ><input name=\"Txt_SnSon\" class=\"l-text\" type=\"text\" value=\"\"></td>");
@@ -136,7 +144,6 @@ function attrChange(){
                     dispose($(this));
                 });
             };
-
  ////////////////////////////////////////////////合并单元格////////
 
             function mergeCell($table, colIndex) {
